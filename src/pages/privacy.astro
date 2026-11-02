@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { title: "隐私说明", url: "/privacy/" }
+];
+---
+
+<BaseLayout
+  title="隐私权与数据保护说明 — 小火箭测评"
+  description="小火箭测评的访客隐私保护准则、日志收集范围与无追踪承诺。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <article class="article-content">
+      <h1>隐私权与数据保护说明</h1>
+
+      <p class="text-lead">
+        小火箭测评高度重视每一位用户的网络隐私。我们坚持“最小化数据收集”原则。
+      </p>
+
+      <h2>一、我们不收集什么</h2>
+      <ul>
+        <li>我们<strong>不收集</strong>用户的姓名、身份证号、银行卡号等敏感个人身份信息；</li>
+        <li>我们<strong>没有用户注册系统</strong>，因此不保留任何访客密码或账号数据库；</li>
+        <li>我们<strong>不提供</strong>任何代理节点中转服务器，因此无法接触、记录或分析用户的日常外网访问流量。</li>
+      </ul>
+
+      <h2>二、静态托管与服务器标准日志</h2>
+      <p>
+        由于本站部署于标准的 Apache 静态托管服务器，Web 服务器在接收 HTTP 请求时会自动记录标准访问日志（包括访问 IP 地址、User-Agent 浏览器类型、请求时间与页面路径）。这些日志仅用于防范恶意 DDoS 攻击与保障网络服务可用性，并在定期轮替后自动销毁。
+      </p>
+
+      <h2>三、本地搜索与 Cookie</h2>
+      <p>
+        本站的全站搜索基于客户端静态索引技术（Pagefind），搜索关键词完全在您的本地浏览器中运算匹配，不会上传到任何外部云端处理。
+      </p>
+    </article>
+  </div>
+</BaseLayout>

@@ -1,0 +1,33 @@
+---
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="my-8 space-y-3">
+  {items.map((item, index) => (
+    <details class="group border border-slate-200 rounded-xl bg-white overflow-hidden transition-all duration-200 hover:border-blue-300">
+      <summary class="flex items-center justify-between p-4 cursor-pointer font-semibold text-[16px] text-slate-900 select-none group-open:bg-blue-50/50 group-open:text-blue-700 transition-colors">
+        <span class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-[12px] flex items-center justify-center font-bold flex-shrink-0">
+            Q{index + 1}
+          </span>
+          <span>{item.question}</span>
+        </span>
+        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div class="p-4 pt-2 text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 bg-white">
+        {item.answer}
+      </div>
+    </details>
+  ))}
+</div>

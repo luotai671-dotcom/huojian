@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { title: "免责声明", url: "/disclaimer/" }
+];
+---
+
+<BaseLayout
+  title="免责声明 — 小火箭测评"
+  description="小火箭测评的免责条款、服务中立性界定与法律责任边界说明。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <article class="article-content">
+      <h1>免责声明与服务中立性界定</h1>
+
+      <h2>一、独立中立性地位</h2>
+      <p>
+        <strong>xiaohuojianvpn.biz（小火箭测评）为完全独立的第三方技术选型与网络原理指南知识库。</strong>
+      </p>
+      <p>
+        本站与任何机场品牌、网络代理服务商、VPN 服务商、Clash/v2rayN/Shadowrocket 软件官方及开源项目维护团队<strong>均无任何所有权、运营权或从属关系</strong>。本站不运营任何节点服务器，不销售任何网络代理订阅。
+      </p>
+
+      <h2>二、合法性与用户责任</h2>
+      <p>
+        根据中华人民共和国《计算机信息网络国际联网管理暂行规定》及相关法律法规，计算机信息网络直接进行国际联网必须使用国家公用电信网提供的国际出入口信道。
+      </p>
+      <p>
+        任何单位和个人不得自行建立或者使用其他信道进行国际联网。本站所有测评数据、协议原理解析及配置指南，<strong>仅供高校、科研院所学术研究、跨国企业合规软件开发以及网络安全专业人员排障测试等合法合规用途参考</strong>。
+      </p>
+      <p>
+        用户在阅读本站内容后实施的任何网络行为，均须完全自行承担全部法律后果。如因不当或违法使用相关服务引发的一切纠纷或法律责任，概与本站无关。
+      </p>
+
+      <h2>三、数据时效与结果保证</h2>
+      <p>
+        本站所引用的测速数据、价格套餐、节点地区和可用性结论，均为特定测试时间窗口和网络环境下的抽样结果，<strong>不构成对任何服务商全天候稳定性、速度或长期存续能力的商业承诺或连带担保</strong>。
+      </p>
+      <p>
+        本站不承诺任何文章在搜索引擎、AI 搜索或推荐系统中的排名、收录或引用结果。
+      </p>
+    </article>
+  </div>
+</BaseLayout>

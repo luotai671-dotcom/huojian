@@ -1,0 +1,26 @@
+[
+  {
+    "brandId": "sy",
+    "claim": "线路问题承诺 1 小时内修复",
+    "verified": false,
+    "note": "品牌资料显示，实际修复时效受上游故障影响"
+  },
+  {
+    "brandId": "sy",
+    "claim": "完美解锁 ChatGPT 等全生态 AI 工具",
+    "verified": true,
+    "note": "品牌资料显示，实测香港节点无法直接访问，需切换美日节点"
+  },
+  {
+    "brandId": "sy",
+    "claim": "完美原生 IP 解锁 Netflix / Disney+ / TikTok / YouTube 4K",
+    "verified": true,
+    "note": "品牌资料显示，实测流媒体专线支持非自制剧播放"
+  },
+  {
+    "brandId": "yt",
+    "claim": "完美解锁 Netflix、Disney+、TikTok 及 ChatGPT / Claude",
+    "verified": true,
+    "note": "品牌资料显示，实测支持主要流媒体与生产力工具"
+  }
+]

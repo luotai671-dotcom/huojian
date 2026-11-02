@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { title: "搜索全站", url: "/search/" }
+];
+---
+
+<BaseLayout
+  title="全站知识库搜索"
+  description="搜索小火箭测评全站 553 个规划页面、机场推荐榜单、测速评测与排障教程。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <header class="mb-8">
+      <h1 class="text-[28px] sm:text-[34px] font-extrabold text-slate-900">全站知识库搜索</h1>
+      <p class="text-slate-600 mt-2 text-[15px]">
+        基于 Pagefind 静态搜索引擎，实时快速检索 28 家机场品牌、套餐对比、实测记录与网络原理。
+      </p>
+    </header>
+
+    <!-- Pagefind Container -->
+    <div id="search-container" class="my-6 min-h-[350px]">
+      <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+      <div id="pagefind-search"></div>
+    </div>
+  </div>
+
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof PagefindUI !== 'undefined') {
+        new PagefindUI({
+          element: "#pagefind-search",
+          showSubResults: true,
+          showImages: false,
+          translations: {
+            placeholder: "输入关键词，如：闪电鼠、4K、ChatGPT、超时、专线...",
+            clear_search: "清空",
+            load_more: "加载更多结果",
+            search_label: "搜索此站点",
+            filters_label: "筛选",
+            zero_results: "未找到与 [SEARCH_TERM] 相关的结果",
+            many_results: "找到 [COUNT] 个相关结果",
+            one_result: "找到 1 个相关结果",
+            alt_search: "未找到 [SEARCH_TERM]，显示关于 [DIFFERENT_TERM] 的结果",
+            search_suggestion: "未找到 [SEARCH_TERM]，建议尝试：[DIFFERENT_TERM]",
+            searching: "正在检索全站知识库..."
+          }
+        });
+      }
+    });
+  </script>
+</BaseLayout>

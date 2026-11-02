@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import contentMap from '../data/content-map.json';
+
+const mdArticles = import.meta.glob('../content/articles/*.md', { eager: true });
+const mdSlugs = Object.keys(mdArticles).map(k => k.split('/').pop()?.replace('.md', '') || '').filter(Boolean);
+
+const allValidIds = [
+  ...contentMap.map(a => a.stableId),
+  ...mdSlugs
+];
+---
+
+
+<BaseLayout
+  title="文章快速检索与跳转"
+  description="小火箭测评文章智能路由与兼容重定向中心。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div id="redirecting-notice" class="text-center py-12">
+      <div class="inline-block p-4 rounded-full bg-blue-50 text-blue-600 mb-4 animate-pulse">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold text-slate-900 mb-2" id="status-title">正在为您定位文章...</h1>
+      <p class="text-slate-600 text-sm" id="status-desc">系统检测到历史参数，正在无缝跳转至目标正文，请稍候。</p>
+    </div>
+
+    <div id="fallback-content" class="hidden mt-8 border-t border-slate-200 pt-8">
+      <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-sm mb-6">
+        <strong>提示：</strong> 未检测到对应的文章编号，您可以直接在下方搜索或浏览全部 432 篇精选测评。
+      </div>
+
+      <div class="text-center mb-8">
+        <a href="/search/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 shadow-sm transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          前往全文检索页面
+        </a>
+      </div>
+
+      <h2 class="text-lg font-bold text-slate-900 mb-4">热门评测推荐：</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {contentMap.slice(0, 8).map(art => (
+          <a href={`/articles/${art.stableId}/`} class="block p-3 rounded-lg border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 transition-all">
+            <span class="text-xs font-mono text-blue-600 block mb-1">{art.stableId}</span>
+            <span class="text-sm font-semibold text-slate-800 line-clamp-1">{art.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ validIds: allValidIds }}>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var targetId = params.get('post') || params.get('id');
+
+        if (targetId) {
+          targetId = targetId.trim().toLowerCase();
+          // 容错：如果用户输入纯数字或缺少前缀
+          if (validIds.indexOf(targetId) !== -1) {
+            var targetUrl = '/articles/' + targetId + '/';
+            if (window.location.pathname !== targetUrl) {
+              window.location.replace(targetUrl);
+              return;
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Redirect error:', e);
+      }
+
+      // 如果未找到参数或不存在，展示友好兜底界面
+      var notice = document.getElementById('redirecting-notice');
+      var fallback = document.getElementById('fallback-content');
+      var title = document.getElementById('status-title');
+      var desc = document.getElementById('status-desc');
+
+      if (title) title.innerText = '文章导航与检索中心';
+      if (desc) desc.innerText = '您可以直接点击下方推荐文章或通过全文搜索查找所需测评内容。';
+      if (fallback) fallback.classList.remove('hidden');
+    })();
+  </script>
+</BaseLayout>

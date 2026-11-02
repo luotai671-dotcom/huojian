@@ -1,0 +1,56 @@
+RewriteEngine On
+
+# 1. 强制 HTTPS 传输
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# 2. 规范顶级裸域名 (消除 www 前缀)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# 3. 兼容历史文章路由查询参数 (?post=xxx 或 ?id=xxx) 重定向至标准静态路径
+RewriteCond %{QUERY_STRING} (?:^|&)post=([a-zA-Z0-9_-]+) [NC]
+RewriteRule ^article(?:\.html)?$ /articles/%1/? [R=301,L]
+
+RewriteCond %{QUERY_STRING} (?:^|&)id=([a-zA-Z0-9_-]+) [NC]
+RewriteRule ^article(?:\.html)?$ /articles/%1/? [R=301,L]
+
+# 4. 兼容 /articles/{id}.html 映射至 /articles/{id}/
+RewriteRule ^articles/([a-zA-Z0-9_-]+)\.html$ /articles/$1/ [R=301,L]
+
+# 5. 确保目录自动补充末尾斜杠（避免与 mod_rewrite 互踹死循环）
+<IfModule mod_dir.c>
+  DirectorySlash On
+</IfModule>
+
+# 404 自定义错误页
+ErrorDocument 404 /404.html
+
+# 静态资源持久缓存
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/wasm "access plus 1 day"
+</IfModule>
+
+# Gzip / Deflate 压缩传输
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# 安全与内容隔离标头
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# MIME 类型支持
+AddType application/wasm .wasm
+
+Options -Indexes

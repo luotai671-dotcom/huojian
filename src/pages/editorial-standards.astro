@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { title: "编辑规范", url: "/editorial-standards/" }
+];
+---
+
+<BaseLayout
+  title="内容编辑与数据规范 — 小火箭测评"
+  description="小火箭测评的编辑准则、数据核查原则、免责标准与信息时效维护要求。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <article class="article-content">
+      <h1>内容编辑与数据标注规范</h1>
+
+      <h2>一、真实性与数据溯源原则</h2>
+      <p>
+        小火箭测评建立在“数据说话”的基础上。全体编辑团队必须严格遵守以下规范：
+      </p>
+      <ul>
+        <li><strong>数据状态强制标注</strong>：所有品牌指标必须标记 <code>dataStatus: "vendor" | "measured" | "unverified"</code>；</li>
+        <li><strong>品牌方自述隔离</strong>：凡属于厂商自称、无法被独立量化证实的宣传，一律前缀“品牌资料显示”；</li>
+        <li><strong>未知保持未知</strong>：未经验证的字段一律显示为“待核验”或“未披露”，绝不用“0”或模糊的“支持”填补空缺；</li>
+        <li><strong>物理指标严谨分离</strong>：节点数量、可用出口地区、线路中转数量属于不同技术层级，严禁混为一个指标。</li>
+      </ul>
+
+      <h2>二、严禁事项清单</h2>
+      <ul>
+        <li>严禁提供真实可用节点地址、节点 IP 或可直接使用的免费订阅链接；</li>
+        <li>严禁发布破解、绕过授权、规避网络审查的操作性指令；</li>
+        <li>严禁虚构作者头衔、机构资质或捏造用户评价。</li>
+      </ul>
+
+      <h2>三、时效性与版本修正机制</h2>
+      <p>
+        网络环境与服务商策略持续变动。当服务商调整线路架构或资费套餐时，文章必须明确记录“核验日期”，并对历史数据进行清晰的修正标注。
+      </p>
+    </article>
+  </div>
+</BaseLayout>

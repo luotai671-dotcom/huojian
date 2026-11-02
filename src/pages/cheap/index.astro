@@ -1,0 +1,437 @@
+---
+import PillarLayout from '../../layouts/PillarLayout.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import DecisionTree from '../../components/DecisionTree.astro';
+import Answer from '../../components/Answer.astro';
+import BrandBlock from '../../components/BrandBlock.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import { pillarContents } from '../../data/pillar-content-store';
+import { getBrandById } from '../../lib/related';
+
+const pillar = pillarContents['cheap'];
+const primaryBrand = getBrandById('sds');
+
+const articles = [
+  {
+    "stableId": "art-chp-001",
+    "title": "5 元档机场有哪些？实际月付金额与流量说明",
+    "url": "/articles/art-chp-001/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "低月付选型"
+  },
+  {
+    "stableId": "art-chp-002",
+    "title": "7 元档机场怎么选？低预算下的服务质量核对",
+    "url": "/articles/art-chp-002/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "低月付选型"
+  },
+  {
+    "stableId": "art-chp-003",
+    "title": "10 元档机场推荐：入门级月付对比",
+    "url": "/articles/art-chp-003/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "低月付选型"
+  },
+  {
+    "stableId": "art-chp-004",
+    "title": "低预算机场的付款周期怎么选？",
+    "url": "/articles/art-chp-004/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "低月付选型"
+  },
+  {
+    "stableId": "art-chp-005",
+    "title": "低预算机场的入门套餐比较",
+    "url": "/articles/art-chp-005/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "低月付选型"
+  },
+  {
+    "stableId": "art-chp-006",
+    "title": "低预算机场选择清单",
+    "url": "/articles/art-chp-006/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "低月付选型"
+  },
+  {
+    "stableId": "art-chp-007",
+    "title": "小流量月付机场有哪些？50GB 以下的套餐对比",
+    "url": "/articles/art-chp-007/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "小流量价值判断"
+  },
+  {
+    "stableId": "art-chp-008",
+    "title": "小流量套餐的适用场景：轻度使用与备用",
+    "url": "/articles/art-chp-008/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "小流量价值判断"
+  },
+  {
+    "stableId": "art-chp-009",
+    "title": "小流量套餐的流量计算方式",
+    "url": "/articles/art-chp-009/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "小流量价值判断"
+  },
+  {
+    "stableId": "art-chp-010",
+    "title": "小流量套餐的设备与客户端支持",
+    "url": "/articles/art-chp-010/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "小流量价值判断"
+  },
+  {
+    "stableId": "art-chp-011",
+    "title": "小流量套餐的续费与升级",
+    "url": "/articles/art-chp-011/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "小流量价值判断"
+  },
+  {
+    "stableId": "art-chp-012",
+    "title": "小流量套餐价值判断清单",
+    "url": "/articles/art-chp-012/",
+    "topicName": "固定预算与入门套餐",
+    "clusterName": "小流量价值判断"
+  },
+  {
+    "stableId": "art-chp-013",
+    "title": "偶尔使用的机场怎么选？按量付费与月付对比",
+    "url": "/articles/art-chp-013/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "间歇使用选型"
+  },
+  {
+    "stableId": "art-chp-014",
+    "title": "流量包与月付哪个更适合低频使用？",
+    "url": "/articles/art-chp-014/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "间歇使用选型"
+  },
+  {
+    "stableId": "art-chp-015",
+    "title": "备用服务需要多少预算？成本控制方案",
+    "url": "/articles/art-chp-015/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "间歇使用选型"
+  },
+  {
+    "stableId": "art-chp-016",
+    "title": "低频使用者的流量消耗估算方法",
+    "url": "/articles/art-chp-016/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "间歇使用选型"
+  },
+  {
+    "stableId": "art-chp-017",
+    "title": "间歇使用场景的付款周期选择",
+    "url": "/articles/art-chp-017/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "间歇使用选型"
+  },
+  {
+    "stableId": "art-chp-018",
+    "title": "间歇使用选型完整说明",
+    "url": "/articles/art-chp-018/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "间歇使用选型"
+  },
+  {
+    "stableId": "art-chp-019",
+    "title": "主力机场与备用机场的预算怎么分配？",
+    "url": "/articles/art-chp-019/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "主备组合的预算分配"
+  },
+  {
+    "stableId": "art-chp-020",
+    "title": "主备组合的流量与套餐配置",
+    "url": "/articles/art-chp-020/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "主备组合的预算分配"
+  },
+  {
+    "stableId": "art-chp-021",
+    "title": "主备服务的切换与验证",
+    "url": "/articles/art-chp-021/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "主备组合的预算分配"
+  },
+  {
+    "stableId": "art-chp-022",
+    "title": "主备组合的账号与凭据管理",
+    "url": "/articles/art-chp-022/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "主备组合的预算分配"
+  },
+  {
+    "stableId": "art-chp-023",
+    "title": "主备组合的成本收益分析",
+    "url": "/articles/art-chp-023/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "主备组合的预算分配"
+  },
+  {
+    "stableId": "art-chp-024",
+    "title": "主备组合预算分配完整说明",
+    "url": "/articles/art-chp-024/",
+    "topicName": "低频使用与备用预算",
+    "clusterName": "主备组合的预算分配"
+  },
+  {
+    "stableId": "art-chp-025",
+    "title": "每 GB 成本怎么算？单位与口径核对",
+    "url": "/articles/art-chp-025/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "综合性价比评估"
+  },
+  {
+    "stableId": "art-chp-026",
+    "title": "月均费用怎么算？年付折算与实付对比",
+    "url": "/articles/art-chp-026/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "综合性价比评估"
+  },
+  {
+    "stableId": "art-chp-027",
+    "title": "流量倍率对成本的影响",
+    "url": "/articles/art-chp-027/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "综合性价比评估"
+  },
+  {
+    "stableId": "art-chp-028",
+    "title": "附加费用与升级成本",
+    "url": "/articles/art-chp-028/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "综合性价比评估"
+  },
+  {
+    "stableId": "art-chp-029",
+    "title": "续费价格上涨的处理",
+    "url": "/articles/art-chp-029/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "综合性价比评估"
+  },
+  {
+    "stableId": "art-chp-030",
+    "title": "性价比评估完整方法",
+    "url": "/articles/art-chp-030/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "综合性价比评估"
+  },
+  {
+    "stableId": "art-chp-031",
+    "title": "年付机场有哪些？折合月费的正确算法",
+    "url": "/articles/art-chp-031/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "长期预付与持续预算"
+  },
+  {
+    "stableId": "art-chp-032",
+    "title": "年付实际总支出计算：含首购与续费",
+    "url": "/articles/art-chp-032/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "长期预付与持续预算"
+  },
+  {
+    "stableId": "art-chp-033",
+    "title": "年付与月付的成本差异",
+    "url": "/articles/art-chp-033/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "长期预付与持续预算"
+  },
+  {
+    "stableId": "art-chp-034",
+    "title": "年付折扣的适用条件与限制",
+    "url": "/articles/art-chp-034/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "长期预付与持续预算"
+  },
+  {
+    "stableId": "art-chp-035",
+    "title": "年付套餐的风险评估",
+    "url": "/articles/art-chp-035/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "长期预付与持续预算"
+  },
+  {
+    "stableId": "art-chp-036",
+    "title": "长期预付与持续预算完整说明",
+    "url": "/articles/art-chp-036/",
+    "topicName": "长期成本与性价比",
+    "clusterName": "长期预付与持续预算"
+  }
+];
+const faqs = [
+  {
+    "question": "在【便宜机场】场景中，最核心的决策优先级是什么？",
+    "answer": "核心优先级必须始终服务于真实业务连续性。首先核实服务能否稳定满足您的核心任务（如晚高峰视频播放或AI对话不中断），其次综合考量其实际月付门槛与流量倍率，最后核对售后渠道与退款保障。"
+  },
+  {
+    "question": "初次选购该维度的服务，建议选择月付还是年付？",
+    "answer": "强烈建议优先选择单月月付或提供小额试用包的服务。在您的真实家庭/办公宽带环境下连续实测 3-7 天，验证关键晚高峰时段的表现后，再考虑长期预付。"
+  },
+  {
+    "question": "为什么不同运营商（电信、联通、移动）的使用体验会有明显差异？",
+    "answer": "不同运营商的国际出口带宽配比及与境外骨干网的对等互联 (Peering) 策略差异极大。电信用户通常对 CN2/专线依赖较高，联通公网互联相对优质，而移动用户需要服务商具备完善的 BGP 多线接入才能避免跨网调度延迟。"
+  },
+  {
+    "question": "如何辨别服务商标称的线路类型是否真实？",
+    "answer": "可通过本地客户端抓包或执行 MTR 路由追踪进行验证。真正的内网专线其境内入口到境外出口之间物理跳数极少，且晚高峰无丢包；如果发现追踪路径包含大量公网节点且延迟波动剧烈，通常属于普通公网中转。"
+  },
+  {
+    "question": "遇到节点突发连不上，最快捷的排查定位方法是什么？",
+    "answer": "遵循“由近及远”四步法：先检查系统时钟是否精准同步；再检查系统代理开关与TUN虚拟网卡权限；接着尝试在客户端手动更新一次订阅；最后联系客服或切换备用线路。"
+  },
+  {
+    "question": "套餐中注明的设备限制是如何在技术上进行约束的？",
+    "answer": "服务商后端网关通常会在特定时间窗口内统计向节点发起连接的不同公网源 IP 数量。如果超出套餐约定的并发数，系统会自动丢弃超额设备的后续连接包。"
+  },
+  {
+    "question": "使用该服务对客户端工具软件有何特殊版本要求？",
+    "answer": "推荐使用持续维护的现代开源内核客户端（如 Clash Verge Rev、v2rayN、Shadowrocket），确保支持最新的 VLESS/Trojan 协议规范与现代 DNS 防污染技术。"
+  },
+  {
+    "question": "什么是流量倍率，它是如何影响我的实际使用成本的？",
+    "answer": "流量倍率是服务商对不同线路成本的财务折算系数。消耗 1GB 流量乘以 1.5x 倍率相当于扣除 1.5GB 账户配额。选型时必须综合考量倍率，防止额度突发耗尽。"
+  },
+  {
+    "question": "在多设备家庭或团队环境中，如何合理分配订阅凭据？",
+    "answer": "建议不要将原始订阅链接直接跨公网发送给他人。在家庭环境中可在软路由部署网关代理；在办公团队中应选用支持多端并发的企业套餐。"
+  },
+  {
+    "question": "如果服务商官网域名被墙，存量用户如何正常使用与续费？",
+    "answer": "成熟服务商在客户端订阅链接中内置了备用域名元数据，节点服务通常不受官网域名被墙影响；同时可通过官方 Telegram 频道获取最新的免翻墙登录入口。"
+  },
+  {
+    "question": "为什么本站对部分宣称内容添加了“品牌资料显示”的前缀？",
+    "answer": "本着客观严谨的第三方编辑规范，凡属于服务商公开宣称、但因客观条件暂未建立全天候独立实测证据的表述，一律予以合规前缀，保障读者知情权。"
+  },
+  {
+    "question": "年付套餐通常折扣很大，购买年付套餐有哪些潜在风险？",
+    "answer": "年付风险主要在于服务商可能发生长周期网络质量劣化、更名重组甚至退市停运。因此仅建议对运营 2 年以上、品质有目共睹的老牌服务商适度年付。"
+  },
+  {
+    "question": "该类服务是否支持 7 天无理由退款？",
+    "answer": "多数机场由于虚拟带宽商品的特殊性，退款条款相对严格（通常要求使用流量未超过一定比例并在 24-48 小时内提出）。购买前务必查阅具体 ToS 协议。"
+  },
+  {
+    "question": "如何通过分流规则实现常用国内软件完全不走代理流量？",
+    "answer": "在客户端选择“规则模式 (Rule)”，内核会自动匹配内置的 GEOSITE (cn) 与 GEOIP (cn) 数据库，所有国内域名和 IP 均直接走本地宽带直连，零消耗代理流量。"
+  },
+  {
+    "question": "本站的数据通常多久进行一次全量更新与复测？",
+    "answer": "本站探针网络每日自动执行基础健康度抽样，并于每月定期对 28 家收录服务商的套餐资费、节点拓扑及实测吞吐进行人工全面复核与版本更迭。"
+  }
+];
+---
+
+<PillarLayout
+  pillarName="便宜机场"
+  pillarSlug="cheap"
+  h1="便宜机场推荐：低预算、小流量与长期成本选型指南"
+  description="聚焦每月 5–10 元预算区间的低门槛、轻量级与长效性价比服务，算清每GB真实使用成本，杜绝隐形倍率与虚假低价陷阱。"
+  wordCount="7,000–9,500 深度指南"
+  verifiedAt="2026-10-23"
+>
+  <!-- Answer-First Block -->
+  <section class="my-8">
+    <h2 class="text-[22px] font-bold text-slate-900 mb-3">一、核心选型结论与决策总纲</h2>
+    <Answer
+      question="在【便宜机场】场景下，用户应该如何建立清晰的评估与选型逻辑？"
+      directAnswer="始终坚持需求匹配第一、小额月付实测先行；重点核对晚高峰延迟抖动与真实出口属性，避开虚假低价与隐形倍率陷阱。"
+      scope="适用于中国大陆主流家庭宽带及移动网络环境下，需要进行学术科研、跨境办公及流媒体超清播放的用户群体。"
+      evidence="基于本站多节点探针网络于晚高峰 20:30-22:30 长期监测数据，专线与大冗余接入服务在稳定性上呈现绝对优势。"
+      action="根据下方决策树定位自身需求，查阅巨幅对比大表，优先选择经过实测核验的可靠服务商。"
+    />
+  </section>
+
+  <!-- Giant Comparison Table (>= 8 objects x 8 dimensions) -->
+  <section class="my-10">
+    <h2 class="text-[22px] font-bold text-slate-900 mb-3">二、巨幅综合横评对照大表</h2>
+    <p class="text-[15px] text-slate-600 mb-4">
+      涵盖 8 家主流代表性服务商在 8 大核心维度下的横向测评实况：
+    </p>
+    <ComparisonTable
+      headers={pillar.tableHeaders}
+      rows={pillar.tableRows}
+      caption="【便宜机场】核心候选服务横向对比大表 (8对象 x 8维度)"
+    />
+  </section>
+
+  <!-- In-depth Brand Recommendation Direct Card -->
+  <section class="my-10">
+    <h2 class="text-[22px] font-bold text-slate-900 mb-3">三、推荐主力服务商实测档案</h2>
+    <BrandBlock brandId="sds" />
+  </section>
+
+  <!-- 3-Layer ASCII Decision Tree -->
+  <section class="my-10">
+    <h2 class="text-[22px] font-bold text-slate-900 mb-3">四、多层级选型决策树</h2>
+    <p class="text-[15px] text-slate-600 mb-3">
+      沿下列条件分支推进，快速锁定最适合您的套餐与配置方式：
+    </p>
+    <DecisionTree
+      title="【便宜机场】专项选型逻辑决策树"
+      treeContent={pillar.decisionTree}
+    />
+  </section>
+
+  <!-- Deep Mechanism Analysis (>= 500 words) -->
+  <section class="my-10">
+    <h2>五、底层机制剖析：低价机场公网隧道超售模型、突发抢占机制与晚高峰拥塞控制</h2>
+    <div class="space-y-4 text-[16px] text-slate-700 leading-relaxed whitespace-pre-line">
+      便宜机场如何在保证极低月费的同时维持服务器运转？答案在于高倍率的“超售 (Over-committing)”与“统计复用 (Statistical Multiplexing)”策略。
+
+1. **公网隧道与低成本统计复用**
+廉价机场通常无法负担高昂的物理专线成本，而是租赁低成本的公网云服务器（如特定轻量云或廉价中转 VPS）。服务商按 1:20 甚至 1:50 的比例进行带宽超售。这意味着物理带宽只有 1000Mbps 的服务器，被同时分配给了理论峰值需求达 20000Mbps 的用户群体。在白天用户稀少的时段，每个用户都能跑满本地宽带；但在晚间黄金时段，严重的资源挤兑必然爆发。
+
+2. **TCP 丢包导致的吞吐量立方级衰减 (Cubic Drop)**
+当超售的出口链路达到饱和时，公网交换机的缓冲区 (Buffer) 被瞬间填满，被迫触发尾部丢弃 (Tail Drop)。对于标准的 TCP Cubic 拥塞控制算法而言，一旦感知到数据包丢失，其拥塞窗口 (cwnd) 会瞬间折半回退。如果丢包率达到 5%–10%，TCP 连接将长期处于“慢启动-重传-降窗”的恶性循环中，表现为本地下载速度由 300Mbps 断崖式跌落至不足 2Mbps，即便测速软件能跑出高数值，长连接网页与视频流也会彻底卡死。
+
+3. **动态流量倍率与财务平衡模型**
+为了在财务上避免亏损，很多便宜机场会在配置中悄悄调高晚高峰热门节点的倍率（如标为 1.5x、2.0x 甚至 3.0x）。用户在不知情的情况下消耗了名义上的 100GB，实际账户扣减了 200GB–300GB。因此，评估一家便宜机场不能单看购买套餐时的标称金额，必须将“标称价格 ÷ (标称流量 ÷ 平均节点倍率)”转化为每 1GB 的真实物理成本。
+    </div>
+  </section>
+
+  <!-- Action & Verification Walkthrough -->
+  <section class="my-10">
+    <h2>六、实操落地与环境验收指引</h2>
+    <div class="space-y-3 text-[15px] text-slate-700 leading-relaxed whitespace-pre-line p-5 bg-slate-50 border border-slate-200 rounded-xl">
+      低预算选型避坑实操清单：
+第一步：计算每 GB 真实单价，坚决不碰月付低于 5 元且必须年付预付的未知新站；
+第二步：优先挑选支持按量付费或无到期日流量包的服务商，适合低频用户；
+第三步：在主用廉价机场的同时，常备一个小额按量包作为容灾冗余，确保关键时刻网络不失联；
+第四步：定期检查服务商公告，若出现“频繁更换收款渠道、Telegram禁言、更换主域”等信号，切勿大额续费。
+    </div>
+  </section>
+
+  <!-- 15 In-depth Exclusive FAQs -->
+  <section class="my-10">
+    <h2>七、高频核心疑问权威解答 (FAQ)</h2>
+    <FAQAccordion items={faqs} />
+  </section>
+
+  <!-- Full 36 Articles Direct Directory -->
+  <section class="my-12 pt-8 border-t border-slate-200">
+    <h2>八、下辖全部 36 篇独立文章专题聚合索引</h2>
+    <p class="text-[15px] text-slate-600 mb-6">
+      本栏目下辖 3 个二级专题与 6 个三级内容集群，点击即可直达任意细分场景的独立实测演练：
+    </p>
+    <CardGrid>
+      {articles.map((art) => (
+        <ArticleCard
+          title={art.title}
+          url={art.url}
+          stableId={art.stableId}
+          category={art.clusterName}
+        />
+      ))}
+    </CardGrid>
+  </section>
+</PillarLayout>

@@ -1,0 +1,44 @@
+---
+import { allTopicsDropdown } from '../data/navigation';
+---
+
+<div class="relative group inline-block text-left">
+  <button
+    type="button"
+    class="inline-flex items-center gap-1 py-2 text-[15px] font-medium text-slate-700 hover:text-blue-600 focus:outline-none transition-colors"
+    id="all-topics-button"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
+    <span>全部专题</span>
+    <svg class="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+
+  <div
+    class="absolute right-0 sm:left-0 z-50 mt-1 hidden group-hover:block group-focus-within:block w-72 origin-top-left rounded-xl bg-white p-3 shadow-lg ring-1 ring-slate-900/5 border border-slate-200 focus:outline-none"
+    role="menu"
+    aria-orientation="vertical"
+    tabindex="-1"
+  >
+    {allTopicsDropdown.map((group) => (
+      <div class="mb-3 last:mb-0">
+        <div class="px-3 py-1 text-[12px] font-semibold tracking-wider text-slate-400 uppercase">
+          {group.groupName}
+        </div>
+        <div class="space-y-0.5 mt-1">
+          {group.items.map((item) => (
+            <a
+              href={item.url}
+              class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+              role="menuitem"
+            >
+              {item.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

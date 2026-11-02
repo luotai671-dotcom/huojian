@@ -1,0 +1,106 @@
+.article-content {
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  color: var(--text-body);
+  background: var(--bg-page);
+}
+
+.article-content p {
+  margin-bottom: 1.4em;
+}
+
+.article-content h1 {
+  font-size: var(--text-h1);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+.article-content h2 {
+  font-size: var(--text-h2);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  margin-top: 2.4em;
+  margin-bottom: 0.8em;
+  color: var(--text-primary);
+  border-left: 4px solid var(--accent);
+  padding-left: 0.6em;
+}
+
+.article-content h3 {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+  color: var(--text-primary);
+}
+
+.article-content h4 {
+  font-size: var(--text-h4);
+  font-weight: 600;
+  margin-top: 1.4em;
+  margin-bottom: 0.4em;
+  color: var(--text-primary);
+}
+
+.article-content a {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-content a:hover {
+  color: var(--accent-hover);
+}
+
+.article-content code {
+  background: var(--bg-elevated);
+  color: #0f172a;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.article-content pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1.2em;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 1.5em 0;
+}
+
+.article-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.article-content blockquote {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-subtle);
+  padding: 1em 1.25em;
+  margin: 1.5em 0;
+  border-radius: 0 6px 6px 0;
+  color: var(--text-body);
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 1.2em 0;
+  padding-left: 1.6em;
+}
+
+.article-content li {
+  margin-bottom: 0.6em;
+  line-height: var(--leading-normal);
+}

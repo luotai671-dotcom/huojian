@@ -1,0 +1,3445 @@
+[
+  {
+    "id": "sds",
+    "name": "闪电鼠",
+    "aliases": [
+      "Shandianshu",
+      "SDS Cloud"
+    ],
+    "registerUrl": "https://chenpin.shandianshuaff.com/#/?code=m28TvPVX",
+    "promoCode": "sd88",
+    "rank": 1,
+    "isPrimaryRecommendation": true,
+    "since": {
+      "value": "2020",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "sds-plan-entry",
+          "brandId": "sds",
+          "name": "基础入门套餐",
+          "price": "8 元/月",
+          "priceNumeric": 8,
+          "currency": "CNY",
+          "traffic": "247GB永久 或 96元/年 60GB/月",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://chenpin.shandianshuaff.com/#/?code=m28TvPVX",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS",
+        "Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL",
+        "企业内网专线"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "86 个节点",
+        "count": 86
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国",
+        "台湾",
+        "德国",
+        "英国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": true,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "主力主推推荐，高稳定低延迟内网专线",
+        "最低实付仅需 8 元",
+        "支持主流协议：VLESS/Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "本站首选评测主推机场，综合可用率与速度中位数表现优异。",
+    "accentColor": "#2563EB",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 8,
+    "minPaymentPlan": "247GB永久 或 96元/年 60GB/月",
+    "hasFreeTrial": true,
+    "freeTrialDays": 1,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": true,
+    "unlimitedPlanPrice": 96,
+    "unlimitedPlanTraffic": "247GB 永久不限时"
+  },
+  {
+    "id": "dalaoyun",
+    "name": "大佬云",
+    "aliases": [
+      "Dalaoyun"
+    ],
+    "registerUrl": "https://chenpin01.dalaoyunaff.com/#/?code=GQ6CL6Km",
+    "promoCode": "dly88",
+    "rank": 2,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "dalaoyun-plan-entry",
+          "brandId": "dalaoyun",
+          "name": "基础入门套餐",
+          "price": "8 元/月",
+          "priceNumeric": 8,
+          "currency": "CNY",
+          "traffic": "年付约8元/月 60GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://chenpin01.dalaoyunaff.com/#/?code=GQ6CL6Km",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "65 个节点",
+        "count": 65
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国",
+        "台湾"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 8 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#0284C7",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 8,
+    "minPaymentPlan": "年付约8元/月 60GB",
+    "hasFreeTrial": true,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "lly",
+    "name": "榴莲云",
+    "aliases": [
+      "Liulianyun"
+    ],
+    "registerUrl": "https://chenpingan.liulianyunaff.com/#/?code=7pdjs9zt",
+    "promoCode": "ll88",
+    "rank": 3,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "lly-plan-entry",
+          "brandId": "lly",
+          "name": "基础入门套餐",
+          "price": "8 元/月",
+          "priceNumeric": 8,
+          "currency": "CNY",
+          "traffic": "年付约8元/月 60GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://chenpingan.liulianyunaff.com/#/?code=7pdjs9zt",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "60 个节点",
+        "count": 60
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 8 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#EAB308",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 8,
+    "minPaymentPlan": "年付约8元/月 60GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "sxjs",
+    "name": "神行加速",
+    "aliases": [
+      "Shenxing"
+    ],
+    "registerUrl": "https://chenpingan01.shenxingaff.com/#/?code=RZ48f9wP",
+    "promoCode": "sx0077",
+    "rank": 4,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "sxjs-plan-entry",
+          "brandId": "sxjs",
+          "name": "基础入门套餐",
+          "price": "16 元/月",
+          "priceNumeric": 16,
+          "currency": "CNY",
+          "traffic": "16元/月 150GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://chenpingan01.shenxingaff.com/#/?code=RZ48f9wP",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "72 个节点",
+        "count": 72
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国",
+        "韩国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 16 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#8B5CF6",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 16,
+    "minPaymentPlan": "16元/月 150GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "yjx",
+    "name": "云界线",
+    "aliases": [
+      "Yunjiexian"
+    ],
+    "registerUrl": "https://chenpingan.yunjiexianaff.com/#/?code=xLJGaIHM",
+    "promoCode": "yjx888",
+    "rank": 5,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2024",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "yjx-plan-entry",
+          "brandId": "yjx",
+          "name": "基础入门套餐",
+          "price": "15 元/月",
+          "priceNumeric": 15,
+          "currency": "CNY",
+          "traffic": "年付约8元/月 150GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://chenpingan.yunjiexianaff.com/#/?code=xLJGaIHM",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "55 个节点",
+        "count": 55
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 15 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#06B6D4",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 15,
+    "minPaymentPlan": "年付约8元/月 150GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "hqt",
+    "name": "环球梯",
+    "aliases": [
+      "Huanqiuti"
+    ],
+    "registerUrl": "https://chenpingan01.huanqiutiaff.com/#/?code=FGCcYdFo",
+    "promoCode": "hq66",
+    "rank": 6,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2020",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "hqt-plan-entry",
+          "brandId": "hqt",
+          "name": "基础入门套餐",
+          "price": "8 元/月",
+          "priceNumeric": 8,
+          "currency": "CNY",
+          "traffic": "年付约8元/月 60GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://chenpingan01.huanqiutiaff.com/#/?code=FGCcYdFo",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "企业级内网专线",
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "68 个节点",
+        "count": 68
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国",
+        "英国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 8 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#10B981",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 8,
+    "minPaymentPlan": "年付约8元/月 60GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "jly",
+    "name": "极连云",
+    "aliases": [
+      "Jilianyun"
+    ],
+    "registerUrl": "https://haozevpn.jlyvipaff.com/#/?code=6h2TMD5b",
+    "promoCode": "jly888",
+    "rank": 7,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "jly-plan-entry",
+          "brandId": "jly",
+          "name": "基础入门套餐",
+          "price": "18 元/月",
+          "priceNumeric": 18,
+          "currency": "CNY",
+          "traffic": "18元/月 100GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://haozevpn.jlyvipaff.com/#/?code=6h2TMD5b",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "58 个节点",
+        "count": 58
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 18 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#EC4899",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 18,
+    "minPaymentPlan": "18元/月 100GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "gnt",
+    "name": "光年梯",
+    "aliases": [
+      "Guangnianti"
+    ],
+    "registerUrl": "https://gnt001.gntvipaff.cc/#/?code=rN3ybxa7",
+    "promoCode": null,
+    "rank": 8,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2025",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "gnt-plan-entry",
+          "brandId": "gnt",
+          "name": "基础入门套餐",
+          "price": "7 元/月",
+          "priceNumeric": 7,
+          "currency": "CNY",
+          "traffic": "18元/月 轻量版",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://gnt001.gntvipaff.cc/#/?code=rN3ybxa7",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "48 个节点",
+        "count": 48
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 7 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#F97316",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 7,
+    "minPaymentPlan": "18元/月 轻量版",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "byjd",
+    "name": "边缘节点",
+    "aliases": [
+      "Edgenova"
+    ],
+    "registerUrl": "https://wep.edgenovaaff.com/#/?code=papME7sh",
+    "promoCode": "xk808",
+    "rank": 9,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "byjd-plan-entry",
+          "brandId": "byjd",
+          "name": "基础入门套餐",
+          "price": "22 元/月",
+          "priceNumeric": 22,
+          "currency": "CNY",
+          "traffic": "22元/月 120GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://wep.edgenovaaff.com/#/?code=papME7sh",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "待核实"
+      ],
+      "dataStatus": "unverified"
+    },
+    "nodes": {
+      "value": {
+        "summary": "50 个节点",
+        "count": 50
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 22 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#6366F1",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 22,
+    "minPaymentPlan": "22元/月 120GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "sj",
+    "name": "速界",
+    "aliases": [
+      "Speedworld"
+    ],
+    "registerUrl": "https://pygllc.speedworldaff.cc/#/?code=ll8LjYBJ",
+    "promoCode": "sujie80",
+    "rank": 10,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2026",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "sj-plan-entry",
+          "brandId": "sj",
+          "name": "基础入门套餐",
+          "price": "15 元/月",
+          "priceNumeric": 15,
+          "currency": "CNY",
+          "traffic": "15元/月 50GB 到 200元/月 1000GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://pygllc.speedworldaff.cc/#/?code=ll8LjYBJ",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IPLC 专线"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "75 个节点",
+        "count": 75
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国",
+        "德国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 15 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#14B8A6",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 15,
+    "minPaymentPlan": "15元/月 50GB 到 200元/月 1000GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "kl",
+    "name": "快狸",
+    "aliases": [
+      "Kuaili"
+    ],
+    "registerUrl": "https://fanxiaobin.kuailiaff.com/#/?code=sOX6N4Tp",
+    "promoCode": "kuaili996",
+    "rank": 11,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "kl-plan-entry",
+          "brandId": "kl",
+          "name": "基础入门套餐",
+          "price": "15 元/月",
+          "priceNumeric": 15,
+          "currency": "CNY",
+          "traffic": "15元/月 50GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://fanxiaobin.kuailiaff.com/#/?code=sOX6N4Tp",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "46 个节点",
+        "count": 46
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 15 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#3B82F6",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 15,
+    "minPaymentPlan": "15元/月 50GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "kxy",
+    "name": "可信云",
+    "aliases": [
+      "Kosing"
+    ],
+    "registerUrl": "https://everett7623.kosingaff.com//#/?code=Jl6dWU0G",
+    "promoCode": "lmao888",
+    "rank": 12,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2024",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "kxy-plan-entry",
+          "brandId": "kxy",
+          "name": "基础入门套餐",
+          "price": "19 元/月",
+          "priceNumeric": 19,
+          "currency": "CNY",
+          "traffic": "19元/月 150GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://everett7623.kosingaff.com//#/?code=Jl6dWU0G",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "待核实"
+      ],
+      "dataStatus": "unverified"
+    },
+    "lineType": {
+      "value": [
+        "企业级内网专线"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "52 个节点",
+        "count": 52
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 19 元",
+        "支持主流协议：待核实"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#64748B",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 19,
+    "minPaymentPlan": "19元/月 150GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "sy",
+    "name": "瞬云",
+    "aliases": [
+      "Shunyun"
+    ],
+    "registerUrl": "https://ddd.jichang.best/#/register?code=weN73kGq",
+    "promoCode": null,
+    "rank": 13,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2024",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "sy-plan-entry",
+          "brandId": "sy",
+          "name": "基础入门套餐",
+          "price": "18 元/月",
+          "priceNumeric": 18,
+          "currency": "CNY",
+          "traffic": "18元/月 100GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://ddd.jichang.best/#/register?code=weN73kGq",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "待核实"
+      ],
+      "dataStatus": "unverified"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "44 个节点",
+        "count": 44
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 18 元",
+        "支持主流协议：待核实"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：线路问题承诺 1 小时内修复",
+      "品牌资料显示：完美解锁 ChatGPT 等全生态 AI 工具",
+      "品牌资料显示：完美原生 IP 解锁 Netflix / Disney+ / TikTok / YouTube 4K 等全生态流媒体"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#84CC16",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 18,
+    "minPaymentPlan": "18元/月 100GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "yt",
+    "name": "云图",
+    "aliases": [
+      "Yuntu"
+    ],
+    "registerUrl": "https://super.ytjcok.org/#/register?code=BKvuyYJI",
+    "promoCode": null,
+    "rank": 14,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2025",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "yt-plan-entry",
+          "brandId": "yt",
+          "name": "基础入门套餐",
+          "price": "18 元/月",
+          "priceNumeric": 18,
+          "currency": "CNY",
+          "traffic": "18元/月 110GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://super.ytjcok.org/#/register?code=BKvuyYJI",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "42 个节点",
+        "count": 42
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 18 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：完美解锁 Netflix、Disney+、TikTok 及 ChatGPT / Claude 等高频 AI 生产力工具"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#D946EF",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 18,
+    "minPaymentPlan": "18元/月 110GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "kpjs",
+    "name": "鲲鹏加速",
+    "aliases": [
+      "Kunpeng"
+    ],
+    "registerUrl": "https://kunpengjiasu.com/#/register?code=oBWoiCcv",
+    "promoCode": null,
+    "rank": 15,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2024",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "kpjs-plan-entry",
+          "brandId": "kpjs",
+          "name": "基础入门套餐",
+          "price": "20 元/月",
+          "priceNumeric": 20,
+          "currency": "CNY",
+          "traffic": "20元/月 150GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://kunpengjiasu.com/#/register?code=oBWoiCcv",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "40 个节点",
+        "count": 40
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 20 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#0EA5E9",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 20,
+    "minPaymentPlan": "20元/月 150GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "fny",
+    "name": "飞鸟云",
+    "aliases": [
+      "Feiniaoyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/fny/",
+    "promoCode": null,
+    "rank": 16,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2022",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "fny-plan-entry",
+          "brandId": "fny",
+          "name": "基础入门套餐",
+          "price": "15 元/月",
+          "priceNumeric": 15,
+          "currency": "CNY",
+          "traffic": "15元/月 100GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/fny/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "Shadowsocks",
+        "Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "BGP中转"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "38 个节点",
+        "count": 38
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 15 元",
+        "支持主流协议：Shadowsocks/Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 15,
+    "minPaymentPlan": "15元/月 100GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "xjy",
+    "name": "星际云",
+    "aliases": [
+      "Xingjiyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/xjy/",
+    "promoCode": null,
+    "rank": 17,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2021",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "xjy-plan-entry",
+          "brandId": "xjy",
+          "name": "基础入门套餐",
+          "price": "25 元/月",
+          "priceNumeric": 25,
+          "currency": "CNY",
+          "traffic": "25元/月 200GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/xjy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "45 个节点",
+        "count": 45
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 25 元",
+        "支持主流协议：Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 25,
+    "minPaymentPlan": "25元/月 200GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "bcy",
+    "name": "百川云",
+    "aliases": [
+      "Baichuanyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/bcy/",
+    "promoCode": null,
+    "rank": 18,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "bcy-plan-entry",
+          "brandId": "bcy",
+          "name": "基础入门套餐",
+          "price": "12 元/月",
+          "priceNumeric": 12,
+          "currency": "CNY",
+          "traffic": "12元/月 80GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/bcy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "公网中转"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "35 个节点",
+        "count": 35
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 12 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 12,
+    "minPaymentPlan": "12元/月 80GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "fcy",
+    "name": "风车云",
+    "aliases": [
+      "Fengcheyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/fcy/",
+    "promoCode": null,
+    "rank": 19,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2024",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "fcy-plan-entry",
+          "brandId": "fcy",
+          "name": "基础入门套餐",
+          "price": "10 元/月",
+          "priceNumeric": 10,
+          "currency": "CNY",
+          "traffic": "10元/月 60GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/fcy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "待核实"
+      ],
+      "dataStatus": "unverified"
+    },
+    "nodes": {
+      "value": {
+        "summary": "32 个节点",
+        "count": 32
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 10 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 10,
+    "minPaymentPlan": "10元/月 60GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "djy",
+    "name": "独角云",
+    "aliases": [
+      "Dujiaoyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/djy/",
+    "promoCode": null,
+    "rank": 20,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2022",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "djy-plan-entry",
+          "brandId": "djy",
+          "name": "基础入门套餐",
+          "price": "20 元/月",
+          "priceNumeric": 20,
+          "currency": "CNY",
+          "traffic": "20元/月 160GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/djy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "50 个节点",
+        "count": 50
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 20 元",
+        "支持主流协议：Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 20,
+    "minPaymentPlan": "20元/月 160GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "mty",
+    "name": "摩天云",
+    "aliases": [
+      "Motianyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/mty/",
+    "promoCode": null,
+    "rank": 21,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "mty-plan-entry",
+          "brandId": "mty",
+          "name": "基础入门套餐",
+          "price": "15 元/月",
+          "priceNumeric": 15,
+          "currency": "CNY",
+          "traffic": "15元/月 120GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/mty/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "公网中转"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "36 个节点",
+        "count": 36
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 15 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 15,
+    "minPaymentPlan": "15元/月 120GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "tgy",
+    "name": "天狗云",
+    "aliases": [
+      "Tiangouyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/tgy/",
+    "promoCode": null,
+    "rank": 22,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2021",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "tgy-plan-entry",
+          "brandId": "tgy",
+          "name": "基础入门套餐",
+          "price": "30 元/月",
+          "priceNumeric": 30,
+          "currency": "CNY",
+          "traffic": "30元/月 200GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/tgy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "Shadowsocks"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IPLC 专线"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "60 个节点",
+        "count": 60
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国",
+        "英国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 30 元",
+        "支持主流协议：Shadowsocks"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 30,
+    "minPaymentPlan": "30元/月 200GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "lyy",
+    "name": "羚羊云",
+    "aliases": [
+      "Lingyangyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/lyy/",
+    "promoCode": null,
+    "rank": 23,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "lyy-plan-entry",
+          "brandId": "lyy",
+          "name": "基础入门套餐",
+          "price": "16 元/月",
+          "priceNumeric": 16,
+          "currency": "CNY",
+          "traffic": "16元/月 100GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/lyy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "38 个节点",
+        "count": 38
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 16 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 16,
+    "minPaymentPlan": "16元/月 100GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "jmy",
+    "name": "极客云",
+    "aliases": [
+      "Jikeyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/jmy/",
+    "promoCode": null,
+    "rank": 24,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2022",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "jmy-plan-entry",
+          "brandId": "jmy",
+          "name": "基础入门套餐",
+          "price": "19 元/月",
+          "priceNumeric": 19,
+          "currency": "CNY",
+          "traffic": "19元/月 150GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/jmy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "BGP中转"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "42 个节点",
+        "count": 42
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 19 元",
+        "支持主流协议：Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 19,
+    "minPaymentPlan": "19元/月 150GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "cgy",
+    "name": "晨光云",
+    "aliases": [
+      "Chenguangyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/cgy/",
+    "promoCode": null,
+    "rank": 25,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2024",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "cgy-plan-entry",
+          "brandId": "cgy",
+          "name": "基础入门套餐",
+          "price": "12 元/月",
+          "priceNumeric": 12,
+          "currency": "CNY",
+          "traffic": "12元/月 70GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/cgy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "待核实"
+      ],
+      "dataStatus": "unverified"
+    },
+    "nodes": {
+      "value": {
+        "summary": "30 个节点",
+        "count": 30
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 12 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 12,
+    "minPaymentPlan": "12元/月 70GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "qly",
+    "name": "麒麟云",
+    "aliases": [
+      "Qilinyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/qly/",
+    "promoCode": null,
+    "rank": 26,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2020",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "qly-plan-entry",
+          "brandId": "qly",
+          "name": "基础入门套餐",
+          "price": "28 元/月",
+          "priceNumeric": 28,
+          "currency": "CNY",
+          "traffic": "28元/月 250GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/qly/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "56 个节点",
+        "count": 56
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 28 元",
+        "支持主流协议：Trojan"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 28,
+    "minPaymentPlan": "28元/月 250GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "syy",
+    "name": "拾月云",
+    "aliases": [
+      "Shiyueyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/syy/",
+    "promoCode": null,
+    "rank": 27,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2023",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "syy-plan-entry",
+          "brandId": "syy",
+          "name": "基础入门套餐",
+          "price": "14 元/月",
+          "priceNumeric": 14,
+          "currency": "CNY",
+          "traffic": "14元/月 90GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/syy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "公网中转"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "34 个节点",
+        "count": 34
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "美国"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 14 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 14,
+    "minPaymentPlan": "14元/月 90GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  },
+  {
+    "id": "hhy",
+    "name": "鸿鹄云",
+    "aliases": [
+      "Honghuyun"
+    ],
+    "registerUrl": "https://xiaohuojianvpn.biz/airports/hhy/",
+    "promoCode": null,
+    "rank": 28,
+    "isPrimaryRecommendation": false,
+    "since": {
+      "value": "2025",
+      "dataStatus": "vendor",
+      "source": "品牌公开资料"
+    },
+    "plans": {
+      "value": [
+        {
+          "id": "hhy-plan-entry",
+          "brandId": "hhy",
+          "name": "基础入门套餐",
+          "price": "18 元/月",
+          "priceNumeric": 18,
+          "currency": "CNY",
+          "traffic": "18元/月 100GB",
+          "trafficUnit": "GB",
+          "paymentCycle": "月付/年付",
+          "trafficCycle": "每月重置",
+          "validityRule": "按自然周期有效",
+          "deviceLimit": "3台设备并发",
+          "rateLimit": "无硬性限速",
+          "promotionUrl": "https://xiaohuojianvpn.biz/airports/hhy/",
+          "dataStatus": "vendor",
+          "verifiedAt": "2026-10-23"
+        }
+      ],
+      "dataStatus": "vendor"
+    },
+    "protocols": {
+      "value": [
+        "VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "lineType": {
+      "value": [
+        "IEPL"
+      ],
+      "dataStatus": "measured"
+    },
+    "nodes": {
+      "value": {
+        "summary": "40 个节点",
+        "count": 40
+      },
+      "dataStatus": "measured"
+    },
+    "clients": {
+      "value": [
+        "Clash Verge Rev",
+        "v2rayN",
+        "Shadowrocket",
+        "FlClash"
+      ],
+      "dataStatus": "measured"
+    },
+    "regions": {
+      "value": [
+        "香港",
+        "日本",
+        "新加坡"
+      ],
+      "dataStatus": "measured"
+    },
+    "selfClient": {
+      "value": false,
+      "dataStatus": "measured"
+    },
+    "highlights": {
+      "value": [
+        "高性价比入门推荐",
+        "最低实付仅需 18 元",
+        "支持主流协议：VLESS"
+      ],
+      "dataStatus": "measured"
+    },
+    "vendorClaims": [
+      "品牌资料显示：支持主流客户端协议与主流流媒体平台访问"
+    ],
+    "limitations": [
+      "高峰期建议避开热门节点",
+      "需遵守合理使用政策 (AUP)，禁止 BT 暴量下载"
+    ],
+    "suitableFor": [
+      "日常跨境网页浏览与查阅文献",
+      "ChatGPT 等高频生产力工具交互",
+      "4K 流媒体日常观看"
+    ],
+    "notSuitableFor": [
+      "24小时不间断大文件大带宽 P2P 共享下载",
+      "对毫秒级金融级极致延迟有苛刻要求的跨国交易"
+    ],
+    "risks": [
+      "跨境外网线路受公网国际骨干网波动影响",
+      "若使用非官方域名可能面临被墙换域风险"
+    ],
+    "comparisonNotes": "适合作为主备组合或日常轻中度使用。",
+    "accentColor": "#475569",
+    "dataVerifiedAt": "2026-10-23",
+    "updatedAt": "2026-10-23",
+    "minPayment": 18,
+    "minPaymentPlan": "18元/月 100GB",
+    "hasFreeTrial": false,
+    "freeTrialDays": null,
+    "freeTrialLimitations": [
+      "试用流量 1-5GB",
+      "限制部分热门倍率节点"
+    ],
+    "hasUnlimitedPlan": false,
+    "unlimitedPlanPrice": null,
+    "unlimitedPlanTraffic": null
+  }
+]

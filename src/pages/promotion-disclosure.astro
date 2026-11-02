@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { title: "商业合作披露", url: "/promotion-disclosure/" }
+];
+---
+
+<BaseLayout
+  title="商业合作与推广链接披露 — 小火箭测评"
+  description="小火箭测评的商业模式、推广返利声明及中立性保障说明。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <article class="article-content">
+      <h1>商业合作与推广返利披露说明</h1>
+
+      <p class="text-lead">
+        小火箭测评秉承完全公开透明的原则，在此向所有访问者如实披露本站的运营经费来源与商业合作机制。
+      </p>
+
+      <h2>一、推广返佣机制 (Affiliate Disclosure)</h2>
+      <p>
+        本站文章和卡片中包含部分指向机场服务商官方网站的注册链接。当您通过这些链接注册账号并购买付费套餐时，服务商可能会根据其公开的 Affiliate 推广计划，向本站支付一定比例的推广佣金。
+      </p>
+      <div class="p-4 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg text-[15px] font-medium text-blue-900 my-4">
+        重要保证：通过本站推广链接注册，绝不会增加您的实际支付金额。在多数情况下，由于本站提供了专属优惠码，您的最终实付价格甚至会低于直接访问官网的价格。
+      </div>
+
+      <h2>二、推广链接的代码技术规范</h2>
+      <p>
+        为了遵守搜索引擎指南并向读者清晰标明商业性质，全站所有出站注册链接均严格包含以下属性：
+      </p>
+      <pre><code>target="_blank" rel="nofollow sponsored noopener"</code></pre>
+
+      <h2>三、评测中立性如何保障？</h2>
+      <p>
+        推广佣金是我们维持服务器带宽、自动化测速探针及测试设备投入的基础支撑，但<strong>商业佣金绝不左右我们的评测结果与缺点披露</strong>：
+      </p>
+      <ul>
+        <li>如果某个机场存在晚高峰拥塞、工单响应慢或退款苛刻等问题，我们会在档案与评测中如实列出其限制（Limitations）；</li>
+        <li>我们保留所有机场的历史测试原始日志，杜绝捏造参数；</li>
+        <li>用户有权直接手动在浏览器中输入官方主域名完成注册，而不使用本站推广链接。</li>
+      </ul>
+    </article>
+  </div>
+</BaseLayout>

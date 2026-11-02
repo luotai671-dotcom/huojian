@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /draft/
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://xiaohuojianvpn.biz/sitemap-index.xml

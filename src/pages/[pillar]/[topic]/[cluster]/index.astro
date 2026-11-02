@@ -1,0 +1,99 @@
+---
+import ClusterLayout from '../../../../layouts/ClusterLayout.astro';
+import ArticleCard from '../../../../components/ArticleCard.astro';
+import CardGrid from '../../../../components/CardGrid.astro';
+import Answer from '../../../../components/Answer.astro';
+import Step from '../../../../components/Step.astro';
+import { pillarsData } from '../../../../../src_data_model.mjs';
+
+export async function getStaticPaths() {
+  const paths: any[] = [];
+  pillarsData.forEach(pillar => {
+    pillar.topics.forEach(topic => {
+      topic.clusters.forEach(cluster => {
+        paths.push({
+          params: { pillar: pillar.id, topic: topic.id, cluster: cluster.id },
+          props: { pillar, topic, cluster }
+        });
+      });
+    });
+  });
+  return paths;
+}
+
+const { pillar, topic, cluster } = Astro.props;
+
+const breadcrumbs = [
+  { title: pillar.name, url: `/${pillar.id}/` },
+  { title: topic.name, url: `/${pillar.id}/${topic.id}/` },
+  { title: cluster.name, url: `/${pillar.id}/${topic.id}/${cluster.id}/` }
+];
+---
+
+<ClusterLayout
+  title={`${cluster.name} — ${topic.name}`}
+  h1={cluster.h1}
+  description={`围绕【${cluster.name}】具体问题提供系统性总解、典型案例演算、关键参数自查与 6 篇独立文章最佳阅读顺序。`}
+  canonicalUrl={`https://xiaohuojianvpn.biz/${pillar.id}/${topic.id}/${cluster.id}/`}
+  breadcrumbs={breadcrumbs}
+  levelName="三级内容集群"
+  wordCount="2,500+ 字"
+>
+  <section class="my-6">
+    <h2>一、具体场景定性与总纲方案</h2>
+    <Answer
+      question={`针对【${cluster.name}】问题，核心解决原则与标准处理流程是什么？`}
+      directAnswer={`明确场景前置条件（设备/网络/预算），建立可量化的验收指标，杜绝盲目试错；按需排查并按步骤查阅对应实测指南。`}
+      scope={`适用于归属于【${topic.name}】专题下，遇到【${cluster.name}】具体技术或选型痛点的用户。`}
+      action="依次按照下方梳理的 6 篇实测文章顺序推进，完成单项任务闭环。"
+    />
+  </section>
+
+  <section class="my-8">
+    <h2>二、下辖 6 篇独立文章推荐阅读路线</h2>
+    <p class="text-[15px] text-slate-600 mb-6">
+      本集群围绕核心问题拆解为 6 个独立的步骤任务，建议按序探索：
+    </p>
+
+    <div class="space-y-4 my-6">
+      {cluster.articles.map((art: any, index: number) => (
+        <Step step={index + 1} title={art.title}>
+          <div class="flex items-center justify-between gap-4 mt-1">
+            <span class="text-[13px] text-slate-500 font-mono">稳定编号: {art.stableId}</span>
+            <a
+              href={`/articles/${art.stableId}/`}
+              class="inline-flex items-center gap-1 text-[14px] font-semibold text-blue-600 hover:text-blue-800"
+            >
+              <span>阅读本篇完整演练</span>
+              <span>→</span>
+            </a>
+          </div>
+        </Step>
+      ))}
+    </div>
+  </section>
+
+  <section class="my-10 pt-6 border-t border-slate-200">
+    <h2>三、相关文章卡片直达</h2>
+    <CardGrid>
+      {cluster.articles.map((art: any) => (
+        <ArticleCard
+          title={art.title}
+          url={`/articles/${art.stableId}/`}
+          stableId={art.stableId}
+          category={cluster.name}
+        />
+      ))}
+    </CardGrid>
+  </section>
+
+  <!-- Navigation back up -->
+  <section class="my-8 pt-4 border-t border-slate-100 flex items-center justify-between text-[14px]">
+    <a href={`/${pillar.id}/${topic.id}/`} class="text-slate-600 hover:text-blue-600">
+      ← 返回所属二级专题：{topic.name}
+    </a>
+    <a href={`/${pillar.id}/`} class="text-slate-600 hover:text-blue-600">
+      返回一级主入口：{pillar.name} →
+    </a>
+  </section>
+</ClusterLayout>

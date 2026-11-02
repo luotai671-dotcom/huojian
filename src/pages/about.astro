@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { title: "关于本站", url: "/about" }
+];
+---
+
+<BaseLayout
+  title="关于本站 — 小火箭测评"
+  description="关于小火箭测评的创立初衷、核心定位与编辑团队愿景。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <article class="article-content">
+      <h1>关于小火箭测评 (xiaohuojianvpn.biz)</h1>
+
+      <p class="text-lead text-[18px] text-slate-700 font-medium">
+        小火箭测评是一个以「机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择」的第三方中文知识库。
+      </p>
+
+      <h2>一、独立中立性声明</h2>
+      <p>
+        本站由独立网络工程师与技术研究团队发起并维护。<strong>本站与任何具体的机场运营品牌、代理客户端官方团队或商业销售代理无任何股权、人事或隶属关系。</strong>
+      </p>
+      <p>
+        所有的品牌收录、测速跑分、优缺点分析均基于客观测试基准与公开资料，不受任何外部商业意志干预。
+      </p>
+
+      <h2>二、我们的建站初衷</h2>
+      <p>
+        在过去的跨境网络与科研开发选型中，用户往往面临以下几大行业痛点：
+      </p>
+      <ul>
+        <li><strong>虚假信息泛滥</strong>：部分推荐博客充斥着未经实测的虚构参数与夸大其词的吹捧；</li>
+        <li><strong>概念混淆严重</strong>：将节点数量、出口 IP、线路带宽混为一谈，用户花冤枉钱；</li>
+        <li><strong>缺乏排障逻辑</strong>：遇到连接超时只懂“换一家”，未能理解底层协议与网络拓扑。</li>
+      </ul>
+      <p>
+        小火箭测评的宗旨，就是建立一套清晰、可查验、有物理证据支持的知识体系，让每一次选型决策都有据可循。
+      </p>
+
+      <h2>三、合法合规立场</h2>
+      <p>
+        本站严格遵守国家法律法规，所载内容仅限计算机网络技术研究、跨国企业合规开发及网络排障知识普及。严禁任何个人或组织利用本站信息从事危害网络安全或违反当地法律的活动。
+      </p>
+    </article>
+  </div>
+</BaseLayout>

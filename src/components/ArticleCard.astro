@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  stableId?: string;
+  summary?: string;
+  category?: string;
+  date?: string;
+}
+
+const { title, url, stableId, summary, category, date } = Astro.props;
+---
+
+<a href={url} class="card block group hover:no-underline">
+  <div class="flex items-center justify-between text-[12px] text-slate-400 mb-2">
+    {category && <span class="font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded">{category}</span>}
+    {stableId && <span class="font-mono text-slate-400">{stableId}</span>}
+  </div>
+  <h3 class="card-title text-[17px] group-hover:text-blue-600 transition-colors leading-snug">
+    {title}
+  </h3>
+  {summary && (
+    <p class="card-summary text-[14px] text-slate-500 mt-2 line-clamp-2">
+      {summary}
+    </p>
+  )}
+  {date && (
+    <div class="mt-3 text-[12px] text-slate-400">
+      核验日期：{date}
+    </div>
+  )}
+</a>

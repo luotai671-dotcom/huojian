@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { title: "评测方法", url: "/editorial-policy/" }
+];
+---
+
+<BaseLayout
+  title="评测方法与测试基准 — 小火箭测评"
+  description="小火箭测评的客观测试方法学、软硬件基准环境、延迟与吞吐量抽样统计规范。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <article class="article-content">
+      <h1>评测方法与技术测试标准</h1>
+
+      <p class="text-lead">
+        为了保证测试结果具备可重复性与客观参考价值，小火箭测评团队制定了严格的实验室与实际网络测试规范。
+      </p>
+
+      <h2>一、测试基准环境固定</h2>
+      <p>所有基准测速在以下标准化受控环境下执行：</p>
+      <ul>
+        <li><strong>网络接入</strong>：中国电信 1000Mbps / 中国联通 500Mbps FTTH 纯光纤独立宽带；</li>
+        <li><strong>硬件终端</strong>：Apple Mac mini (M2, 16GB) 及 x86-64 专用测试探针机，千兆有线直连路由器，杜绝 Wi-Fi 无线干扰；</li>
+        <li><strong>客户端内核</strong>：Mihomo (原 Clash.Meta) 稳定版内核及 Xray-core 官方最新发行版；</li>
+        <li><strong>测速服务器端点</strong>：Speedtest.net 官方认证骨干节点（香港 HGC/HKT、东京 IPA、新加坡 Singtel）。</li>
+      </ul>
+
+      <h2>二、采样窗口与统计口径</h2>
+      <p>
+        单次瞬间测速不具备统计意义。本站评测采用<strong>多时段采样机制</strong>：
+      </p>
+      <ul>
+        <li><strong>晚高峰严苛压测</strong>：在每日网络最拥堵的 20:30–22:30 窗口执行连续 10 轮测速；</li>
+        <li><strong>延迟与抖动指标</strong>：采用中位数（Median）与 95 分位数（P95）延迟，剔除偶尔的握手极值；</li>
+        <li><strong>丢包率监测</strong>：发送 200 个连续 ICMP/TCP 探测包，统计丢包比例。</li>
+      </ul>
+
+      <h2>三、场景实机验收</h2>
+      <p>
+        纯带宽测试不能代表真实软件体验。我们在评测中引入真实生产力场景核验：
+      </p>
+      <ul>
+        <li><strong>AI 对话工具</strong>：对 ChatGPT 网页端、Claude 3.5 Sonnet、Cursor 代码补全执行连续任务交互；</li>
+        <li><strong>4K 视频流</strong>：播放 YouTube 4K 60fps 视频，记录 0-10 秒内的缓冲起播时间与长周期播放丢帧率。</li>
+      </ul>
+    </article>
+  </div>
+</BaseLayout>

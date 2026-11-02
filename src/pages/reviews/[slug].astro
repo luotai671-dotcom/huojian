@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CommercialDisclosure from '../../components/CommercialDisclosure.astro';
+
+export async function getStaticPaths() {
+  const reviews = import.meta.glob('../../content/reviews/*.md', { eager: true });
+  return Object.entries(reviews).map(([filePath, post]: [string, any]) => {
+    const slug = filePath.split('/').pop()?.replace('.md', '') || '';
+    return {
+      params: { slug },
+      props: { post, slug }
+    };
+  });
+}
+
+const { post, slug } = Astro.props;
+const { Content, frontmatter } = post;
+
+const breadcrumbs = [
+  { title: "首页", url: "/" },
+  { title: "机场评测", url: "/reviews/" },
+  { title: `${frontmatter.brandName}深度测评`, url: `/reviews/${slug}/` }
+];
+
+const canonicalUrl = `https://xiaohuojianvpn.biz/reviews/${slug}/`;
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": frontmatter.title,
+  "description": frontmatter.description,
+  "url": canonicalUrl,
+  "inLanguage": "zh-CN",
+  "datePublished": frontmatter.date || "2026-11-01",
+  "dateModified": "2026-11-02",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Organization",
+    "name": "小火箭测评实验室"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小火箭测评",
+    "url": "https://xiaohuojianvpn.biz"
+  }
+};
+---
+
+<BaseLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  canonicalUrl={canonicalUrl}
+  ogType="article"
+  schema={reviewSchema}
+  publishedTime={frontmatter.date || "2026-11-01"}
+  modifiedTime="2026-11-02"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <!-- Article Header -->
+    <header class="my-6 pb-6 border-b border-slate-200">
+      <div class="flex flex-wrap items-center gap-2.5 text-[13px] text-slate-500 mb-3">
+        <span class="px-2.5 py-0.5 rounded-full font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+          {frontmatter.brandName} 专属实测
+        </span>
+        {frontmatter.isPrimary && (
+          <span class="px-2 py-0.5 rounded font-bold bg-amber-400 text-amber-950 text-[12px]">
+            本站主推第 1 名
+          </span>
+        )}
+        <span>•</span>
+        <span>发布日期：{frontmatter.date || "2026-11-01"}</span>
+        <span>•</span>
+        <span class="text-emerald-700 font-medium">晚高峰综合评分：{frontmatter.score || "9.5"} / 10</span>
+      </div>
+
+      <h1 class="text-[26px] sm:text-[34px] font-black text-slate-900 tracking-tight leading-snug">
+        {frontmatter.title}
+      </h1>
+
+      <p class="mt-4 text-[16px] text-slate-600 leading-relaxed">
+        {frontmatter.description}
+      </p>
+    </header>
+
+    <CommercialDisclosure />
+
+    <!-- Main Review Content -->
+    <article class="article-content my-8">
+      <Content />
+    </article>
+
+    <!-- Three-Way Cross-Linking & Navigation Hub -->
+    <section class="mt-14 pt-8 border-t border-slate-200">
+      <h2 class="text-[20px] font-bold text-slate-900 mb-5 flex items-center gap-2">
+        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+        </svg>
+        <span>核心选型与故障排查知识库直达</span>
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a href="/recommend/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group">
+          <div class="text-[12px] font-semibold text-blue-600 mb-1">选购决策入口</div>
+          <h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">【机场推荐】横向大表</h3>
+          <p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">查阅 8 家核心候选机场在实付、协议、设备并发下的横向全景比对矩阵。</p>
+        </a>
+
+        <a href="/reviews/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group">
+          <div class="text-[12px] font-semibold text-emerald-600 mb-1">数据证据中心</div>
+          <h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">【机场评测】测试总表</h3>
+          <p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">查看晚高峰 20:30-22:30 长周期持续丢包、P95 延迟抖动与测速汇总。</p>
+        </a>
+
+        <a href="/troubleshooting/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group">
+          <div class="text-[12px] font-semibold text-rose-600 mb-1">网络排障支持</div>
+          <h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">【网络排障】自检手册</h3>
+          <p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">遇到节点全红、握手超时或订阅无法拉取时的逐级排查与恢复指南。</p>
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

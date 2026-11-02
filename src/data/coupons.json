@@ -1,0 +1,101 @@
+[
+  {
+    "code": "sd88",
+    "brandId": "sds",
+    "brandName": "闪电鼠",
+    "discount": "7折优惠",
+    "terms": "全场套餐通用，限时生效",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "dly88",
+    "brandId": "dalaoyun",
+    "brandName": "大佬云",
+    "discount": "7折优惠",
+    "terms": "月付及年付通用",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "ll88",
+    "brandId": "lly",
+    "brandName": "榴莲云",
+    "discount": "7折优惠",
+    "terms": "新老用户通用",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "sx0077",
+    "brandId": "sxjs",
+    "brandName": "神行加速",
+    "discount": "7折优惠",
+    "terms": "入门套餐专属",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "yjx888",
+    "brandId": "yjx",
+    "brandName": "云界线",
+    "discount": "7折优惠",
+    "terms": "年付套餐可用",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "hq66",
+    "brandId": "hqt",
+    "brandName": "环球梯",
+    "discount": "7折优惠",
+    "terms": "限时折扣",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "jly888",
+    "brandId": "jly",
+    "brandName": "极连云",
+    "discount": "新用户折上折",
+    "terms": "首次充值抵扣",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "xk808",
+    "brandId": "byjd",
+    "brandName": "边缘节点",
+    "discount": "抵扣代码",
+    "terms": "有效期限内可用",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "sujie80",
+    "brandId": "sj",
+    "brandName": "速界",
+    "discount": "8折特惠",
+    "terms": "长期有效",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "kuaili996",
+    "brandId": "kl",
+    "brandName": "快狸",
+    "discount": "满减优惠",
+    "terms": "限指定套餐",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  },
+  {
+    "code": "lmao888",
+    "brandId": "kxy",
+    "brandName": "可信云",
+    "discount": "优惠代码",
+    "terms": "结账时输入抵扣",
+    "verifiedAt": "2026-10-23",
+    "status": "active"
+  }
+]

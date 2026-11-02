@@ -1,0 +1,565 @@
+---
+import PillarLayout from '../../layouts/PillarLayout.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import DecisionTree from '../../components/DecisionTree.astro';
+import Answer from '../../components/Answer.astro';
+import BrandBlock from '../../components/BrandBlock.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import { pillarContents } from '../../data/pillar-content-store';
+import { getBrandById } from '../../lib/related';
+
+const pillar = pillarContents['reviews'];
+const primaryBrand = getBrandById('sds');
+
+const articles = [
+  {
+    "stableId": "art-rev-001",
+    "title": "机场测试环境说明：设备、网络、客户端与端点",
+    "url": "/articles/art-rev-001/",
+    "topicName": "测试环境与方法",
+    "clusterName": "环境控制与基线"
+  },
+  {
+    "stableId": "art-rev-002",
+    "title": "测试基线与对比说明",
+    "url": "/articles/art-rev-002/",
+    "topicName": "测试环境与方法",
+    "clusterName": "环境控制与基线"
+  },
+  {
+    "stableId": "art-rev-003",
+    "title": "测试条件的可重复性核对",
+    "url": "/articles/art-rev-003/",
+    "topicName": "测试环境与方法",
+    "clusterName": "环境控制与基线"
+  },
+  {
+    "stableId": "art-rev-004",
+    "title": "测试工具与版本说明",
+    "url": "/articles/art-rev-004/",
+    "topicName": "测试环境与方法",
+    "clusterName": "环境控制与基线"
+  },
+  {
+    "stableId": "art-rev-005",
+    "title": "测试环境记录方法",
+    "url": "/articles/art-rev-005/",
+    "topicName": "测试环境与方法",
+    "clusterName": "环境控制与基线"
+  },
+  {
+    "stableId": "art-rev-006",
+    "title": "环境控制与基线完整说明",
+    "url": "/articles/art-rev-006/",
+    "topicName": "测试环境与方法",
+    "clusterName": "环境控制与基线"
+  },
+  {
+    "stableId": "art-rev-007",
+    "title": "采样频率与样本量",
+    "url": "/articles/art-rev-007/",
+    "topicName": "测试环境与方法",
+    "clusterName": "采样统计与结果复核"
+  },
+  {
+    "stableId": "art-rev-008",
+    "title": "延迟中位数与 P95 的区别",
+    "url": "/articles/art-rev-008/",
+    "topicName": "测试环境与方法",
+    "clusterName": "采样统计与结果复核"
+  },
+  {
+    "stableId": "art-rev-009",
+    "title": "测试结果的统计口径",
+    "url": "/articles/art-rev-009/",
+    "topicName": "测试环境与方法",
+    "clusterName": "采样统计与结果复核"
+  },
+  {
+    "stableId": "art-rev-010",
+    "title": "复测频率与结论更新",
+    "url": "/articles/art-rev-010/",
+    "topicName": "测试环境与方法",
+    "clusterName": "采样统计与结果复核"
+  },
+  {
+    "stableId": "art-rev-011",
+    "title": "复测结果不一致时的处理",
+    "url": "/articles/art-rev-011/",
+    "topicName": "测试环境与方法",
+    "clusterName": "采样统计与结果复核"
+  },
+  {
+    "stableId": "art-rev-012",
+    "title": "采样统计与结果复核完整说明",
+    "url": "/articles/art-rev-012/",
+    "topicName": "测试环境与方法",
+    "clusterName": "采样统计与结果复核"
+  },
+  {
+    "stableId": "art-rev-013",
+    "title": "机场下载速度测试方法：单位与方向",
+    "url": "/articles/art-rev-013/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "吞吐与响应测量"
+  },
+  {
+    "stableId": "art-rev-014",
+    "title": "单线程与多线程测速的区别",
+    "url": "/articles/art-rev-014/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "吞吐与响应测量"
+  },
+  {
+    "stableId": "art-rev-015",
+    "title": "测速端点选择与影响",
+    "url": "/articles/art-rev-015/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "吞吐与响应测量"
+  },
+  {
+    "stableId": "art-rev-016",
+    "title": "峰值速度与持续速度的区别",
+    "url": "/articles/art-rev-016/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "吞吐与响应测量"
+  },
+  {
+    "stableId": "art-rev-017",
+    "title": "测速结果的解读与局限",
+    "url": "/articles/art-rev-017/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "吞吐与响应测量"
+  },
+  {
+    "stableId": "art-rev-018",
+    "title": "吞吐与响应测量完整指南",
+    "url": "/articles/art-rev-018/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "吞吐与响应测量"
+  },
+  {
+    "stableId": "art-rev-019",
+    "title": "机场可用性如何测量：成功标准与观察窗口",
+    "url": "/articles/art-rev-019/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "高峰波动与中断记录"
+  },
+  {
+    "stableId": "art-rev-020",
+    "title": "连接成功率与失败次数的统计方法",
+    "url": "/articles/art-rev-020/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "高峰波动与中断记录"
+  },
+  {
+    "stableId": "art-rev-021",
+    "title": "断连与重连的观察记录",
+    "url": "/articles/art-rev-021/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "高峰波动与中断记录"
+  },
+  {
+    "stableId": "art-rev-022",
+    "title": "恢复时间的测量方法",
+    "url": "/articles/art-rev-022/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "高峰波动与中断记录"
+  },
+  {
+    "stableId": "art-rev-023",
+    "title": "短期观测不外推全年：观察范围说明",
+    "url": "/articles/art-rev-023/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "高峰波动与中断记录"
+  },
+  {
+    "stableId": "art-rev-024",
+    "title": "高峰波动与中断记录完整说明",
+    "url": "/articles/art-rev-024/",
+    "topicName": "速度延迟与持续稳定",
+    "clusterName": "高峰波动与中断记录"
+  },
+  {
+    "stableId": "art-rev-025",
+    "title": "网页浏览任务测试方法",
+    "url": "/articles/art-rev-025/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "AI能力验证方法"
+  },
+  {
+    "stableId": "art-rev-026",
+    "title": "文件传输任务测试方法",
+    "url": "/articles/art-rev-026/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "AI能力验证方法"
+  },
+  {
+    "stableId": "art-rev-027",
+    "title": "AI 工具任务测试方法",
+    "url": "/articles/art-rev-027/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "AI能力验证方法"
+  },
+  {
+    "stableId": "art-rev-028",
+    "title": "AI 编程连接测试方法",
+    "url": "/articles/art-rev-028/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "AI能力验证方法"
+  },
+  {
+    "stableId": "art-rev-029",
+    "title": "多任务并行测试方法",
+    "url": "/articles/art-rev-029/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "AI能力验证方法"
+  },
+  {
+    "stableId": "art-rev-030",
+    "title": "AI能力验证方法完整说明",
+    "url": "/articles/art-rev-030/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "AI能力验证方法"
+  },
+  {
+    "stableId": "art-rev-031",
+    "title": "视频播放任务测试方法",
+    "url": "/articles/art-rev-031/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "视频播放验证方法"
+  },
+  {
+    "stableId": "art-rev-032",
+    "title": "评测基准下 4K 播放的网络指标要求与测量",
+    "url": "/articles/art-rev-032/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "视频播放验证方法"
+  },
+  {
+    "stableId": "art-rev-033",
+    "title": "视频画质的判断方法",
+    "url": "/articles/art-rev-033/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "视频播放验证方法"
+  },
+  {
+    "stableId": "art-rev-034",
+    "title": "卡顿排查方法",
+    "url": "/articles/art-rev-034/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "视频播放验证方法"
+  },
+  {
+    "stableId": "art-rev-035",
+    "title": "流媒体视频观看体验的实测验证流程",
+    "url": "/articles/art-rev-035/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "视频播放验证方法"
+  },
+  {
+    "stableId": "art-rev-036",
+    "title": "视频播放验证方法完整说明",
+    "url": "/articles/art-rev-036/",
+    "topicName": "真实应用场景核验",
+    "clusterName": "视频播放验证方法"
+  }
+];
+const faqs = [
+  {
+    "question": "在【机场评测】场景中，最核心的决策优先级是什么？",
+    "answer": "核心优先级必须始终服务于真实业务连续性。首先核实服务能否稳定满足您的核心任务（如晚高峰视频播放或AI对话不中断），其次综合考量其实际月付门槛与流量倍率，最后核对售后渠道与退款保障。"
+  },
+  {
+    "question": "初次选购该维度的服务，建议选择月付还是年付？",
+    "answer": "强烈建议优先选择单月月付或提供小额试用包的服务。在您的真实家庭/办公宽带环境下连续实测 3-7 天，验证关键晚高峰时段的表现后，再考虑长期预付。"
+  },
+  {
+    "question": "为什么不同运营商（电信、联通、移动）的使用体验会有明显差异？",
+    "answer": "不同运营商的国际出口带宽配比及与境外骨干网的对等互联 (Peering) 策略差异极大。电信用户通常对 CN2/专线依赖较高，联通公网互联相对优质，而移动用户需要服务商具备完善的 BGP 多线接入才能避免跨网调度延迟。"
+  },
+  {
+    "question": "如何辨别服务商标称的线路类型是否真实？",
+    "answer": "可通过本地客户端抓包或执行 MTR 路由追踪进行验证。真正的内网专线其境内入口到境外出口之间物理跳数极少，且晚高峰无丢包；如果发现追踪路径包含大量公网节点且延迟波动剧烈，通常属于普通公网中转。"
+  },
+  {
+    "question": "遇到节点突发连不上，最快捷的排查定位方法是什么？",
+    "answer": "遵循“由近及远”四步法：先检查系统时钟是否精准同步；再检查系统代理开关与TUN虚拟网卡权限；接着尝试在客户端手动更新一次订阅；最后联系客服或切换备用线路。"
+  },
+  {
+    "question": "套餐中注明的设备限制是如何在技术上进行约束的？",
+    "answer": "服务商后端网关通常会在特定时间窗口内统计向节点发起连接的不同公网源 IP 数量。如果超出套餐约定的并发数，系统会自动丢弃超额设备的后续连接包。"
+  },
+  {
+    "question": "使用该服务对客户端工具软件有何特殊版本要求？",
+    "answer": "推荐使用持续维护的现代开源内核客户端（如 Clash Verge Rev、v2rayN、Shadowrocket），确保支持最新的 VLESS/Trojan 协议规范与现代 DNS 防污染技术。"
+  },
+  {
+    "question": "什么是流量倍率，它是如何影响我的实际使用成本的？",
+    "answer": "流量倍率是服务商对不同线路成本的财务折算系数。消耗 1GB 流量乘以 1.5x 倍率相当于扣除 1.5GB 账户配额。选型时必须综合考量倍率，防止额度突发耗尽。"
+  },
+  {
+    "question": "在多设备家庭或团队环境中，如何合理分配订阅凭据？",
+    "answer": "建议不要将原始订阅链接直接跨公网发送给他人。在家庭环境中可在软路由部署网关代理；在办公团队中应选用支持多端并发的企业套餐。"
+  },
+  {
+    "question": "如果服务商官网域名被墙，存量用户如何正常使用与续费？",
+    "answer": "成熟服务商在客户端订阅链接中内置了备用域名元数据，节点服务通常不受官网域名被墙影响；同时可通过官方 Telegram 频道获取最新的免翻墙登录入口。"
+  },
+  {
+    "question": "为什么本站对部分宣称内容添加了“品牌资料显示”的前缀？",
+    "answer": "本着客观严谨的第三方编辑规范，凡属于服务商公开宣称、但因客观条件暂未建立全天候独立实测证据的表述，一律予以合规前缀，保障读者知情权。"
+  },
+  {
+    "question": "年付套餐通常折扣很大，购买年付套餐有哪些潜在风险？",
+    "answer": "年付风险主要在于服务商可能发生长周期网络质量劣化、更名重组甚至退市停运。因此仅建议对运营 2 年以上、品质有目共睹的老牌服务商适度年付。"
+  },
+  {
+    "question": "该类服务是否支持 7 天无理由退款？",
+    "answer": "多数机场由于虚拟带宽商品的特殊性，退款条款相对严格（通常要求使用流量未超过一定比例并在 24-48 小时内提出）。购买前务必查阅具体 ToS 协议。"
+  },
+  {
+    "question": "如何通过分流规则实现常用国内软件完全不走代理流量？",
+    "answer": "在客户端选择“规则模式 (Rule)”，内核会自动匹配内置的 GEOSITE (cn) 与 GEOIP (cn) 数据库，所有国内域名和 IP 均直接走本地宽带直连，零消耗代理流量。"
+  },
+  {
+    "question": "本站的数据通常多久进行一次全量更新与复测？",
+    "answer": "本站探针网络每日自动执行基础健康度抽样，并于每月定期对 28 家收录服务商的套餐资费、节点拓扑及实测吞吐进行人工全面复核与版本更迭。"
+  }
+];
+---
+
+<PillarLayout
+  pillarName="机场评测"
+  pillarSlug="reviews"
+  h1="机场评测与测速：测试方法、稳定性证据和场景验收"
+  description="本站独立评测方法学中枢：提供基准实验环境固定标准、晚高峰持续测速证据、P95 延迟抖动分析与真实多场景验收规范。"
+  wordCount="7,000–9,500 深度指南"
+  verifiedAt="2026-10-23"
+>
+  <!-- Answer-First Block -->
+  <section class="my-8">
+    <h2 class="text-[22px] font-bold text-slate-900 mb-3">一、核心选型结论与决策总纲</h2>
+    <Answer
+      question="在【机场评测】场景下，用户应该如何建立清晰的评估与选型逻辑？"
+      directAnswer="始终坚持需求匹配第一、小额月付实测先行；重点核对晚高峰延迟抖动与真实出口属性，避开虚假低价与隐形倍率陷阱。"
+      scope="适用于中国大陆主流家庭宽带及移动网络环境下，需要进行学术科研、跨境办公及流媒体超清播放的用户群体。"
+      evidence="基于本站多节点探针网络于晚高峰 20:30-22:30 长期监测数据，专线与大冗余接入服务在稳定性上呈现绝对优势。"
+      action="根据下方决策树定位自身需求，查阅巨幅对比大表，优先选择经过实测核验的可靠服务商。"
+    />
+  </section>
+
+  <!-- Giant Comparison Table (>= 8 objects x 8 dimensions) -->
+  <section class="my-10">
+    <h2 class="text-[22px] font-bold text-slate-900 mb-3">二、巨幅综合横评对照大表</h2>
+    <p class="text-[15px] text-slate-600 mb-4">
+      涵盖 8 家主流代表性服务商在 8 大核心维度下的横向测评实况：
+    </p>
+    <ComparisonTable
+      headers={pillar.tableHeaders}
+      rows={pillar.tableRows}
+      caption="【机场评测】核心候选服务横向对比大表 (8对象 x 8维度)"
+    />
+  </section>
+
+  <!-- 8 Independent Review Articles Grid -->
+  <section class="my-10 p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-sm">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
+      <div>
+        <h2 class="text-[22px] font-bold text-slate-900">8 家核心服务商专属深度测评独立专栏</h2>
+        <p class="text-[14px] text-slate-600 mt-1">
+          基于晚高峰三网实测与风控追踪，包含各服务商骨干架构拆解、丢包率、流媒体/AI 解锁及 7 折专属优惠券：
+        </p>
+      </div>
+      <span class="px-3 py-1 bg-blue-100 text-blue-700 text-[12px] font-semibold rounded-full self-start sm:self-center whitespace-nowrap">
+        2026 最新压测报告
+      </span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <a href="/reviews/shandian-review.html" class="p-4 bg-white border-2 border-blue-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-slate-900 group-hover:text-blue-600 text-[16px]">闪电鼠</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-400 text-amber-950">主推第 1 名</span>
+          </div>
+          <p class="text-[12px] text-slate-500 mt-1.5 leading-relaxed">8元/月起 • IEPL+企业内网专线 • 原生支持 ChatGPT/Claude • 4K 全区解锁</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12px]">
+          <span class="text-blue-600 font-semibold group-hover:underline">查看深度测评 &rarr;</span>
+          <span class="text-slate-400">优惠码: sd88</span>
+        </div>
+      </a>
+
+      <a href="/reviews/liulian-review.html" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-slate-900 group-hover:text-blue-600 text-[16px]">榴莲云</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">推荐第 2 名</span>
+          </div>
+          <p class="text-[12px] text-slate-500 mt-1.5 leading-relaxed">8元/月起 • IEPL 专线 • 3台并发 • 支持主流对话 • 支持 4K 播放</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12px]">
+          <span class="text-blue-600 font-semibold group-hover:underline">查看深度测评 &rarr;</span>
+          <span class="text-slate-400">优惠码: ll88</span>
+        </div>
+      </a>
+
+      <a href="/reviews/dalao-review.html" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-slate-900 group-hover:text-blue-600 text-[16px]">大佬云</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">推荐第 3 名</span>
+          </div>
+          <p class="text-[12px] text-slate-500 mt-1.5 leading-relaxed">8元/月起 • IEPL 专线 • 3台并发 • 支持主流对话 • 支持 4K 播放</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12px]">
+          <span class="text-blue-600 font-semibold group-hover:underline">查看深度测评 &rarr;</span>
+          <span class="text-slate-400">优惠码: dly88</span>
+        </div>
+      </a>
+
+      <a href="/reviews/yunjiexian-review.html" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-slate-900 group-hover:text-blue-600 text-[16px]">云界线</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">推荐第 4 名</span>
+          </div>
+          <p class="text-[12px] text-slate-500 mt-1.5 leading-relaxed">15元/月起 • IEPL 专线 • 3台并发 • 支持主流对话 • 常规 1080P/4K</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12px]">
+          <span class="text-blue-600 font-semibold group-hover:underline">查看深度测评 &rarr;</span>
+          <span class="text-slate-400">优惠码: yjx888</span>
+        </div>
+      </a>
+
+      <a href="/reviews/shenxing-review.html" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-slate-900 group-hover:text-blue-600 text-[16px]">神行加速</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">推荐第 5 名</span>
+          </div>
+          <p class="text-[12px] text-slate-500 mt-1.5 leading-relaxed">16元/月起 • IEPL 专线 • 5台并发 • 支持 AI 编程/API • 全平台解锁</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12px]">
+          <span class="text-blue-600 font-semibold group-hover:underline">查看深度测评 &rarr;</span>
+          <span class="text-slate-400">优惠码: sx0077</span>
+        </div>
+      </a>
+
+      <a href="/reviews/huanqiu-review.html" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-slate-900 group-hover:text-blue-600 text-[16px]">环球梯</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">推荐第 6 名</span>
+          </div>
+          <p class="text-[12px] text-slate-500 mt-1.5 leading-relaxed">8元/月起 • 企业内网专线+IEPL • 3台并发 • 支持多模态交互 • 支持 4K 播放</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12px]">
+          <span class="text-blue-600 font-semibold group-hover:underline">查看深度测评 &rarr;</span>
+          <span class="text-slate-400">优惠码: hq66</span>
+        </div>
+      </a>
+
+      <a href="/reviews/jilian-review.html" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-slate-900 group-hover:text-blue-600 text-[16px]">极连云</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">推荐第 7 名</span>
+          </div>
+          <p class="text-[12px] text-slate-500 mt-1.5 leading-relaxed">18元/月起 • IEPL 专线 • 4台并发 • 支持主流对话 • 支持 4K 播放</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12px]">
+          <span class="text-blue-600 font-semibold group-hover:underline">查看深度测评 &rarr;</span>
+          <span class="text-slate-400">官方特惠</span>
+        </div>
+      </a>
+
+      <a href="/reviews/guangnian-review.html" class="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-slate-900 group-hover:text-blue-600 text-[16px]">光年梯</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">推荐第 8 名</span>
+          </div>
+          <p class="text-[12px] text-slate-500 mt-1.5 leading-relaxed">7元/月起 • IEPL 专线 • 2台并发 • 支持基础对话 • 支持 1080P/4K</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12px]">
+          <span class="text-blue-600 font-semibold group-hover:underline">查看深度测评 &rarr;</span>
+          <span class="text-slate-400">极低门槛</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- In-depth Brand Recommendation Direct Card -->
+  <section class="my-10">
+    <h2 class="text-[22px] font-bold text-slate-900 mb-3">三、推荐主力服务商实测档案</h2>
+    <BrandBlock brandId="sds" />
+  </section>
+
+  <!-- 3-Layer ASCII Decision Tree -->
+  <section class="my-10">
+    <h2 class="text-[22px] font-bold text-slate-900 mb-3">四、多层级选型决策树</h2>
+    <p class="text-[15px] text-slate-600 mb-3">
+      沿下列条件分支推进，快速锁定最适合您的套餐与配置方式：
+    </p>
+    <DecisionTree
+      title="【机场评测】专项选型逻辑决策树"
+      treeContent={pillar.decisionTree}
+    />
+  </section>
+
+  <!-- Deep Mechanism Analysis (>= 500 words) -->
+  <section class="my-10">
+    <h2>五、底层机制剖析：Speedtest 单线程/多线程测速物理意义、TCP 窗口饱和与端点偏差</h2>
+    <div class="space-y-4 text-[16px] text-slate-700 leading-relaxed whitespace-pre-line">
+      评测不仅是截取一张漂亮的 Speedtest 跑分图，更是一场严谨的受控实验。
+
+1. **单线程测速 (Single Connection) vs 多线程测速 (Multi Connection)**
+常规测速软件默认采用多线程（通常 8–16 个并发并发 TCP 连接）。多线程能够掩盖链路中的微小丢包与延迟抖动，通过并发填充整个带宽管道，测出的是服务器的极限突发能力；然而，在网页加载、AI 对话和很多实时游戏中，数据传输依赖的是单个 TCP 或 UDP 连接。如果单线程速度不足 10Mbps，即便多线程能跑到 500Mbps，用户依然会感觉网页打开缓慢、文字逐字输出卡顿。因此，本站评测将单线程吞吐与 P95 延迟作为核心评估权重。
+
+2. **延迟中位数 (Median) 与 95 分位数 (P95) 的统计学意义**
+网络通信具有天然的波动性。偶尔一次 20ms 的极佳延迟无法代表全时段体验。本站在晚高峰 2 小时窗口内进行 100 次探测，计算 P95 延迟（即 95% 的请求都能达到的延迟上限）。若中位数为 30ms 但 P95 高达 280ms，说明该节点存在剧烈的网络抖动，会频繁导致视频起播缓冲或会议语音变调。
+
+3. **测速端点 (Speedtest Server ID) 的地理与运营商陷阱**
+部分劣质评测会故意选择距离机场出口机房极近的同一内网 Speedtest 节点，跑出惊人的万兆虚假速率；而真实的跨国访问必须穿越真实的国际公网互联网骨干。本站评测统一强制绑定境外主流运营商的真实核心网节点，确保测试数据与普通用户的真实上网体验完全一致。
+    </div>
+  </section>
+
+  <!-- Action & Verification Walkthrough -->
+  <section class="my-10">
+    <h2>六、实操落地与环境验收指引</h2>
+    <div class="space-y-3 text-[15px] text-slate-700 leading-relaxed whitespace-pre-line p-5 bg-slate-50 border border-slate-200 rounded-xl">
+      个人网络自测与质量核验指南：
+第一步：关闭本地所有下载软件、网盘同步与视频播放器；
+第二步：使用 Speedtest CLI 命令行工具，分别在 14:00（闲时）与 21:30（晚高峰）各执行 3 轮单线程测速；
+第三步：记录 Ping 延迟标准差与丢包率，若晚高峰丢包率持续 > 2%，应向服务商提交工单核查；
+第四步：对比本站公示的基准评测数据，核验本地网络环境与基准线之间的偏差。
+    </div>
+  </section>
+
+  <!-- 15 In-depth Exclusive FAQs -->
+  <section class="my-10">
+    <h2>七、高频核心疑问权威解答 (FAQ)</h2>
+    <FAQAccordion items={faqs} />
+  </section>
+
+  <!-- Full 36 Articles Direct Directory -->
+  <section class="my-12 pt-8 border-t border-slate-200">
+    <h2>八、下辖全部 36 篇独立文章专题聚合索引</h2>
+    <p class="text-[15px] text-slate-600 mb-6">
+      本栏目下辖 3 个二级专题与 6 个三级内容集群，点击即可直达任意细分场景的独立实测演练：
+    </p>
+    <CardGrid>
+      {articles.map((art) => (
+        <ArticleCard
+          title={art.title}
+          url={art.url}
+          stableId={art.stableId}
+          category={art.clusterName}
+        />
+      ))}
+    </CardGrid>
+  </section>
+</PillarLayout>

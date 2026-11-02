@@ -1,0 +1,80 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CommercialDisclosure from '../components/CommercialDisclosure.astro';
+
+interface Props {
+  pillarName: string;
+  pillarSlug: string;
+  h1: string;
+  description: string;
+  wordCount?: string;
+  verifiedAt?: string;
+}
+
+const {
+  pillarName,
+  pillarSlug,
+  h1,
+  description,
+  wordCount = "8,500+ 字深度指南",
+  verifiedAt = "2026-10-23",
+} = Astro.props;
+
+const breadcrumbs = [
+  { title: pillarName, url: `/${pillarSlug}/` }
+];
+
+const pillarSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": h1,
+  "description": description,
+  "url": `https://xiaohuojianvpn.biz/${pillarSlug}/`,
+  "inLanguage": "zh-CN",
+  "publisher": {
+    "@type": "Organization",
+    "name": "小火箭测评",
+    "url": "https://xiaohuojianvpn.biz"
+  }
+};
+---
+
+<BaseLayout
+  title={h1}
+  description={description}
+  canonicalUrl={`https://xiaohuojianvpn.biz/${pillarSlug}/`}
+  schema={pillarSchema}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <!-- Pillar Hero Header -->
+    <header class="my-6 pb-6 border-b border-slate-200">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-semibold text-[13px] mb-3">
+        <span>一级核心栏目 Hub</span>
+        <span>•</span>
+        <span>{wordCount}</span>
+      </div>
+      <h1 class="text-[30px] sm:text-[36px] font-extrabold text-slate-900 tracking-tight leading-tight">
+        {h1}
+      </h1>
+      <p class="mt-3 text-[17px] text-slate-600 leading-relaxed max-w-4xl">
+        {description}
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 mt-4 text-[13px] text-slate-500">
+        <span>更新与核验时效：<strong class="font-medium text-slate-700">{verifiedAt}</strong></span>
+        <span>•</span>
+        <span>独立第三方知识库 · 无任何厂商从属关系</span>
+      </div>
+    </header>
+
+    <CommercialDisclosure />
+
+    <!-- Article Content -->
+    <article class="article-content my-8">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  title?: string;
+  treeContent?: string;
+}
+
+const { title = "选型决策树", treeContent } = Astro.props;
+---
+
+<div class="my-6 border border-slate-200 rounded-xl overflow-hidden bg-slate-900 text-slate-100 shadow-sm">
+  <div class="bg-slate-800 px-4 py-2.5 border-b border-slate-700 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+      <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+      <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+      <span class="text-[13px] font-mono text-slate-300 ml-2">{title}</span>
+    </div>
+    <span class="text-[12px] text-slate-400">三层以上逻辑分支</span>
+  </div>
+  <pre class="p-4 overflow-x-auto text-[13px] font-mono leading-relaxed text-emerald-400 bg-slate-950"><code>{treeContent ? treeContent : <slot />}</code></pre>
+</div>

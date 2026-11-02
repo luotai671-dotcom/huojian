@@ -1,0 +1,34 @@
+---
+import CommercialCard from './CommercialCard.astro';
+import { getBrandById } from '../lib/related';
+
+interface Props {
+  brandId: string;
+}
+
+const { brandId } = Astro.props;
+const brand = getBrandById(brandId);
+---
+
+{brand ? (
+  <CommercialCard
+    brandId={brand.id}
+    name={brand.name}
+    rank={brand.rank}
+    isPrimary={brand.isPrimaryRecommendation}
+    minPayment={brand.minPayment || undefined}
+    entryPlan={brand.minPaymentPlan || undefined}
+    lineType={brand.lineType?.value || undefined}
+    protocol={brand.protocols?.value || undefined}
+    registerUrl={brand.registerUrl}
+    promoCode={brand.promoCode}
+    highlights={brand.highlights?.value || []}
+    limitations={brand.limitations || []}
+    vendorClaims={brand.vendorClaims || []}
+    dataStatus={brand.lineType?.dataStatus}
+  />
+) : (
+  <div class="my-4 p-4 border border-dashed border-slate-300 rounded-lg text-slate-400 text-sm">
+    品牌实体资料加载中或未录入 ({brandId})
+  </div>
+)}

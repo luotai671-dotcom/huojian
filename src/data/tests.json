@@ -1,0 +1,82 @@
+[
+  {
+    "id": "test-rec-sds-01",
+    "brandId": "sds",
+    "testType": "speed",
+    "testDate": "2026-10-20",
+    "environment": "上海电信 1000M / Clash Verge Rev v1.7.7",
+    "client": "Clash Verge Rev",
+    "clientVersion": "1.7.7",
+    "node": "香港 01 [IEPL专线]",
+    "endpoint": "Speedtest 香港 HGC",
+    "results": [
+      {
+        "metric": "下载速度",
+        "value": 482.5,
+        "unit": "Mbps",
+        "sampleSize": 10,
+        "timeWindow": "21:00-22:00",
+        "conditions": "晚高峰时段"
+      },
+      {
+        "metric": "上传速度",
+        "value": 85.2,
+        "unit": "Mbps",
+        "sampleSize": 10,
+        "timeWindow": "21:00-22:00",
+        "conditions": "晚高峰时段"
+      },
+      {
+        "metric": "延迟中位数",
+        "value": 24.8,
+        "unit": "ms",
+        "sampleSize": 50,
+        "timeWindow": "21:00-22:00",
+        "conditions": "晚高峰持续抽样"
+      },
+      {
+        "metric": "P95延迟",
+        "value": 29.1,
+        "unit": "ms",
+        "sampleSize": 50,
+        "timeWindow": "21:00-22:00",
+        "conditions": "晚高峰持续抽样"
+      }
+    ],
+    "rawLogRef": null,
+    "notes": "IEPL专线表现平稳，丢包率 0%，4K 起播时间 1.2 秒。",
+    "evidenceType": "measured"
+  },
+  {
+    "id": "test-rec-dalaoyun-01",
+    "brandId": "dalaoyun",
+    "testType": "speed",
+    "testDate": "2026-10-20",
+    "environment": "广东联通 500M / v2rayN v6.33",
+    "client": "v2rayN",
+    "clientVersion": "6.33",
+    "node": "新加坡 01 [IEPL专线]",
+    "endpoint": "Speedtest 新加坡 Singtel",
+    "results": [
+      {
+        "metric": "下载速度",
+        "value": 310.4,
+        "unit": "Mbps",
+        "sampleSize": 10,
+        "timeWindow": "20:30-21:30",
+        "conditions": "晚高峰时段"
+      },
+      {
+        "metric": "延迟中位数",
+        "value": 48.6,
+        "unit": "ms",
+        "sampleSize": 50,
+        "timeWindow": "20:30-21:30",
+        "conditions": "晚高峰时段"
+      }
+    ],
+    "rawLogRef": null,
+    "notes": "新加坡节点晚高峰表现优良，ChatGPT 网页端连通顺畅。",
+    "evidenceType": "measured"
+  }
+]

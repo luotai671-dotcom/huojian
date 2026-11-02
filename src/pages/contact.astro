@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { title: "纠错反馈", url: "/contact/" }
+];
+---
+
+<BaseLayout
+  title="纠错反馈与品牌资料更新 — 小火箭测评"
+  description="向小火箭测评编辑团队提交测速数据纠错、品牌资料更新或服务商下架反馈。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <article class="article-content">
+      <h1>纠错反馈与数据修正渠道</h1>
+
+      <p class="text-lead">
+        为了维持全站 553 个页面、28 家收录机场实体及上千项参数的准确性与时效性，小火箭测评诚挚欢迎广大读者、工程师及品牌方监督指正。
+      </p>
+
+      <h2>一、支持反馈的事项</h2>
+      <ul>
+        <li><strong>品牌信息变动</strong>：服务商官网主域名更换、新功能发布、客户端协议更新；</li>
+        <li><strong>套餐价格修正</strong>：套餐资费调整、流量配额缩减、优惠代码失效；</li>
+        <li><strong>服务异常预警</strong>：服务商长期拔线失联、大面积节点超时跑路、重大网络安全事件；</li>
+        <li><strong>技术文章纠错</strong>：TCP/QUIC/TLS 协议解析疏漏、排障步骤偏差。</li>
+      </ul>
+
+      <h2>二、反馈提交流程</h2>
+      <p>
+        为了提高审核效率，请在提交纠错时尽量附带可供核验的客观依据（例如官方公告截图、Speedtest 测速分享链接或工单回复记录）。
+      </p>
+
+      <div class="p-6 bg-slate-50 border border-slate-200 rounded-xl my-6">
+        <h3 class="text-[17px] font-bold text-slate-900 mb-3">官方编辑部联系通道</h3>
+        <p class="text-[15px] text-slate-700 mb-2">
+          电子邮箱：<code class="bg-white border px-2 py-1 rounded text-blue-700 font-mono">support@xiaohuojianvpn.biz</code>
+        </p>
+        <p class="text-[14px] text-slate-500">
+          编辑部会在收到反馈后的 24–48 小时内完成复核，并在通过核实后对相应档案页面进行更新与版本日志记录。
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

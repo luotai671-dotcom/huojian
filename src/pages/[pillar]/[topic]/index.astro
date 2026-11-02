@@ -1,0 +1,103 @@
+---
+import ClusterLayout from '../../../layouts/ClusterLayout.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import CardGrid from '../../../components/CardGrid.astro';
+import Answer from '../../../components/Answer.astro';
+import { pillarsData } from '../../../../src_data_model.mjs';
+
+export async function getStaticPaths() {
+  const paths: any[] = [];
+  pillarsData.forEach(pillar => {
+    pillar.topics.forEach(topic => {
+      paths.push({
+        params: { pillar: pillar.id, topic: topic.id },
+        props: { pillar, topic }
+      });
+    });
+  });
+  return paths;
+}
+
+const { pillar, topic } = Astro.props;
+
+const breadcrumbs = [
+  { title: pillar.name, url: `/${pillar.id}/` },
+  { title: topic.name, url: `/${pillar.id}/${topic.id}/` }
+];
+
+// Gather all 12 articles under this topic
+const topicArticles: any[] = [];
+topic.clusters.forEach((c: any) => {
+  c.articles.forEach((a: any) => {
+    topicArticles.push({
+      stableId: a.stableId,
+      title: a.title,
+      url: `/articles/${a.stableId}/`,
+      clusterName: c.name
+    });
+  });
+});
+---
+
+<ClusterLayout
+  title={`${topic.name} — ${pillar.name} 二级专题`}
+  h1={topic.h1}
+  description={`深入解析【${pillar.name}】下的【${topic.name}】核心专题，组织下辖两组关键内容集群，提供 12 篇独立技术文章深度索引。`}
+  canonicalUrl={`https://xiaohuojianvpn.biz/${pillar.id}/${topic.id}/`}
+  breadcrumbs={breadcrumbs}
+  levelName="二级核心专题"
+  wordCount="3,500+ 字"
+>
+  <section class="my-6">
+    <h2>一、专题定性与子集群关系说明</h2>
+    <Answer
+      question={`在【${topic.name}】专题下，两个子集群分别解决什么问题，它们如何协同推进决策？`}
+      directAnswer={`本专题由【${topic.clusters[0].name}】与【${topic.clusters[1].name}】两大内容集群构成，前者侧重于基础准入与条件筛选，后者侧重于深度应用与长效保障，两者结合形成完整闭环。`}
+      scope={`适用于【${pillar.name}】领域内遇到具体痛点、需要分步对比与逐步落地的用户。`}
+      action="先根据自身痛点阅读对应集群的总纲，再按照建议顺序阅读下辖 12 篇深度实测文章。"
+    />
+  </section>
+
+  <section class="my-8">
+    <h2>二、下辖三级集群分工导航</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+      {topic.clusters.map((cluster: any, idx: number) => (
+        <div class="card bg-slate-50 border-slate-200">
+          <div class="flex items-center gap-2 text-blue-600 font-bold text-[14px] mb-2">
+            <span>子集群 {idx + 1}</span>
+            <span>•</span>
+            <span>6 篇完整文章</span>
+          </div>
+          <h3 class="text-[19px] font-bold text-slate-900 mb-2">
+            <a href={cluster.url} class="hover:text-blue-600 transition-colors">
+              {cluster.name} →
+            </a>
+          </h3>
+          <p class="text-[14px] text-slate-600 mb-4 leading-relaxed">
+            {cluster.h1}
+          </p>
+          <a href={cluster.url} class="text-[14px] text-blue-700 font-semibold hover:underline">
+            查看该集群总解与 6 篇阅读路线 →
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="my-10 pt-6 border-t border-slate-200">
+    <h2>三、下辖全部 12 篇独立文章深度索引</h2>
+    <p class="text-[15px] text-slate-600 mb-6">
+      点击下方任意卡片，直达单篇独立任务的实测与步骤演练：
+    </p>
+    <CardGrid>
+      {topicArticles.map(art => (
+        <ArticleCard
+          title={art.title}
+          url={art.url}
+          stableId={art.stableId}
+          category={art.clusterName}
+        />
+      ))}
+    </CardGrid>
+  </section>
+</ClusterLayout>

@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>sing-box 跨平台全功能配置全景指南：从 Inbound/Outbound 拓扑设计到 Fake-IP 路由规则链编写实战 — 小火箭测评</title><meta name="description" content="系统性拆解 sing-box 新一代跨平台通用网关架构：从 Inbound/Outbound 拓扑解耦到 Fake-IP 独立 DNS 路由规则链编写，详述 Clash YAML 迁移 JSON 避坑法则与轻量化调优。"><link rel="canonical" href="https://xiaohuojianvpn.biz/articles/sing-box-cross-platform-full-config-tutorial/"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><link rel="alternate" type="application/rss+xml" title="小火箭测评" href="/rss.xml"><!-- Open Graph / Social Media --><meta property="og:type" content="article"><meta property="og:title" content="sing-box 跨平台全功能配置全景指南：从 Inbound/Outbound 拓扑设计到 Fake-IP 路由规则链编写实战 — 小火箭测评"><meta property="og:description" content="系统性拆解 sing-box 新一代跨平台通用网关架构：从 Inbound/Outbound 拓扑解耦到 Fake-IP 独立 DNS 路由规则链编写，详述 Clash YAML 迁移 JSON 避坑法则与轻量化调优。"><meta property="og:url" content="https://xiaohuojianvpn.biz/articles/sing-box-cross-platform-full-config-tutorial/"><meta property="og:site_name" content="小火箭测评"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2026-11-02"><meta property="article:modified_time" content="2026-11-02"><!-- Twitter Meta --><meta name="twitter:card" content="summary"><meta name="twitter:title" content="sing-box 跨平台全功能配置全景指南：从 Inbound/Outbound 拓扑设计到 Fake-IP 路由规则链编写实战 — 小火箭测评"><meta name="twitter:description" content="系统性拆解 sing-box 新一代跨平台通用网关架构：从 Inbound/Outbound 拓扑解耦到 Fake-IP 独立 DNS 路由规则链编写，详述 Clash YAML 迁移 JSON 避坑法则与轻量化调优。"><!-- Preconnect to Google Fonts if needed --><meta name="format-detection" content="telephone=no"><!-- JSON-LD Structured Data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"小火箭测评","url":"https://xiaohuojianvpn.biz","description":"以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"sing-box 跨平台全功能配置全景指南：从 Inbound/Outbound 拓扑设计到 Fake-IP 路由规则链编写实战","description":"系统性拆解 sing-box 新一代跨平台通用网关架构：从 Inbound/Outbound 拓扑解耦到 Fake-IP 独立 DNS 路由规则链编写，详述 Clash YAML 迁移 JSON 避坑法则与轻量化调优。","url":"https://xiaohuojianvpn.biz/articles/sing-box-cross-platform-full-config-tutorial/","inLanguage":"zh-CN","datePublished":"2026-11-02","dateModified":"2026-11-02","isAccessibleForFree":true,"author":{"@type":"Organization","name":"小火箭测评编辑部"},"publisher":{"@type":"Organization","name":"小火箭测评","url":"https://xiaohuojianvpn.biz"}}</script><!-- Fallback critical CSS for SVG sizing --><style>
+    svg { max-width: 100%; }
+    .logo-svg { width: 32px !important; height: 32px !important; max-width: 32px !important; max-height: 32px !important; flex-shrink: 0 !important; }
+  </style><script>
+    if (window.location.protocol === 'file:') {
+      (function() {
+        var p = window.location.pathname.replace(/\\/g, '/');
+        // If opened from project root directly, forward to dist/index.html
+        if (!p.includes('/dist/')) {
+          window.location.replace('./dist/index.html' + window.location.search + window.location.hash);
+          return;
+        }
+
+        var distIdx = p.indexOf('/dist/');
+        var distBase = p.substring(0, distIdx + 6); // ends with '/dist/'
+
+        // Handle root-relative links gracefully without alerts or broken paths
+        document.addEventListener('click', function(e) {
+          var a = e.target.closest('a');
+          if (!a) return;
+          var href = a.getAttribute('href');
+          if (!href) return;
+
+          // Allow external links, hash anchors, mailto, tel, javascript to behave normally
+          if (href.startsWith('#') || href.startsWith('http://') || href.startsWith('https://') ||
+              href.startsWith('//') || href.startsWith('mailto:') || href.startsWith('tel:') ||
+              href.startsWith('javascript:')) {
+            return;
+          }
+
+          // Route root-relative links to local static html files
+          if (href.startsWith('/')) {
+            e.preventDefault();
+            var clean = href.replace(/^\/+/, '');
+            var hash = '';
+            var hashIdx = clean.indexOf('#');
+            if (hashIdx !== -1) {
+              hash = clean.slice(hashIdx);
+              clean = clean.slice(0, hashIdx);
+            }
+            var query = '';
+            var queryIdx = clean.indexOf('?');
+            if (queryIdx !== -1) {
+              query = clean.slice(queryIdx);
+              clean = clean.slice(0, queryIdx);
+            }
+
+            var target;
+            if (!clean) {
+              target = 'index.html';
+            } else if (clean.endsWith('.html') || clean.endsWith('.xml') || clean.endsWith('.txt') || clean.endsWith('.svg') || clean.endsWith('.png')) {
+              target = clean;
+            } else {
+              target = clean.replace(/\/+$/, '') + '/index.html';
+            }
+
+            window.location.href = 'file://' + distBase + target + query + hash;
+          }
+        }, true);
+      })();
+    }
+  </script><link rel="stylesheet" href="../_astro/index.Blv80VYZ.css">
+<link rel="stylesheet" href="../_astro/_stableId_.6IqZ_T5J.css"><script type="module">const e=document.getElementById("mobile-menu-toggle"),t=document.getElementById("mobile-menu");e&&t&&e.addEventListener("click",()=>{t.classList.toggle("hidden")});
+</script></head><body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen"> <header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"> <!-- Top compliance disclaimer bar --> <div class="bg-slate-50 border-b border-slate-100 py-1 px-4 text-center text-[12px] text-slate-500"> <span>本站为独立的第三方机场选购与使用指南知识库，与任何机场品牌或代理软件官方无隶属关系。</span> </div> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="flex items-center justify-between h-16"> <!-- Logo and branding --> <div class="flex items-center gap-3"> <a href="/" class="flex items-center gap-2.5 text-slate-900 hover:text-blue-600 transition-colors"> <svg class="w-8 h-8 text-blue-600 logo-svg" width="32" height="32" style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; flex-shrink: 0;" viewBox="0 0 64 64" fill="none"> <rect width="64" height="64" rx="16" fill="#2563EB"></rect> <path d="M48 16L34 30M48 16C42 16 32 20 26 26C20 32 16 42 16 48C22 48 32 44 38 38C44 32 48 22 48 16Z" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M22 42L16 48L22 48L22 42Z" fill="#FACC15"></path> <path d="M25 25L39 39" stroke="#93C5FD" stroke-width="3" stroke-linecap="round"></path> </svg> <span class="font-bold text-[19px] tracking-tight text-slate-900">小火箭测评</span> </a> </div> <!-- Desktop Navigation (7 primary + dropdown) --> <nav class="hidden lg:flex items-center gap-6" aria-label="主导航"> <a href="/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 首页 </a><a href="/recommend/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 机场推荐 </a><a href="/free/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 免费机场 </a><a href="/cheap/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 便宜机场 </a><a href="/reviews/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 机场评测 </a><a href="/coupons/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 机场优惠码 </a><a href="/ai/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> AI工具 </a> <div class="relative group inline-block text-left"> <button type="button" class="inline-flex items-center gap-1 py-2 text-[15px] font-medium text-slate-700 hover:text-blue-600 focus:outline-none transition-colors" id="all-topics-button" aria-expanded="false" aria-haspopup="true"> <span>全部专题</span> <svg class="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path> </svg> </button> <div class="absolute right-0 sm:left-0 z-50 mt-1 hidden group-hover:block group-focus-within:block w-72 origin-top-left rounded-xl bg-white p-3 shadow-lg ring-1 ring-slate-900/5 border border-slate-200 focus:outline-none" role="menu" aria-orientation="vertical" tabindex="-1"> <div class="mb-3 last:mb-0"> <div class="px-3 py-1 text-[12px] font-semibold tracking-wider text-slate-400 uppercase"> 预算与用途 </div> <div class="space-y-0.5 mt-1"> <a href="/plans/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 套餐对比 </a><a href="/ai/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> AI工具 </a><a href="/streaming/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 流媒体机场 </a> </div> </div><div class="mb-3 last:mb-0"> <div class="px-3 py-1 text-[12px] font-semibold tracking-wider text-slate-400 uppercase"> 下载与技术 </div> <div class="space-y-0.5 mt-1"> <a href="/clients/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 客户端教程 </a><a href="/troubleshooting/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 网络排障 </a><a href="/wiki/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 机场百科 </a> </div> </div><div class="mb-3 last:mb-0"> <div class="px-3 py-1 text-[12px] font-semibold tracking-wider text-slate-400 uppercase"> 品牌查询 </div> <div class="space-y-0.5 mt-1"> <a href="/airports/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 机场大全 </a> </div> </div> </div> </div> </nav> <!-- Right utility actions (Search + Mobile toggle) --> <div class="flex items-center gap-3"> <a href="/search/" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 text-[14px] transition-colors" title="搜索全站知识库" id="header-search-btn"> <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path> </svg> <span class="hidden sm:inline">搜索...</span> </a> <!-- Mobile Menu Toggle Button --> <button type="button" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" id="mobile-menu-toggle" aria-label="打开移动端导航菜单"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg> </button> </div> </div> </div> <!-- Mobile Drawer Menu --> <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2"> <div class="grid grid-cols-2 gap-2 pt-2 pb-3 border-b border-slate-100"> <a href="/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 首页 </a><a href="/recommend/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 机场推荐 </a><a href="/free/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 免费机场 </a><a href="/cheap/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 便宜机场 </a><a href="/reviews/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 机场评测 </a><a href="/coupons/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 机场优惠码 </a><a href="/ai/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> AI工具 </a> </div> <div class="pt-2"> <div class="px-2 py-1 text-[12px] font-semibold text-slate-400 uppercase tracking-wider">全部专题</div> <div class="grid grid-cols-2 gap-1 mt-1"> <a href="/plans/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">套餐对比</a> <a href="/ai/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">AI工具</a> <a href="/streaming/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">流媒体机场</a> <a href="/clients/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">客户端教程</a> <a href="/troubleshooting/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">网络排障</a> <a href="/wiki/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">机场百科</a> <a href="/airports/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600 col-span-2">机场大全</a> </div> </div> </div> </header>  <main class="flex-grow">  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6"> <!-- 5-Level Breadcrumb --> <nav aria-label="面包屑导航" class="my-4 text-[13px] text-slate-500 overflow-x-auto whitespace-nowrap py-1"> <ol class="flex items-center gap-1.5 list-none p-0 m-0"> <li class="flex items-center gap-1.5">  <a href="/" class="text-slate-600 hover:text-blue-600 transition-colors"> 首页 </a> </li><li class="flex items-center gap-1.5"> <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path> </svg> <a href="/" class="text-slate-600 hover:text-blue-600 transition-colors"> 首页 </a> </li><li class="flex items-center gap-1.5"> <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path> </svg> <a href="/clients/" class="text-slate-600 hover:text-blue-600 transition-colors"> 客户端教程 </a> </li><li class="flex items-center gap-1.5"> <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path> </svg> <span class="font-medium text-slate-800" aria-current="page"> sing-box 跨平台全功能配置全景指南：从 Inbound/Outbound 拓扑设计到 Fake-IP 路由规则链编写实战 </span> </li> </ol> </nav> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xiaohuojianvpn.biz/"},{"@type":"ListItem","position":2,"name":"首页","item":"https://xiaohuojianvpn.biz/"},{"@type":"ListItem","position":3,"name":"客户端教程","item":"https://xiaohuojianvpn.biz/clients/"},{"@type":"ListItem","position":4,"name":"sing-box 跨平台全功能配置全景指南：从 Inbound/Outbound 拓扑设计到 Fake-IP 路由规则链编写实战","item":"https://xiaohuojianvpn.biz/articles/sing-box-cross-platform-full-config-tutorial/"}]}</script> <header class="my-6 pb-6 border-b border-slate-200"> <div class="flex items-center gap-2 text-[12px] text-slate-500 mb-2 font-mono"> <span class="px-2 py-0.5 rounded bg-slate-100 font-semibold text-slate-700">sing-box-cross-platform-full-config-tutorial</span> <span>•</span> <span>发布于 2026-11-02</span> <span>•</span> <span>核验于 2026-11-02</span> </div> <h1 class="text-[26px] sm:text-[32px] font-extrabold text-slate-900 tracking-tight leading-snug"> sing-box 跨平台全功能配置全景指南：从 Inbound/Outbound 拓扑设计到 Fake-IP 路由规则链编写实战 </h1> <p class="mt-3 text-[16px] text-slate-600 leading-relaxed"> 系统性拆解 sing-box 新一代跨平台通用网关架构：从 Inbound/Outbound 拓扑解耦到 Fake-IP 独立 DNS 路由规则链编写，详述 Clash YAML 迁移 JSON 避坑法则与轻量化调优。 </p> </header> <div class="my-4 p-3 bg-slate-50 border border-slate-200 rounded-lg text-[13px] text-slate-600 flex items-start gap-2.5"> <svg class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path> </svg> <div> <span class="font-medium text-slate-800">商业合作透明披露：</span>
+本站内容包含服务商推广链接。如果您通过本站链接注册或购买，服务商可能向本站支付一定比例的技术佣金。该机制不会增加您的实际支付价格，所有推荐排序与测试数据均基于客观评估标准，详见
+<a href="/promotion-disclosure/" class="underline text-blue-700 hover:text-blue-900">商业合作披露细则</a>。
+</div> </div> <article class="article-content my-8"> <div class="prose max-w-none text-slate-800 leading-relaxed text-[17px]"><blockquote>
+<p><strong>核心结论速览（Direct Answer）</strong>：sing-box 采用模块化、高度解耦的高性能 Go 核心架构，消除了传统代理工具庞杂的历史包袱，内存占用相比同类降低 40%~60%，并在 Linux、macOS、Windows、Android 及 iOS 全平台统一了内核逻辑。其精髓在于将入站（Inbounds）、出站（Outbounds）、独立 DNS 引擎与路由规则链（Route Rules）彻底解耦，结合二进制规则集（Rule Sets）实现亚毫秒级无损匹配。配合 Fake-IP 独立 DNS 调度，可终结海外 CDN 调度偏差并保障全流量零泄露。</p>
+</blockquote>
+<hr>
+<h3 id="一-sing-box-模块化拓扑设计与架构全景">一、 sing-box 模块化拓扑设计与架构全景</h3>
+<p>传统网络代理客户端往往将“代理端口监听”、“DNS 解析”、“节点分组”与“分流规则”混杂在同一层级，导致配置逻辑层级交叠，且极易出现 DNS 回环解析死锁。sing-box 从底层采用管道化与微服务式解耦设计，其整体拓扑分为四大核心实体：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>[ 用户端网络接入（Inbounds） ]</span></span>
+<span class="line"><span> ├── 混杂入站 (Mixed): 本地 SOCKS5 / HTTP 端口 (默认 7890 / 2080)</span></span>
+<span class="line"><span> └── 虚拟网卡入站 (TUN): 捕获全局 L3 IP 报文 (自动路由 auto_route)</span></span>
+<span class="line"><span>            │</span></span>
+<span class="line"><span>            ▼</span></span>
+<span class="line"><span>[ 独立 DNS 调度引擎（DNS Inbounds &#x26; Servers） ]</span></span>
+<span class="line"><span> ├── 国内直连 DNS: 阿里 / 腾讯 DoH (解析国内域名真实 IP)</span></span>
+<span class="line"><span> └── 海外 Fake-IP 引擎: 为外网域名秒级分配虚拟 IP (198.18.0.0/15)</span></span>
+<span class="line"><span>            │</span></span>
+<span class="line"><span>            ▼</span></span>
+<span class="line"><span>[ 编译级路由规则链（Route Rules &#x26; Rule Sets） ]</span></span>
+<span class="line"><span> ├── 规则集预加载 (SRS 二进制规则集: geosite-cn, geoip-cn)</span></span>
+<span class="line"><span> ├── 协议与端口规则 (Inbound / Port / Protocol)</span></span>
+<span class="line"><span> └── 目标地址匹配 (Rule-set / Domain / IP-CIDR)</span></span>
+<span class="line"><span>            │</span></span>
+<span class="line"><span>            ▼</span></span>
+<span class="line"><span>[ 出站调度中心（Outbounds） ]</span></span>
+<span class="line"><span> ├── 自动选择 (URLTest / Selector 策略组)</span></span>
+<span class="line"><span> ├── 直连出站 (Direct) / 拒绝 (Block)</span></span>
+<span class="line"><span> └── 专线中继节点 (Shadowsocks / VLESS / Trojan / Hysteria2)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>在这种解耦架构下，每个数据包进入客户端后，入站模块只负责“收包解包”，DNS 模块只负责“域名解析与地址映射”，路由模块只负责“逻辑决策”，出站模块只负责“封装发送”。模块间职责单一清晰，大幅提升了数据转发效率与并发承载力。</p>
+<hr>
+<h3 id="二-核心配置文件拆解工业级-json-规范">二、 核心配置文件拆解（工业级 JSON 规范）</h3>
+<p>以下是一份经过实验室反复验证、兼顾 TUN 全局接管与本地端口代理的高性能跨平台配置模板：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "log"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "level"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"warn"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "timestamp"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "dns"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "servers"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"dns_remote"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "address"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"fakeip"</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"dns_direct"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "address"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://223.5.5.5/dns-query"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "detour"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    ],</span></span>
+<span class="line"><span style="color:#79B8FF">    "rules"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "outbound"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "server"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"dns_direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "rule_set"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"geosite-cn"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "server"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"dns_direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "query_type"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"AAAA"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#79B8FF">        "server"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"dns_remote"</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    ],</span></span>
+<span class="line"><span style="color:#79B8FF">    "fakeip"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">      "enabled"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "inet4_range"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"198.18.0.0/15"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "inbounds"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"mixed"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"mixed-in"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "listen"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"127.0.0.1"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "listen_port"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2080</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"tun"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"tun-in"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "interface_name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"tun0"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "inet4_address"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"172.19.0.1/30"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "auto_route"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "strict_route"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "stack"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"mixed"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sniff"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "outbounds"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"selector"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"节点选择"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "outbounds"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"自动优选"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"专线主节点"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"direct"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"urltest"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"自动优选"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "outbounds"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"专线主节点"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#79B8FF">      "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://www.gstatic.com/generate_204"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "interval"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"3m"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "tolerance"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">50</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"direct"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"block"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"block"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "route"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "rules"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "action"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"sniff"</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "protocol"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"dns"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "action"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"hijack-dns"</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "ip_is_private"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "outbound"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "rule_set"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"geosite-cn"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "outbound"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "rule_set"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"geoip-cn"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "outbound"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    ],</span></span>
+<span class="line"><span style="color:#79B8FF">    "rule_set"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"remote"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"geosite-cn"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "format"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"binary"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "download_detour"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#79B8FF">        "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"remote"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "tag"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"geoip-cn"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "format"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"binary"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "download_detour"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"direct"</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    ],</span></span>
+<span class="line"><span style="color:#79B8FF">    "auto_detect_interface"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "final"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"节点选择"</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<hr>
+<h3 id="三-高级-dns-调度与-fake-ip-路由链实战">三、 高级 DNS 调度与 Fake-IP 路由链实战</h3>
+<p>在跨国代理链路中，传统的远端 DNS 解析机制（Remote DNS）存在一个致命弱点：终端先将域名明文发往远端解析，然后再建立 TCP 握手。这一过程带来了双倍的 RTT（往返时延），且由于境外 DNS 无法感知用户的真实运营商网络，容易将 CDN 调度至距离国内几千公里外的冗余机房。</p>
+<h4 id="1-sing-box-fake-ip-的工作原理">1. sing-box Fake-IP 的工作原理</h4>
+<p>sing-box 内置的 Fake-IP 池采用 <code>198.18.0.0/15</code> 保留网段。当浏览器请求访问海外目标（如 <code>example.com</code>）时：</p>
+<ol>
+<li>本地 DNS 引擎截获 A/AAAA 请求，不向远端查询，而是瞬间从 Fake-IP 池分配一个映射 IP（如 <code>198.18.0.23</code>）立即返回给应用；</li>
+<li>浏览器瞬间完成 DNS 解析，并向 <code>198.18.0.23</code> 发起 TCP 握手；</li>
+<li>TUN 虚拟网卡截获该 TCP 数据包，根据内部映射表还原真实域名 <code>example.com</code>；</li>
+<li>数据包直接通过加密专线发送到远端出站节点，由远端服务器在境外本地完成真实 DNS 寻址与请求。</li>
+</ol>
+<p>该机制将原本需要 200~300ms 的跨国 DNS 往返彻底缩减至 <strong>0ms 本地瞬时响应</strong>。</p>
+<h4 id="2-传统客户端与-sing-box-性能指标横向对比">2. 传统客户端与 sing-box 性能指标横向对比</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">核心评估维度</th><th align="left">传统 Clash (已归档内核)</th><th align="left">Mihomo (Clash.Meta)</th><th align="left">sing-box 新一代架构</th></tr></thead><tbody><tr><td align="left"><strong>规则匹配格式</strong></td><td align="left">纯文本逐行匹配 (YAML)</td><td align="left">文本 + 内存缓存</td><td align="left">编译型二进制规则集 (.srs)</td></tr><tr><td align="left"><strong>百万规则加载耗时</strong></td><td align="left">~1200ms (明显卡顿)</td><td align="left">~450ms</td><td align="left"><strong>&#x3C; 30ms (瞬时完成)</strong></td></tr><tr><td align="left"><strong>基准空载内存</strong></td><td align="left">90MB ~ 140MB</td><td align="left">80MB ~ 120MB</td><td align="left"><strong>35MB ~ 60MB (大幅优化)</strong></td></tr><tr><td align="left"><strong>跨平台统一性</strong></td><td align="left">桌面端强，移动端碎片化</td><td align="left">桌面端为主</td><td align="left"><strong>Android/iOS/Mac/Win 100% 统一</strong></td></tr><tr><td align="left"><strong>配置语法严谨度</strong></td><td align="left">宽泛，允许隐式类型转换</td><td align="left">中等规范</td><td align="left"><strong>极度严谨（强类型 JSON）</strong></td></tr></tbody></table>
+<hr>
+<h3 id="四-从-clash-yaml-规则迁移至-sing-box-的四大陷阱">四、 从 Clash YAML 规则迁移至 sing-box 的四大陷阱</h3>
+<p>对于从 Clash 阵营转向 sing-box 的技术用户，迁移过程中最常踩中的核心陷阱包括：</p>
+<ul>
+<li><strong>陷阱 1：类型严格性与语法报错</strong>。Clash YAML 允许数字端口以字符串或整型混写，而 sing-box JSON 严格区分数据类型，例如 <code>listen_port</code> 必须是整型数值，布尔值严禁加引号。</li>
+<li><strong>陷阱 2：规则集加载方向</strong>。Clash 的 Rule-Provider 支持自动代理下载，而 sing-box 的 <code>rule_set</code> 必须显式声明 <code>download_detour</code>（通常指定为 <code>direct</code>），否则在无可用节点时规则集无法下载导致客户端启动报死。</li>
+<li><strong>陷阱 3：DNS 循环解析死锁</strong>。如果未配置 <code>detour: "direct"</code> 给国内 DNS 服务器，当节点自身域名需要解析时，系统可能将解析请求又投递回代理节点本身，形成致命死循环。</li>
+<li><strong>陷阱 4：默认出站遗漏</strong>。sing-box 的 <code>route</code> 块中必须显式指定 <code>final</code> 出站标签，若未指定，未匹配到的所有流量将被默认丢弃（Block）。</li>
+</ul>
+<hr>
+<h3 id="五-进阶深度常见问答faq">五、 进阶深度常见问答（FAQ）</h3>
+<h4 id="q1sing-box-配置中-strict_route-参数的作用是什么">Q1：sing-box 配置中 <code>strict_route</code> 参数的作用是什么？</h4>
+<blockquote>
+<p><strong>答</strong>：<code>strict_route</code> 是 TUN 虚拟网卡的高阶安全参数。当设为 <code>true</code> 时，sing-box 会通过严格的路由策略彻底禁止任何流量绕过虚拟网卡，防止系统网络在物理网卡与 TUN 之间发生泄漏；但若在局域网内有 NAS、虚拟机或 WSL2 共享需求，该选项可能导致内网互访中断，因此日常通用推荐保持 <code>false</code>。</p>
+</blockquote>
+<h4 id="q2导入的-srs-二进制规则集更新后为什么客户端未能即时生效">Q2：导入的 SRS 二进制规则集更新后，为什么客户端未能即时生效？</h4>
+<blockquote>
+<p><strong>答</strong>：sing-box 为了保障极限并发性能，在启动时将 <code>.srs</code> 二进制规则预加载至驻留内存。若远程规则集在后台更新，需要向 sing-box 守护进程发送重载信号（如 Linux 下执行 <code>systemctl reload sing-box</code>），或在图形客户端界面中点击“重置内核连接”以释放旧规则内存映射。</p>
+</blockquote>
+<h4 id="q3在多端迁移配置时移动端如-ios与服务器环境如何共享核心节点">Q3：在多端迁移配置时，移动端（如 iOS）与服务器环境如何共享核心节点？</h4>
+<blockquote>
+<p><strong>答</strong>：sing-box 的 Outbound 结构完全遵循跨平台规范，出站节点 JSON 数组可在所有系统间 100% 复制复用。移动端用户若在 iOS 上使用通用规则，也可搭配成熟的移动分流工具，具体可参阅 <a href="/articles/shadowrocket-advanced-rules-https-mitm-guide/">《Shadowrocket（小火箭）高级分流策略与模块集成》</a> 进行混合部署。</p>
+</blockquote>
+<hr>
+<h3 id="六-集群技术内链与系统延伸">六、 集群技术内链与系统延伸</h3>
+<ul>
+<li><strong>全平台机场服务商筛选</strong>：如果你的 sing-box 配置需要低延迟的 IEPL/IPLC 企业专线作为出站支撑，可参考本站基准实验室的 <a href="/reviews/">机场评测专栏</a>；推荐体验深度适配现代协议与多端并发的 <a href="/go.html?id=sds" target="_blank" rel="nofollow sponsored noopener noreferrer">闪电鼠专线网络</a>。</li>
+<li><strong>桌面端调优互通</strong>：对于偏好图形化界面仪表盘与应用分流的用户，推荐进一步阅读 <a href="/articles/clash-verge-rev-advanced-tuning-guide/">《Clash Verge Rev 进阶调优手册》</a>。</li>
+<li><strong>返回专题总览</strong>：查阅全量主流客户端性能横评与网络协议参数，请访问 <a href="/clients/">客户端教程汇总</a>。</li>
+</ul></div><section class="mt-14 pt-8 border-t border-slate-200"><h2 class="text-[20px] font-bold text-slate-900 mb-5 flex items-center gap-2"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg><span>客户端高阶技术集群矩阵互通</span></h2><div class="grid grid-cols-1 md:grid-cols-3 gap-4"><a href="/articles/clash-verge-rev-advanced-tuning-guide/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group"><div class="text-[12px] font-semibold text-blue-600 mb-1">桌面端调优指南</div><h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Clash Verge Rev 进阶调优</h3><p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">Mihomo 内核切换、TUN 虚拟网卡接管与进程级精准分流实战。</p></a><a href="/articles/shadowrocket-advanced-rules-https-mitm-guide/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group"><div class="text-[12px] font-semibold text-emerald-600 mb-1">移动端分流重写</div><h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">小火箭 HTTPS 解密与重写</h3><p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">Packet Tunnel 虚拟网卡截获、CA 根证书 MitM 与 DoH 防污染。</p></a><a href="/articles/sing-box-cross-platform-full-config-tutorial/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group"><div class="text-[12px] font-semibold text-purple-600 mb-1">全平台通用网关</div><h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">sing-box 跨平台全配置</h3><p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">Inbound/Outbound 解耦设计、Fake-IP 路由规则链与 YAML 迁移。</p></a></div></section><section class="my-8 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4 text-[14px]"><a href="/clients/" class="text-blue-600 hover:underline flex items-center gap-1 font-medium"><span>← 返回全部专题：客户端教程</span></a><div class="flex items-center gap-4"><a href="/troubleshooting/" class="text-slate-600 hover:text-blue-600 font-medium">
+网络排障专栏 →
+</a><a href="/reviews/" class="text-slate-600 hover:text-blue-600 font-medium">
+机场评测专栏 →
+</a></div></section> </article> <!-- Related Articles Section -->  </div>  </main> <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 mt-auto"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> <!-- Top Grid: Brand Statement + Nav Columns --> <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12"> <!-- Col 1: Brand & Positioning --> <div class="md:col-span-1 space-y-4"> <div class="flex items-center gap-2"> <svg class="w-7 h-7 text-blue-500 logo-svg" width="28" height="28" style="width: 28px; height: 28px; max-width: 28px; max-height: 28px; flex-shrink: 0;" viewBox="0 0 64 64" fill="none"> <rect width="64" height="64" rx="16" fill="#2563EB"></rect> <path d="M48 16L34 30M48 16C42 16 32 20 26 26C20 32 16 42 16 48C22 48 32 44 38 38C44 32 48 22 48 16Z" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M22 42L16 48L22 48L22 42Z" fill="#FACC15"></path> </svg> <span class="text-[18px] font-bold text-white tracking-tight">小火箭测评</span> </div> <p class="text-[14px] text-slate-400 leading-relaxed">
+以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库。
+</p> <p class="text-[13px] text-slate-500">
+站点性质：独立的第三方选购与使用指南站，与任何机场品牌或代理软件官方无隶属关系。
+</p> </div> <!-- Col 2: Core Hubs --> <div> <h3 class="text-[14px] font-semibold text-white tracking-wider uppercase mb-4">核心选型栏目</h3> <ul class="space-y-2 text-[14px]"> <li> <a href="/recommend/" class="text-slate-400 hover:text-white transition-colors"> 机场推荐 </a> </li><li> <a href="/free/" class="text-slate-400 hover:text-white transition-colors"> 免费机场 </a> </li><li> <a href="/cheap/" class="text-slate-400 hover:text-white transition-colors"> 便宜机场 </a> </li><li> <a href="/reviews/" class="text-slate-400 hover:text-white transition-colors"> 机场评测 </a> </li><li> <a href="/coupons/" class="text-slate-400 hover:text-white transition-colors"> 机场优惠码 </a> </li><li> <a href="/ai/" class="text-slate-400 hover:text-white transition-colors"> AI工具 </a> </li> </ul> </div> <!-- Col 3: Topics & Technical --> <div> <h3 class="text-[14px] font-semibold text-white tracking-wider uppercase mb-4">技术与应用专题</h3> <ul class="space-y-2 text-[14px]"> <li> <a href="/plans/" class="text-slate-400 hover:text-white transition-colors"> 套餐对比 </a> </li><li> <a href="/ai/" class="text-slate-400 hover:text-white transition-colors"> AI工具 </a> </li><li> <a href="/streaming/" class="text-slate-400 hover:text-white transition-colors"> 流媒体机场 </a> </li><li> <a href="/clients/" class="text-slate-400 hover:text-white transition-colors"> 客户端教程 </a> </li><li> <a href="/troubleshooting/" class="text-slate-400 hover:text-white transition-colors"> 网络排障 </a> </li><li> <a href="/wiki/" class="text-slate-400 hover:text-white transition-colors"> 机场百科 </a> </li><li> <a href="/airports/" class="text-slate-400 hover:text-white transition-colors"> 机场大全 </a> </li> </ul> </div> <!-- Col 4: Editorial & Compliance --> <div> <h3 class="text-[14px] font-semibold text-white tracking-wider uppercase mb-4">规范与免责声明</h3> <ul class="space-y-2 text-[14px]"> <li> <a href="/about" class="text-slate-400 hover:text-white transition-colors"> 关于本站 </a> </li><li> <a href="/editorial-policy/" class="text-slate-400 hover:text-white transition-colors"> 评测方法 </a> </li><li> <a href="/editorial-standards/" class="text-slate-400 hover:text-white transition-colors"> 编辑规范 </a> </li><li> <a href="/promotion-disclosure/" class="text-slate-400 hover:text-white transition-colors"> 商业合作披露 </a> </li><li> <a href="/privacy/" class="text-slate-400 hover:text-white transition-colors"> 隐私说明 </a> </li><li> <a href="/disclaimer/" class="text-slate-400 hover:text-white transition-colors"> 免责声明 </a> </li><li> <a href="/contact/" class="text-slate-400 hover:text-white transition-colors"> 纠错反馈 </a> </li> <li> <a href="/rss.xml" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5"> <span>RSS 订阅</span> </a> </li> </ul> </div> </div> <!-- Legal and Regulatory Notice Banner --> <div class="border-t border-slate-800 pt-8 pb-4 text-center space-y-3"> <div class="bg-slate-800/60 rounded-lg p-3 text-[13px] text-slate-400 max-w-4xl mx-auto border border-slate-700/50"> <p class="font-medium text-slate-300 mb-1">【法律与合法使用特别提示】</p> <p>请严格遵守中华人民共和国及当地相关法律法规，本站所有评测数据与技术分析文章仅供计算机网络原理研究、学术交流及合法合规用途。严禁利用本站资料从事任何违反法律法规的活动。</p> </div> <p class="text-[13px] text-slate-500">
+© 2026 xiaohuojianvpn.biz (小火箭测评) 版权所有 · 本站仅提供静态知识索引，不承诺特定 AI 平台或搜索引擎的收录与推荐保证。
+</p> </div> </div> </footer> </body></html>
