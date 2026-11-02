@@ -5,7 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 
 export default defineConfig({
-  site: "https://xiaohuojianvpn.biz",
+  site: "https://xiaohuojianjc.blog",
   output: "static",
   integrations: [
     mdx(),

@@ -1,4 +1,4 @@
-# xiaohuojianvpn.biz 40项验收标准审计清单 (Review Checklist)
+# xiaohuojianjc.blog 40项验收标准审计清单 (Review Checklist)
 
 根据项目总指挥部制定的《小火箭测评 完整建站指令》第 XXI 章节验收标准，本文档对站点全部 40 项硬性指标进行了逐条严格比对与技术审计，审计结果：**40/40 项全部达成（100% 满分通过）**。
 
@@ -85,7 +85,7 @@
 | **24** | 快速答案模块 (AEO) | 文首直接呈现精准直答「Answer」卡片 | **已达成** | 组件 `Answer.astro` 置于文章顶部，针对用户搜索意图提供 3 行核心结论与实测参数。 |
 | **25** | 结构化步骤指南 | 包含步骤 1-3 逐步实操与指引 | **已达成** | 结合组件 `Step.astro`，清晰阐述配置参数、选型决策与性能验证步骤。 |
 | **26** | 蜂窝网状内链系统 | 具备 24 对跨主题深度配对与同分类文章关联卡片 | **已达成** | `src/lib/related.ts` 结合 `content-map.json` 精确注入跨主题蜂窝推荐，每篇文章出链丰富。 |
-| **27** | Canonical 规范化 | 每篇文章具备标准规范 URL 与自闭环引用 | **已达成** | Canonical 标签统一指向 `https://xiaohuojianvpn.biz/articles/{stableId}/`。 |
+| **27** | Canonical 规范化 | 每篇文章具备标准规范 URL 与自闭环引用 | **已达成** | Canonical 标签统一指向 `https://xiaohuojianjc.blog/articles/{stableId}/`。 |
 
 ---
 
@@ -124,4 +124,4 @@
 ---
 
 ## 结论
-小火箭测评（`xiaohuojianvpn.biz`）知识库网站各项技术指标、内容深度、合规声明与静态架构已全面达标，达到立即可投入生产环境上线运营的标准。
+小火箭测评（`xiaohuojianjc.blog`）知识库网站各项技术指标、内容深度、合规声明与静态架构已全面达标，达到立即可投入生产环境上线运营的标准。

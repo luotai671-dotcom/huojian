@@ -1,4 +1,4 @@
-# xiaohuojianvpn.biz 生产环境部署指南 (Apache / Nginx / Cloudflare Pages)
+# xiaohuojianjc.blog 生产环境部署指南 (Apache / Nginx / Cloudflare Pages)
 
 本站点为基于 **Astro 4.x** 构建的全静态高阶中文知识库，构建产物位于 `dist/` 目录。以下为生产环境的完整部署规范与操作指引。
 
@@ -23,11 +23,11 @@
 
 ```apache
 <VirtualHost *:80>
-    ServerName xiaohuojianvpn.biz
-    ServerAlias www.xiaohuojianvpn.biz
-    DocumentRoot "/var/www/xiaohuojianvpn.biz/dist"
+    ServerName xiaohuojianjc.blog
+    ServerAlias www.xiaohuojianjc.blog
+    DocumentRoot "/var/www/xiaohuojianjc.blog/dist"
 
-    <Directory "/var/www/xiaohuojianvpn.biz/dist">
+    <Directory "/var/www/xiaohuojianjc.blog/dist">
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -36,19 +36,19 @@
     # 强制 301 重定向至 HTTPS
     RewriteEngine On
     RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)$ https://xiaohuojianvpn.biz/$1 [R=301,L]
+    RewriteRule ^(.*)$ https://xiaohuojianjc.blog/$1 [R=301,L]
 </VirtualHost>
 
 <VirtualHost *:443>
-    ServerName xiaohuojianvpn.biz
-    ServerAlias www.xiaohuojianvpn.biz
-    DocumentRoot "/var/www/xiaohuojianvpn.biz/dist"
+    ServerName xiaohuojianjc.blog
+    ServerAlias www.xiaohuojianjc.blog
+    DocumentRoot "/var/www/xiaohuojianjc.blog/dist"
 
     SSLEngine on
-    SSLCertificateFile /etc/letsencrypt/live/xiaohuojianvpn.biz/fullchain.pem
-    SSLCertificateKeyFile /etc/letsencrypt/live/xiaohuojianvpn.biz/privkey.pem
+    SSLCertificateFile /etc/letsencrypt/live/xiaohuojianjc.blog/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/xiaohuojianjc.blog/privkey.pem
 
-    <Directory "/var/www/xiaohuojianvpn.biz/dist">
+    <Directory "/var/www/xiaohuojianjc.blog/dist">
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -78,7 +78,7 @@ sudo systemctl restart apache2
 该文件包含以下关键防护与性能优化指令：
 
 ### 2.1 规范域名与 HTTPS 强制跳（301）
-- 自动消除 `www.`，统一收敛至裸域 `https://xiaohuojianvpn.biz`
+- 自动消除 `www.`，统一收敛至裸域 `https://xiaohuojianjc.blog`
 - 消除重复路径斜杠并补全目录末尾斜杠
 
 ### 2.2 资源缓存策略 (mod_expires)
@@ -107,27 +107,27 @@ ErrorDocument 404 /404.html
 ```nginx
 server {
     listen 80;
-    server_name xiaohuojianvpn.biz www.xiaohuojianvpn.biz;
-    return 301 https://xiaohuojianvpn.biz$request_uri;
+    server_name xiaohuojianjc.blog www.xiaohuojianjc.blog;
+    return 301 https://xiaohuojianjc.blog$request_uri;
 }
 
 server {
     listen 443 ssl http2;
-    server_name www.xiaohuojianvpn.biz;
-    ssl_certificate /etc/letsencrypt/live/xiaohuojianvpn.biz/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/xiaohuojianvpn.biz/privkey.pem;
-    return 301 https://xiaohuojianvpn.biz$request_uri;
+    server_name www.xiaohuojianjc.blog;
+    ssl_certificate /etc/letsencrypt/live/xiaohuojianjc.blog/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/xiaohuojianjc.blog/privkey.pem;
+    return 301 https://xiaohuojianjc.blog$request_uri;
 }
 
 server {
     listen 443 ssl http2;
-    server_name xiaohuojianvpn.biz;
+    server_name xiaohuojianjc.blog;
 
-    root /var/www/xiaohuojianvpn.biz/dist;
+    root /var/www/xiaohuojianjc.blog/dist;
     index index.html;
 
-    ssl_certificate /etc/letsencrypt/live/xiaohuojianvpn.biz/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/xiaohuojianvpn.biz/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/xiaohuojianjc.blog/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/xiaohuojianjc.blog/privkey.pem;
 
     # Gzip 压缩
     gzip on;
@@ -190,7 +190,7 @@ server {
   ```apache
   AddType application/wasm .wasm
   ```
-- **搜索测试**：访问 `https://xiaohuojianvpn.biz/search/` 即可直接进行毫秒级端侧分词检索，无需任何后端服务或数据库支撑。
+- **搜索测试**：访问 `https://xiaohuojianjc.blog/search/` 即可直接进行毫秒级端侧分词检索，无需任何后端服务或数据库支撑。
 
 ---
 
@@ -210,8 +210,8 @@ npm run build
 ```
 
 ### 生产线上验收检查项：
-1. 访问 `http://xiaohuojianvpn.biz` 应 301 永久重定向至 `https://xiaohuojianvpn.biz/`。
-2. 访问 `https://www.xiaohuojianvpn.biz` 应 301 重定向至 `https://xiaohuojianvpn.biz/`。
+1. 访问 `http://xiaohuojianjc.blog` 应 301 永久重定向至 `https://xiaohuojianjc.blog/`。
+2. 访问 `https://www.xiaohuojianjc.blog` 应 301 重定向至 `https://xiaohuojianjc.blog/`。
 3. 检查响应头包含 `X-Content-Type-Options: nosniff`。
 4. 访问 `/sitemap-index.xml` 与 `/rss.xml` 确认 XML 结构完好无 404。
 5. 访问 `/search/` 输入“闪电鼠”、“流媒体”、“小火箭”验证检索结果与跳转链接。

@@ -11,9 +11,9 @@ export async function GET(context: any) {
   }));
 
   return rss({
-    title: '小火箭测评 (xiaohuojianvpn.biz)',
+    title: '小火箭测评 (xiaohuojianjc.blog)',
     description: '以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库',
-    site: context.site || 'https://xiaohuojianvpn.biz',
+    site: context.site || 'https://xiaohuojianjc.blog',
     items: items,
     customData: `<language>zh-CN</language>`,
   });

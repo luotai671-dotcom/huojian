@@ -113,7 +113,7 @@ fs.writeFileSync(
 );
 
 // 2. Build 01_SITE_STRUCTURE_AND_URL_MAP.md
-let mapMd = `# xiaohuojianvpn.biz — 553 页面完整层级与 URL 映射总表
+let mapMd = `# xiaohuojianjc.blog — 553 页面完整层级与 URL 映射总表
 
 本规划表涵盖 **首页 1 + 12 个一级内容栏目 + 36 个二级专题 + 72 个三级内容集群 + 432 篇独立 SEO 文章 = 553 个规划内容页面**。
 此外包含统一品牌实体档案页（\`/airports/{brand-slug}/\`）与基础合规/工具页面。

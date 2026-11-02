@@ -1,4 +1,4 @@
-# xiaohuojianvpn.biz — 技术架构、视觉规范与 SEO/GEO 实施规格书
+# xiaohuojianjc.blog — 技术架构、视觉规范与 SEO/GEO 实施规格书
 
 本规范定义了本站从技术选型、UI 设计系统、合规安全、SEO 结构化数据、AI 引擎抓取优化到 Apache 部署的全套工程标准。
 

@@ -17,7 +17,7 @@ let errors = 0;
 
 // Verify content-map canonical URLs format
 contentMap.forEach(item => {
-  if (!item.canonicalUrl.startsWith('https://xiaohuojianvpn.biz/articles/')) {
+  if (!item.canonicalUrl.startsWith('https://xiaohuojianjc.blog/articles/')) {
     console.error(`[Link Error] Invalid canonicalUrl for ${item.stableId}: ${item.canonicalUrl}`);
     errors++;
   }

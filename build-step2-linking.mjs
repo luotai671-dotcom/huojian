@@ -223,7 +223,7 @@ const crossLinks24 = [
   }
 ];
 
-let linkingMd = `# xiaohuojianvpn.biz — 蜂巢式内链网络规划方案
+let linkingMd = `# xiaohuojianjc.blog — 蜂巢式内链网络规划方案
 
 本方案构建了以**需求驱动、证据支撑、逻辑闭环**为原则的蜂巢式拓扑内链结构。
 全站杜绝无理由的随机插链与通用泛锚文本，确保每一条内链均有明确的上下文理由与用户价值。

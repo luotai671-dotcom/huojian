@@ -3,18 +3,18 @@
     "id": "src-vendor-official",
     "name": "服务商官网服务协议 (ToS) 与实时产品目录",
     "verifiedAt": "2026-10-23",
-    "url": "https://xiaohuojianvpn.biz/airports/"
+    "url": "https://xiaohuojianjc.blog/airports/"
   },
   {
     "id": "src-measured-speedtest",
     "name": "基于 Speedtest CLI 与自有探针的基准测速集",
     "verifiedAt": "2026-10-23",
-    "url": "https://xiaohuojianvpn.biz/reviews/"
+    "url": "https://xiaohuojianjc.blog/reviews/"
   },
   {
     "id": "src-community-status",
     "name": "公开维护群组与网络状态警报归档",
     "verifiedAt": "2026-10-23",
-    "url": "https://xiaohuojianvpn.biz/troubleshooting/"
+    "url": "https://xiaohuojianjc.blog/troubleshooting/"
   }
 ]

@@ -6,7 +6,7 @@ console.log('====================================================');
 console.log('       IndexNow 搜索引擎实时推送服务');
 console.log('====================================================\n');
 
-const host = "xiaohuojianvpn.biz";
+const host = "xiaohuojianjc.blog";
 const key = "e8a719d45f624b3fa10986bc77142df3";
 const keyLocation = `https://${host}/${key}.txt`;
 
