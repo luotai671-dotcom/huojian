@@ -1,7 +1,7 @@
 # 小火箭测评 (xiaohuojianvpn.biz)
 
-> **以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库。**
-> 独立的第三方选购与使用指南站，与任何机场品牌或软件无隶属关系。
+> **面向网络工程师与开发者的跨平台网络代理协议、性能基准测评与客户端调优中文知识库。**
+> 独立的第三方技术选型与网络配置指南，与任何代理软件或网络服务商官方无隶属关系。
 
 ---
 
@@ -15,7 +15,7 @@
 7. [本地开发与构建命令](#7-本地开发与构建命令)
 8. [自动化校验脚本 (7 项架构检查)](#8-自动化校验脚本-7-项架构检查)
 9. [生产环境部署 (Apache / Nginx / Cloudflare)](#9-生产环境部署-apache--nginx--cloudflare)
-10. [合规与商业化披露规范](#10-合规与商业化披露规范)
+10. [合规与中立性声明](#10-合规与中立性声明)
 
 ---
 
@@ -24,8 +24,8 @@
 - **站点名称**：小火箭测评
 - **官方域名**：`https://xiaohuojianvpn.biz`
 - **语言定位**：简体中文 (zh-CN)
-- **核心定位**：提供机场横评比对、套餐性价比计算、网络底层协议原理（BGP/IEPL/IPLC）、客户端配置（Shadowrocket/Clash/Sing-box）及日常故障排除指南。
-- **构建输出**：全静态编译生成 590 个 HTML 页面（纯静态文件），无数据库或后端运行时依赖。
+- **核心定位**：提供主流网络传输协议横评比对、带宽与延迟基准实测、网络底层架构（BGP/IEPL/IPLC）、跨平台客户端配置调优（Shadowrocket / Clash Verge Rev / sing-box）及日常网络排障指南。
+- **构建输出**：全静态编译生成 600+ 个 HTML 页面（纯静态文件），无数据库或后端运行时依赖。
 
 ---
 
@@ -37,12 +37,12 @@
 - **全文搜索引擎**：[Pagefind](https://pagefind.app/) (`1.5.2`) - 客户端 WASM 静态索引，支持中文分词与毫秒级即时检索。
 - **SEO 与订阅源**：
   - `@astrojs/sitemap` (`3.1.6`)：生成分卷式 `sitemap-index.xml` 与 `sitemap-0.xml`。
-  - `@astrojs/rss` (`4.0.11`)：自动提取 432 篇终极测评文章产出 `rss.xml`。
+  - `@astrojs/rss` (`4.0.11`)：自动提取终极测评文章产出 `rss.xml`。
 - **图标系统**：`astro-icon` (`1.1.5`)，纯内联 SVG 渲染，无字体包加载阻塞。
 
 ---
 
-## 3. 站点规模与页面组织 (590 页面)
+## 3. 站点规模与页面组织
 
 本知识库采用高度严谨的金字塔与蜂窝互联网络内容拓扑结构：
 
@@ -54,8 +54,8 @@
         ┌───────────────────────┴───────────────────────┐
         │                                               │
 ┌───────▼────────────────┐                     ┌────────▼───────────────┐
-│  12 个 Pillar 枢纽页   │                     │  28 个机场品牌档案页   │
-│ (7,000~9,500字/8x8表) │                     │ (/airports/{brand}/)   │
+│  12 个 Pillar 枢纽页   │                     │  28 个服务商技术档案页 │
+│ (7,000~9,500字/8x8表)  │                     │ (/airports/{brand}/)   │
 └───────┬────────────────┘                     └────────────────────────┘
         │
 ┌───────▼────────────────┐
@@ -78,9 +78,10 @@
 3. **二级 Topic 专题页**：`36` 个 (`/[pillar]/[topic]/`)
 4. **三级 Cluster 聚合页**：`72` 个 (`/[pillar]/[topic]/[cluster]/`)
 5. **四级深度测评文章**：`432` 篇 (`/articles/[stableId]/`)
-6. **品牌独立专页**：`28` 个 (`/airports/[brandSlug]/`)
-7. **基础工具与合规页面**：`9` 个 (`/search/`, `/404.html`, `/about/`, `/editorial-policy/`, `/editorial-standards/`, `/promotion-disclosure/`, `/privacy/`, `/disclaimer/`, `/contact/`)
-8. **综合总计**：**590 个 HTML 页面**。
+6. **服务商技术专页**：`28` 个 (`/airports/[brandSlug]/`)
+7. **客户端进阶长文与专属测评**：`11` 篇
+8. **基础工具与合规页面**：`9` 个 (`/search/`, `/404.html`, `/about/`, `/editorial-policy/`, `/editorial-standards/`, `/promotion-disclosure/`, `/privacy/`, `/disclaimer/`, `/contact/`)
+9. **综合总计**：**600+ 个静态 HTML 页面**。
 
 ---
 
@@ -99,24 +100,25 @@
 │   ├── favicon.svg             # 网站标靶 SVG
 │   ├── robots.txt              # 搜索引擎机器人抓取规则
 │   └── llms.txt                # GEO/AEO 智能体大模型读取协议
-├── scripts/                    # 7 项架构与质量保障自动化验证脚本
-│   ├── audit-brand-links.mjs   # 品牌商业外链与参数审计
+├── scripts/                    # 架构与质量保障自动化验证脚本
+│   ├── audit-brand-links.mjs   # 服务商外链与安全参数审计
 │   ├── check-content-map.mjs   # 内容映射表 553 节点完整性校验
 │   ├── check-links.mjs         # 蜂窝内链与导航连通性校验
 │   ├── check-pillar-hub.mjs    # 12 个核心 Pillar 规格校验 (8x8表/树/FAQ/字数)
 │   ├── check-seo.mjs           # SEO Title/H1 唯一性查重
 │   ├── check-typography.mjs    # 设计规范与对比度无障碍校验
-│   └── validate-content.mjs    # 432 篇文章内容结构完整性测试
+│   ├── validate-content.mjs    # 432 篇文章内容结构完整性测试
+│   └── verify-deadlinks-and-redirects.mjs # 全量死链与重定向死循环专项审计
 ├── src/
 │   ├── components/             # 卡片式 UI 组件体系
 │   │   ├── AllTopicsDropdown.astro # 头部“全部专题”3分组下拉菜单
 │   │   ├── Answer.astro        # AEO 快速精准直答卡片
 │   │   ├── ArticleCard.astro   # 文章预览卡片
-│   │   ├── BrandBlock.astro    # 品牌横评模块
+│   │   ├── BrandBlock.astro    # 服务商横评模块
 │   │   ├── Breadcrumbs.astro   # 5 级面包屑与 BreadcrumbList 微数据
 │   │   ├── Callout.astro       # 提示/警告/重点强调区块
 │   │   ├── CardGrid.astro      # 自适应响应式网格
-│   │   ├── CommercialCard.astro# 商业化推荐卡片 (带返利标识)
+│   │   ├── CommercialCard.astro# 核心服务推荐卡片组件
 │   │   ├── CommercialDisclosure.astro # 商业透明度合规声明
 │   │   ├── ComparisonTable.astro # 8x8 高密度横向滑动对比表格
 │   │   ├── DataStatusBadge.astro # vendor/measured/unverified 状态标牌
@@ -129,12 +131,12 @@
 │   ├── data/                   # 核心结构化数据层
 │   │   ├── claims.json         # 厂商宣称与边界事实
 │   │   ├── content-map.json    # 432 篇文章完整元数据映射表
-│   │   ├── coupons.json        # 优惠券与折扣码数据
+│   │   ├── coupons.json        # 优惠券与折扣数据
 │   │   ├── navigation.ts       # 全站头部与页脚导航注册表
 │   │   ├── pillar-content-store.ts # 12 个核心 Pillar 深度内容仓储
-│   │   ├── plans.json          # 机场各档位套餐与价格计算数据
+│   │   ├── plans.json          # 各档位套餐与参数计算数据
 │   │   ├── redirects.ts        # 路由重定向与历史迁移映射
-│   │   ├── services.json       # 28 家机场品牌全量指标与返利参数库
+│   │   ├── services.json       # 28 家服务商网络指标与技术参数库
 │   │   ├── sources.json        # 测评数据测速源与测试环境记录
 │   │   └── tests.json          # 节点延迟、丢包率与测速样本
 │   ├── layouts/                # 页面模板布局
@@ -146,8 +148,10 @@
 │   │   └── related.ts          # 蜂窝网状互联算法与跨主题深度推荐引擎
 │   ├── pages/                  # 静态路由目录 (含动态映射)
 │   │   ├── [pillar]/           # 动态映射 36 个 Topic 与 72 个 Cluster
-│   │   ├── airports/           # 28 个品牌档案专页
-│   │   ├── articles/           # 432 篇终极测评文章页面
+│   │   ├── ai/                 # AI 工具专题聚合与横评
+│   │   ├── airports/           # 28 个服务商档案专页
+│   │   ├── articles/           # 深度技术测评文章页面
+│   │   ├── reviews/            # 专属深度评测独立长文
 │   │   ├── {12 pillars}/       # 12 个 Pillar 核心独立枢纽页
 │   │   ├── index.astro         # 首页 (高密度信息中枢)
 │   │   ├── search.astro        # 全文搜索页面
@@ -169,16 +173,16 @@
 
 ## 5. 数据模型与核心资产
 
-### 5.1 机场品牌与核心商业推荐 (`services.json`)
-收录全部 28 家业界知名机场品牌。以 **闪电鼠 (sds)** 为首位主推品牌，全站完整保留返利追踪代码与专属优惠码：
-- **主推品牌**：闪电鼠 (shandian.pro)
-- **返利链接**：`https://shandian.pro/#/register?code=m28TvPVX`
-- **专属优惠码**：`sd88`
-- **合规参数**：全部 28 家品牌链接统一注入 `target="_blank" rel="nofollow sponsored noopener"`。
+### 5.1 服务商网络指标与技术参数库 (`services.json`)
+收录业界 28 家主流网络服务提供商的技术参数。以支持 IEPL/IPLC 骨干专线的典型服务商为评测参考，建立完整的多维度技术指标数据库：
+- **基准服务商样本**：闪电鼠
+- **骨干链路架构**：IEPL + 企业内网专线，原生双栈支持
+- **核心协议支持**：VLESS / Trojan / Hysteria2
+- **外链隔离与安全属性**：全站所有站外服务链接统一采用内部安全重定向，严格注入 `target="_blank" rel="nofollow sponsored noopener noreferrer"`。
 
 ### 5.2 数据状态可信度标牌 (`DataStatusBadge`)
 所有性能指标与节点说明均打上清晰标记：
-1. `vendor`（厂商资料）：机场官方宣称的带宽、节点数或特权。
+1. `vendor`（厂商资料）：官方公开宣称的带宽规格、节点覆盖或技术特权。
 2. `measured`（实测数据）：小火箭测评实验室真实测试环境测得的延迟、抖动与丢包。
 3. `unverified`（待验证）：缺乏多地监测节点交叉核实的数据。
 
@@ -206,10 +210,10 @@ npm.cmd install
 # 启动本地实时热重载开发服务器 (默认端口 4321)
 npm.cmd run dev
 
-# 运行 7 项自动化架构与内容自检脚本
+# 运行自动化架构与内容自检脚本
 npm.cmd run check
 
-# 执行生产环境静态全量编译 (生成 590 页面并建立 Pagefind 索引)
+# 执行生产环境静态全量编译 (生成 600+ 页面并建立 Pagefind 索引)
 npm.cmd run build
 
 # 本地预览编译后的 dist/ 静态目录
@@ -218,17 +222,18 @@ npm.cmd run preview
 
 ---
 
-## 8. 自动化校验脚本 (7 项架构检查)
+## 8. 自动化校验脚本 (质量保障体系)
 
-在 `scripts/` 目录中内置了 7 个独立且互不依赖的质量检验工具，在持续集成中通过 `npm run check` 串联执行：
+在 `scripts/` 目录中内置了多项独立且互不依赖的质量检验工具，在持续集成中通过 `npm run check` 串联执行：
 
 1. **`validate-content.mjs`**：检验全部 432 篇文章是否具备合法的标题、分类、描述与结构。
-2. **`check-links.mjs`**：扫描全站导航树与 24 对蜂窝深链，杜绝死链。
+2. **`check-links.mjs`**：扫描全站导航树与蜂窝深链，杜绝死链。
 3. **`check-seo.mjs`**：检验 432 篇文章的 Title 与 H1 标签，保证全网 **100% 唯一无重复**。
 4. **`check-typography.mjs`**：检查 CSS 变量，确保桌面字号 ≥ 17px、对比度 ≥ 7:1。
 5. **`check-pillar-hub.mjs`**：检查 12 个核心 Pillar，确保正文字数、8x8 表格、决策树、15 个 FAQ、30+ 链接全部就位。
 6. **`check-content-map.mjs`**：核验 553 个规划节点与 432 篇文章的一一对应关系，杜绝冲突。
-7. **`audit-brand-links.mjs`**：审计 28 个机场品牌推荐链接，确保 `code=m28TvPVX` 与合规属性完整。
+7. **`audit-brand-links.mjs`**：审计 28 家服务商元数据参数与安全重定向合规属性。
+8. **`audit-full-links.mjs`**：全量扫描全站 HTML 文件，杜绝任何 404 死链与空哈希。
 
 ---
 
@@ -241,9 +246,9 @@ npm.cmd run preview
 
 ---
 
-## 10. 合规与商业化披露规范
+## 10. 合规与中立性声明
 
-1. **第三方中立性**：全站头部、页脚及免责声明均明确公示——本站为独立技术指南站，与任何机场及 Shadowrocket 官方无隶属关联。
-2. **赞助与佣金说明**：本站包含带有商业返利属性的推广链接，在所有推广区域均带有显式说明，返利佣金仅用于支撑服务器带宽与测速节点日常开销。
-3. **合规红线严格恪守**：全站坚决杜绝任何翻墙订阅直链、节点明文密钥或绕过网络监管的非法指引，全面聚焦网络协议与性能技术客观研析。
-4. **严禁虚假虚构**：无虚拟员工人像、无伪造企业工商注册地址、无捏造的用户五星评论，严格基于实测数据与公开品牌资料展开技术讨论。
+1. **第三方技术中立**：本站点为独立技术评测与开源知识库，与任何客户端软件或网络服务商官方无隶属或排他性商业关联。
+2. **学术与网络工程导向**：内容全面聚焦于计算机网络协议（TCP/UDP/QUIC/TLS）、用户态协议栈调优（gVisor/TUN）、DNS 防污染解析与跨平台开发环境网络配置。
+3. **安全与合规红线**：全站严格禁止发布任何未经验证的订阅密钥、节点明文凭据或攻击性网络工具，所有讨论均以开源软件合规配置与网络性能测量为核心。
+4. **客观真实准则**：所有延迟、丢包率与吞吐量数据均基于实验室真实网络环境测试所得，遵循公开透明的技术评估标准。

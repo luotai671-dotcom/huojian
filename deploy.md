@@ -215,4 +215,4 @@ npm run build
 3. 检查响应头包含 `X-Content-Type-Options: nosniff`。
 4. 访问 `/sitemap-index.xml` 与 `/rss.xml` 确认 XML 结构完好无 404。
 5. 访问 `/search/` 输入“闪电鼠”、“流媒体”、“小火箭”验证检索结果与跳转链接。
-6. 点击商业推荐链接，确认带有 `target="_blank" rel="nofollow sponsored noopener"` 且推广码 `m28TvPVX` 与优惠码 `sd88` 准确传递。
+6. 点击推荐服务链接，确认带有 `target="_blank" rel="nofollow sponsored noopener noreferrer"` 且优惠码 `sd88` 准确传递。
