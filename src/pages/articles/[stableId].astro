@@ -46,9 +46,11 @@ let frontmatter: any = {};
 if (isMarkdown && post) {
   frontmatter = post.frontmatter || {};
   MarkdownContent = post.Content;
+  const pillarTitle = frontmatter.pillarTitle || (slug.includes('tuning') || slug.includes('mitm') || slug.includes('cross-platform') ? "客户端教程" : "网络排障");
+  const pillarUrl = frontmatter.pillarUrl || (slug.includes('tuning') || slug.includes('mitm') || slug.includes('cross-platform') ? "/clients/" : "/troubleshooting/");
   breadcrumbs = [
     { title: "首页", url: "/" },
-    { title: "客户端教程", url: "/clients/" },
+    { title: pillarTitle, url: pillarUrl },
     { title: frontmatter.title || slug, url: `/articles/${slug}/` }
   ];
 } else if (articleMeta) {

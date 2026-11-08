@@ -265,6 +265,27 @@ const articles = [
     "url": "/articles/art-trb-036/",
     "topicName": "速度下降与应用异常",
     "clusterName": "浏览器与特定程序异常"
+  },
+  {
+    "stableId": "art-trb-037",
+    "title": "Windows 11 与 macOS 系统代理冲突排查：TUN 虚拟网卡崩溃与 DNS 泄露自检",
+    "url": "/articles/windows-macos-system-proxy-conflict-tun-dns-leak-guide/",
+    "topicName": "系统代理冲突与修复",
+    "clusterName": "系统网络栈排障"
+  },
+  {
+    "stableId": "art-trb-038",
+    "title": "iOS 网络节点选型与能耗优化：Shadowrocket 与圈X后台保活及分流指南",
+    "url": "/articles/ios-network-nodes-battery-optimization-shadowrocket-quantumultx-guide/",
+    "topicName": "移动端系统排障",
+    "clusterName": "iOS能耗与后台保活"
+  },
+  {
+    "stableId": "art-trb-039",
+    "title": "开发者出海网络选型与环境隔离：终端代理、Git 加速与 Docker 拉取避坑指南",
+    "url": "/articles/developer-network-routing-terminal-proxy-git-docker-guide/",
+    "topicName": "开发环境与隔离",
+    "clusterName": "终端与容器代理"
   }
 ];
 const faqs = [
@@ -420,11 +441,11 @@ const faqs = [
     <FAQAccordion items={faqs} />
   </section>
 
-  <!-- Full 36 Articles Direct Directory -->
+  <!-- Full 39 Articles Direct Directory -->
   <section class="my-12 pt-8 border-t border-slate-200">
-    <h2>八、下辖全部 36 篇独立文章专题聚合索引</h2>
+    <h2>八、下辖全部 39 篇独立文章专题聚合索引</h2>
     <p class="text-[15px] text-slate-600 mb-6">
-      本栏目下辖 3 个二级专题与 6 个三级内容集群，点击即可直达任意细分场景的独立实测演练：
+      本栏目下辖 3 个二级专题与 6 个三级内容集群，共计收录 39 篇独立技术长文，点击即可直达任意细分场景的独立实测演练：
     </p>
     <CardGrid>
       {articles.map((art) => (

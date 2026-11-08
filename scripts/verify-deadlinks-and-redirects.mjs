@@ -228,7 +228,7 @@ if (
   rootIndexHasProperTitle &&
   checksPathnameBeforeRedirect
 ) {
-  console.log('✓ 未发现任何死链与路由异常，所有 443 篇文章均具有确凿正文，无需改动代码！');
+  console.log(`✓ 未发现任何死链与路由异常，所有 ${totalArticlesCount} 篇文章均具有确凿正文，无需改动代码！`);
 } else {
   console.log('❌ 发现潜在异常，请查看上述详细清单！');
 }

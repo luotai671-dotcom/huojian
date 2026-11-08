@@ -2,12 +2,25 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import contentMap from '../../data/content-map.json';
 
-const totalArticles = contentMap.length;
+const mdArticles = import.meta.glob('../../content/articles/*.md', { eager: true });
+const additionalArticles = Object.entries(mdArticles).map(([filePath, post]: [string, any]) => {
+  const slug = filePath.split('/').pop()?.replace('.md', '') || '';
+  return {
+    stableId: slug,
+    title: post.frontmatter?.title || slug,
+    publishDate: post.frontmatter?.publishDate || '2026-11',
+    description: post.frontmatter?.description || '',
+    category: post.frontmatter?.category || '技术指南'
+  };
+});
+
+const allArticles = [...additionalArticles, ...contentMap];
+const totalArticles = allArticles.length;
 ---
 
 <BaseLayout
   title="全部评测文章档案"
-  description="小火箭测评全量 432 篇原创机场测评、套餐分析、客户端配置与技术原理文章索引。"
+  description="小火箭测评全量原创机场测评、套餐分析、客户端配置与技术原理文章索引。"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Header -->
@@ -15,7 +28,7 @@ const totalArticles = contentMap.length;
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3">
         <span>已收录文章档案</span>
         <span>•</span>
-        <span>{totalArticles} 篇测评</span>
+        <span>{totalArticles} 篇测评与技术长文</span>
       </div>
       <h1 class="text-3xl font-black text-slate-900 tracking-tight">全部评测与使用指南文章索引</h1>
       <p class="mt-3 text-slate-600 text-base leading-relaxed">
@@ -34,7 +47,7 @@ const totalArticles = contentMap.length;
 
     <!-- Article Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {contentMap.map((art) => (
+      {allArticles.map((art) => (
         <a
           href={`/articles/${art.stableId}/`}
           class="card p-5 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between"
@@ -61,7 +74,7 @@ const totalArticles = contentMap.length;
   </div>
 
   <!-- Query param compatibility script -->
-  <script is:inline define:vars={{ validIds: contentMap.map(a => a.stableId) }}>
+  <script is:inline define:vars={{ validIds: allArticles.map(a => a.stableId) }}>
     (function() {
       try {
         var params = new URLSearchParams(window.location.search);

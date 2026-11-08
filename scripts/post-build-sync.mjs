@@ -23,11 +23,14 @@ reviewSlugs.forEach(slug => {
 });
 console.log('✓ Synced 8 review .html compatibility files.');
 
-// 1.1.1 复制 3 篇客户端进阶长文到 .html 兼容路径
+// 1.1.1 复制 6 篇高阶技术/排障长文到 .html 兼容路径
 const advancedTutorialSlugs = [
   'clash-verge-rev-advanced-tuning-guide',
   'shadowrocket-advanced-rules-https-mitm-guide',
-  'sing-box-cross-platform-full-config-tutorial'
+  'sing-box-cross-platform-full-config-tutorial',
+  'windows-macos-system-proxy-conflict-tun-dns-leak-guide',
+  'ios-network-nodes-battery-optimization-shadowrocket-quantumultx-guide',
+  'developer-network-routing-terminal-proxy-git-docker-guide'
 ];
 advancedTutorialSlugs.forEach(slug => {
   const dirFile = path.join('dist/articles', slug, 'index.html');
@@ -36,7 +39,7 @@ advancedTutorialSlugs.forEach(slug => {
     fs.copyFileSync(dirFile, flatFile);
   }
 });
-console.log('✓ Synced 3 advanced client tutorial .html compatibility files.');
+console.log('✓ Synced 6 advanced tutorial .html compatibility files.');
 
 // 1.2 复制 public/go.html 到 dist/go.html 与根目录 go.html
 if (fs.existsSync('public/go.html')) {
