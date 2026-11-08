@@ -181,10 +181,13 @@ let htaccessContent = fs.existsSync(htaccessPath) ? fs.readFileSync(htaccessPath
 const hasSlashStrippingRule = /RewriteRule\s+\^\(\.\+\)\/\$\s+\/\$1\s+\[R=301,L\]/i.test(htaccessContent);
 const hasDirectorySlashOn = /DirectorySlash\s+On/i.test(htaccessContent);
 const hasSafeArticleRewrite = htaccessContent.includes('/articles/%1/?') && htaccessContent.includes('RewriteRule ^article');
+const hasAff302Rewrite = /RewriteRule\s+\^\(\?:go\|aff\)[^\n]+\[R=302,L\]/i.test(htaccessContent);
+const hasNoAff301 = !/RewriteRule\s+\^\(\?:go\|aff\)[^\n]+\[R=301,L\]/i.test(htaccessContent);
 
 console.log(`- Apache .htaccess mod_dir 冲突规则排查: ${!hasSlashStrippingRule ? '✓ 安全 (无剥离尾部斜杠导致互踹的死循环规则)' : '❌ 存在危险规则！'}`);
 console.log(`- DirectorySlash On 规范: ${hasDirectorySlashOn ? '✓ 已显式开启，目录自动补斜杠' : '❌ 未开启'}`);
 console.log(`- 服务端 /article -> /articles/%1/ 301 规则: ${hasSafeArticleRewrite ? '✓ 安全 (采用 %1/? 剥除 query 参数，防止连续重定向)' : '❌ 规则未优化'}`);
+console.log(`- Affiliate 推广链接 302 临时重定向规范: ${hasAff302Rewrite && hasNoAff301 ? '✓ 安全 (全量配置 HTTP 302 临时重定向，严禁 301)' : '❌ 推广规则未设为 302'}`);
 
 // 检查前端 article.astro / article.html 中是否存在循环 window.location 赋值
 const articleHtmlPath = path.join(distDir, 'article.html');
@@ -207,6 +210,8 @@ if (
   !hasSlashStrippingRule &&
   hasDirectorySlashOn &&
   hasSafeArticleRewrite &&
+  hasAff302Rewrite &&
+  hasNoAff301 &&
   checksPathnameBeforeRedirect
 ) {
   console.log('✓ 未发现任何死链与路由异常，所有 443 篇文章均具有确凿正文，无需改动代码！');

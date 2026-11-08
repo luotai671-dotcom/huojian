@@ -44,6 +44,16 @@ if (fs.existsSync('public/go.html') && fs.existsSync('dist')) {
   console.log('✓ Synced dist/go.html redirector.');
 }
 
+// 1.3 复制 public/.htaccess 和 public/_redirects 到 dist/
+if (fs.existsSync('public/.htaccess') && fs.existsSync('dist')) {
+  fs.copyFileSync('public/.htaccess', 'dist/.htaccess');
+  console.log('✓ Synced dist/.htaccess configuration.');
+}
+if (fs.existsSync('public/_redirects') && fs.existsSync('dist')) {
+  fs.copyFileSync('public/_redirects', 'dist/_redirects');
+  console.log('✓ Synced dist/_redirects configuration.');
+}
+
 // 2. 复制 dist/robots.txt 到根目录 robots.txt
 if (fs.existsSync('dist/robots.txt')) {
   fs.copyFileSync('dist/robots.txt', 'robots.txt');

@@ -241,7 +241,7 @@ npm.cmd run preview
 
 构建完成后的全部产物位于根目录下的 `dist/`。
 
-- **Apache 静态主机部署**：将 Web 虚拟主机的 `DocumentRoot` 指向 `dist/` 即可。`public/.htaccess` 会在构建时自动输出到 `dist/.htaccess`，已预置 HTTPS 强制 301 重定向、非 www 规范化、长效静态缓存及安全响应头。
+- **Apache 静态主机部署**：将 Web 虚拟主机的 `DocumentRoot` 指向 `dist/` 即可。`public/.htaccess` 会在构建时自动输出到 `dist/.htaccess`，已预置 HTTPS 强制 301 重定向、非 www 规范化、长效静态缓存及安全响应头，并针对全部 Affiliate 推广链接提供标准 HTTP 302 临时重定向保护。
 - **详细部署指引与配置模板**：参见根目录下的 [`deploy.md`](./deploy.md)。
 
 ---

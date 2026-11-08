@@ -90,10 +90,12 @@ const htaccessContent = fs.existsSync(htaccessPath) ? fs.readFileSync(htaccessPa
 const hasDangerousSlashRule = /RewriteRule\s+\^\(\.\+\)\/\$\s+\/\$1\s+\[R=301,L\]/.test(htaccessContent);
 const hasLegacyArticleRewrite = /RewriteRule\s+\^article/.test(htaccessContent);
 const hasDirectorySlash = /DirectorySlash\s+On/i.test(htaccessContent);
+const hasAff302Rules = /RewriteRule\s+\^\(\?:go\|aff\)[^\n]+\[R=302,L\]/i.test(htaccessContent);
 
 console.log(`- 冲突规则排查 (mod_dir 与 mod_rewrite 斜杠互踹): ${!hasDangerousSlashRule ? '✓ 安全 (危险的反向剥离斜杠规则已彻底清除)' : '❌ 存在死循环风险'}`);
 console.log(`- 服务端 .htaccess 历史路径兼容 (?post= 或 ?id=): ${hasLegacyArticleRewrite ? '✓ 已配置自动 301 重定向至 /articles/%1/' : '❌ 未配置'}`);
 console.log(`- 目录规范化 DirectorySlash On: ${hasDirectorySlash ? '✓ 已启用' : '❌ 未显式配置'}`);
+console.log(`- Affiliate 推广链接 302 临时重定向: ${hasAff302Rules ? '✓ 全量配置 HTTP 302 临时重定向，严禁 301' : '❌ 未配置 302'}`);
 
 // 4. 全站超链接死链扫描
 console.log('\n【任务 4：全站超链接与 post 参数连通性全面扫描】');

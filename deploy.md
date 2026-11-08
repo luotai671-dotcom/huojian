@@ -98,6 +98,10 @@ sudo systemctl restart apache2
 ErrorDocument 404 /404.html
 ```
 
+### 2.5 Affiliate 推广链接 302 临时重定向
+- 为保护站点 SEO 权重并防止浏览器永久缓存推广代码，全站所有机场官方推广链接（`/go/*` 与 `/go.html?id=*`）一律配置为 **HTTP 302 临时重定向**（严禁使用 301 永久重定向）。
+- `public/.htaccess` 与 `public/_redirects` 已预置全量 302 跳转规则，并在构建时自动同步至 `dist/`。
+
 ---
 
 ## 3. Nginx 部署备选配置
