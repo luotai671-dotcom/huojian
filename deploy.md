@@ -18,7 +18,9 @@
 
 站点已针对标准 Apache 2.4+ 静态主机（如 cPanel、虚拟主机、自建云服务器 httpd）完成适配。
 
-### 1.1 DocumentRoot 设定
+### 1.1 DocumentRoot 设定与双模自适应支持
+
+**模式 A：标准独立主机（推荐）**
 将 Web 服务器的 `DocumentRoot` 直接指向编译输出目录 `dist/`：
 
 ```apache
@@ -55,6 +57,12 @@
     </Directory>
 </VirtualHost>
 ```
+
+**模式 B：cPanel / 虚拟主机（如老薛主机直挂仓库根目录）**
+若使用 cPanel、宝塔面板或老薛主机等虚拟主机，且直接将仓库部署在 `public_html/`（网站根目录），本仓库已实现 **全自动双模自适应**：
+- 根目录 `.htaccess` 会自动通过 Apache `mod_rewrite` 将未匹配路径安全、透明地内部映射到 `dist/` 下的对应页面；
+- 根目录 `index.html` 直接同步完整生产首页，彻底废除了旧版的 `./dist/` 跳转代码，杜绝任何 `ERR_TOO_MANY_REDIRECTS` 或 `/clients/dist/dist/...` 死循环；
+- 配备 `/dist(?:/dist)*` 正则熔断规则，若客户端带有历史异常路径，自动 301 重定向恢复为规范干净路径。
 
 ### 1.2 必备 Apache 模块
 请确保 Apache 已加载以下模块（Debian/Ubuntu 执行 `a2enmod`，RHEL/CentOS 检查 `httpd.conf`）：

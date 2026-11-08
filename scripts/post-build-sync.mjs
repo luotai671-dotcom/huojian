@@ -38,32 +38,60 @@ advancedTutorialSlugs.forEach(slug => {
 });
 console.log('✓ Synced 3 advanced client tutorial .html compatibility files.');
 
-// 1.2 复制 public/go.html 到 dist/go.html
-if (fs.existsSync('public/go.html') && fs.existsSync('dist')) {
-  fs.copyFileSync('public/go.html', 'dist/go.html');
-  console.log('✓ Synced dist/go.html redirector.');
+// 1.2 复制 public/go.html 到 dist/go.html 与根目录 go.html
+if (fs.existsSync('public/go.html')) {
+  if (fs.existsSync('dist')) {
+    fs.copyFileSync('public/go.html', 'dist/go.html');
+  }
+  fs.copyFileSync('public/go.html', 'go.html');
+  console.log('✓ Synced go.html redirector.');
 }
 
-// 1.3 复制 public/.htaccess 和 public/_redirects 到 dist/
-if (fs.existsSync('public/.htaccess') && fs.existsSync('dist')) {
-  fs.copyFileSync('public/.htaccess', 'dist/.htaccess');
-  console.log('✓ Synced dist/.htaccess configuration.');
+// 1.3 复制 public/.htaccess 和 public/_redirects 到 dist/ 及根目录
+if (fs.existsSync('public/.htaccess')) {
+  if (fs.existsSync('dist')) {
+    fs.copyFileSync('public/.htaccess', 'dist/.htaccess');
+  }
+  fs.copyFileSync('public/.htaccess', '.htaccess');
+  console.log('✓ Synced .htaccess configuration (both dist/ and root).');
 }
-if (fs.existsSync('public/_redirects') && fs.existsSync('dist')) {
-  fs.copyFileSync('public/_redirects', 'dist/_redirects');
-  console.log('✓ Synced dist/_redirects configuration.');
+if (fs.existsSync('public/_redirects')) {
+  if (fs.existsSync('dist')) {
+    fs.copyFileSync('public/_redirects', 'dist/_redirects');
+  }
+  fs.copyFileSync('public/_redirects', '_redirects');
+  console.log('✓ Synced _redirects configuration (both dist/ and root).');
 }
 
-// 2. 复制 dist/robots.txt 到根目录 robots.txt
-if (fs.existsSync('dist/robots.txt')) {
-  fs.copyFileSync('dist/robots.txt', 'robots.txt');
-  console.log('✓ Synced dist/robots.txt to root robots.txt.');
-}
+// 2. 复制 dist/ 关键元数据与静态根文件到项目根目录（适配 cPanel / 老薛主机根目录直挂）
+const rootSyncFiles = [
+  'robots.txt',
+  'favicon.svg',
+  '404.html',
+  'article.html',
+  'sitemap-index.xml',
+  'sitemap-0.xml',
+  'rss.xml',
+  'llms.txt'
+];
+rootSyncFiles.forEach(file => {
+  const distFile = path.join('dist', file);
+  if (fs.existsSync(distFile)) {
+    fs.copyFileSync(distFile, file);
+    console.log(`✓ Synced dist/${file} to root ${file}.`);
+  }
+});
 
 // 3. 复制 dist/_astro 到根目录 _astro
 if (fs.existsSync('dist/_astro')) {
   fs.cpSync('dist/_astro', '_astro', { recursive: true });
   console.log('✓ Synced dist/_astro to root _astro/ for local preview.');
+}
+
+// 3.1 复制 dist/pagefind 到根目录 pagefind（适配根目录直挂环境下的搜索功能）
+if (fs.existsSync('dist/pagefind')) {
+  fs.cpSync('dist/pagefind', 'pagefind', { recursive: true });
+  console.log('✓ Synced dist/pagefind to root pagefind/ for full-text search.');
 }
 
 // 4. 遍历并优化 dist 目录下所有 HTML 文件的资源引用为相对路径（确保本地双击与 HTTP 双兼容）
@@ -110,24 +138,14 @@ if (fs.existsSync('dist')) {
   console.log(`✓ Processed ${processedCount} HTML files in dist/ for relative asset paths.`);
 }
 
-// 5. 优化根目录 index.html：直接静默秒级跳转至 dist/index.html，避免根目录与子页面路径割裂
-const rootIndexHtml = `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>小火箭测评 — 本地知识库</title>
-  <script>
-    window.location.replace('./dist/index.html' + window.location.search + window.location.hash);
-  </script>
-  <meta http-equiv="refresh" content="0;url=./dist/index.html">
-</head>
-<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;text-align:center;padding:80px 20px;color:#334155;background:#f8fafc;">
-  <h2 style="margin-bottom:12px;font-size:22px;color:#0f172a;">正在进入小火箭测评知识库...</h2>
-  <p style="font-size:15px;color:#64748b;">如未自动跳转，请 <a href="./dist/index.html" style="color:#2563eb;text-decoration:underline;font-weight:600;">点击此处直接进入</a></p>
-</body>
-</html>
-`;
-
-fs.writeFileSync('index.html', rootIndexHtml, 'utf8');
-console.log('✓ Root index.html configured to redirect cleanly to dist/index.html.');
+// 5. 核心修复：根目录 index.html 直接复制 dist/index.html 真实生产首页，彻底消除 ./dist/ 递归重定向死循环
+if (fs.existsSync('dist/index.html')) {
+  let rootHtml = fs.readFileSync('dist/index.html', 'utf8');
+  // 确保根目录 index.html 的资源路径正确指向根目录下的 _astro 与 favicon
+  rootHtml = rootHtml.replace(/href="(\.\.\/)+_astro\//g, 'href="./_astro/');
+  rootHtml = rootHtml.replace(/src="(\.\.\/)+_astro\//g, 'src="./_astro/');
+  rootHtml = rootHtml.replace(/href="(\.\.\/)+favicon\.svg"/g, 'href="./favicon.svg"');
+  rootHtml = rootHtml.replace(/src="(\.\.\/)+favicon\.svg"/g, 'src="./favicon.svg"');
+  fs.writeFileSync('index.html', rootHtml, 'utf8');
+  console.log('✓ Root index.html synced directly with full production homepage (zero loop redirects).');
+}

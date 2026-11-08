@@ -183,11 +183,22 @@ const hasDirectorySlashOn = /DirectorySlash\s+On/i.test(htaccessContent);
 const hasSafeArticleRewrite = htaccessContent.includes('/articles/%1/?') && htaccessContent.includes('RewriteRule ^article');
 const hasAff302Rewrite = /RewriteRule\s+\^\(\?:go\|aff\)[^\n]+\[R=302,L\]/i.test(htaccessContent);
 const hasNoAff301 = !/RewriteRule\s+\^\(\?:go\|aff\)[^\n]+\[R=301,L\]/i.test(htaccessContent);
+const hasDistLoopPrevention = htaccessContent.includes('/dist(?:/dist)*');
+
+// 检查根目录 index.html 是否彻底根除了 ./dist/ 递归重定向死循环
+const rootIndexPath = path.resolve('index.html');
+const rootIndexContent = fs.existsSync(rootIndexPath) ? fs.readFileSync(rootIndexPath, 'utf8') : '';
+const rootIndexHasNoLoop = !rootIndexContent.includes("window.location.replace('./dist/index.html") &&
+                           !rootIndexContent.includes('http-equiv="refresh" content="0;url=./dist/index.html"');
+const rootIndexHasProperTitle = !rootIndexContent.includes('本地知识库');
 
 console.log(`- Apache .htaccess mod_dir 冲突规则排查: ${!hasSlashStrippingRule ? '✓ 安全 (无剥离尾部斜杠导致互踹的死循环规则)' : '❌ 存在危险规则！'}`);
 console.log(`- DirectorySlash On 规范: ${hasDirectorySlashOn ? '✓ 已显式开启，目录自动补斜杠' : '❌ 未开启'}`);
 console.log(`- 服务端 /article -> /articles/%1/ 301 规则: ${hasSafeArticleRewrite ? '✓ 安全 (采用 %1/? 剥除 query 参数，防止连续重定向)' : '❌ 规则未优化'}`);
 console.log(`- Affiliate 推广链接 302 临时重定向规范: ${hasAff302Rewrite && hasNoAff301 ? '✓ 安全 (全量配置 HTTP 302 临时重定向，严禁 301)' : '❌ 推广规则未设为 302'}`);
+console.log(`- 服务端 /dist/ 递归死循环熔断规则: ${hasDistLoopPrevention ? '✓ 安全 (已配备 /dist(?:/dist)* 正则拦截熔断规则)' : '❌ 缺失熔断规则'}`);
+console.log(`- 根目录 index.html 无循环重定向脚本: ${rootIndexHasNoLoop ? '✓ 安全 (已彻底移除 ./dist/ 循环重定向)' : '❌ 仍残留循环跳转代码！'}`);
+console.log(`- 根目录 index.html 标题正确: ${rootIndexHasProperTitle ? '✓ 规范 (已与生产环境标题同步)' : '❌ 仍显示本地知识库！'}`);
 
 // 检查前端 article.astro / article.html 中是否存在循环 window.location 赋值
 const articleHtmlPath = path.join(distDir, 'article.html');
@@ -212,6 +223,9 @@ if (
   hasSafeArticleRewrite &&
   hasAff302Rewrite &&
   hasNoAff301 &&
+  hasDistLoopPrevention &&
+  rootIndexHasNoLoop &&
+  rootIndexHasProperTitle &&
   checksPathnameBeforeRedirect
 ) {
   console.log('✓ 未发现任何死链与路由异常，所有 443 篇文章均具有确凿正文，无需改动代码！');

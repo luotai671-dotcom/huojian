@@ -5,14 +5,8 @@
     if (window.location.protocol === 'file:') {
       (function() {
         var p = window.location.pathname.replace(/\\/g, '/');
-        // If opened from project root directly, forward to dist/index.html
-        if (!p.includes('/dist/')) {
-          window.location.replace('./dist/index.html' + window.location.search + window.location.hash);
-          return;
-        }
-
         var distIdx = p.indexOf('/dist/');
-        var distBase = p.substring(0, distIdx + 6); // ends with '/dist/'
+        var distBase = distIdx !== -1 ? p.substring(0, distIdx + 6) : p.substring(0, p.lastIndexOf('/') + 1);
 
         // Handle root-relative links gracefully without alerts or broken paths
         document.addEventListener('click', function(e) {

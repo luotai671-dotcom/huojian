@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>正在前往官网安全通道...</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 32px 24px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #e2e8f0;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    h2 { font-size: 18px; color: #0f172a; margin: 0 0 8px; font-weight: 700; }
+    p { font-size: 14px; color: #64748b; margin: 0 0 16px; line-height: 1.5; }
+    a.btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #2563eb;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    a.btn:hover { background: #1d4ed8; }
+  </style>
+  <script>
+    const urlMap = {
+      "shandian": "https://chenpin.shandianshuaff.com/#/?code=m28TvPVX",
+      "sds": "https://chenpin.shandianshuaff.com/#/?code=m28TvPVX",
+      "liulian": "https://chenpingan.liulianyunaff.com/#/?code=7pdjs9zt",
+      "lly": "https://chenpingan.liulianyunaff.com/#/?code=7pdjs9zt",
+      "dalao": "https://chenpin01.dalaoyunaff.com/#/?code=GQ6CL6Km",
+      "dalaoyun": "https://chenpin01.dalaoyunaff.com/#/?code=GQ6CL6Km",
+      "yunjiexian": "https://chenpingan.yunjiexianaff.com/#/?code=xLJGaIHM",
+      "yjx": "https://chenpingan.yunjiexianaff.com/#/?code=xLJGaIHM",
+      "shenxing": "https://chenpingan01.shenxingaff.com/#/?code=RZ48f9wP",
+      "sxjs": "https://chenpingan01.shenxingaff.com/#/?code=RZ48f9wP",
+      "huanqiu": "https://chenpingan01.huanqiutiaff.com/#/?code=FGCcYdFo",
+      "hqt": "https://chenpingan01.huanqiutiaff.com/#/?code=FGCcYdFo",
+      "jilian": "https://haozevpn.jlyvipaff.com/#/?code=6h2TMD5b",
+      "jly": "https://haozevpn.jlyvipaff.com/#/?code=6h2TMD5b",
+      "guangnian": "https://gnt001.gntvipaff.cc/#/?code=rN3ybxa7",
+      "gnt": "https://gnt001.gntvipaff.cc/#/?code=rN3ybxa7",
+      "byjd": "https://wep.edgenovaaff.com/#/?code=papME7sh",
+      "edgenova": "https://wep.edgenovaaff.com/#/?code=papME7sh",
+      "sj": "https://pygllc.speedworldaff.cc/#/?code=ll8LjYBJ",
+      "speedworld": "https://pygllc.speedworldaff.cc/#/?code=ll8LjYBJ",
+      "kl": "https://fanxiaobin.kuailiaff.com/#/?code=sOX6N4Tp",
+      "kuaili": "https://fanxiaobin.kuailiaff.com/#/?code=sOX6N4Tp",
+      "kxy": "https://everett7623.kosingaff.com//#/?code=Jl6dWU0G",
+      "kosing": "https://everett7623.kosingaff.com//#/?code=Jl6dWU0G",
+      "sy": "https://ddd.jichang.best/#/register?code=weN73kGq",
+      "shunyun": "https://ddd.jichang.best/#/register?code=weN73kGq",
+      "yt": "https://super.ytjcok.org/#/register?code=BKvuyYJI",
+      "yuntu": "https://super.ytjcok.org/#/register?code=BKvuyYJI",
+      "kpjs": "https://kunpengjiasu.com/#/register?code=oBWoiCcv",
+      "kunpeng": "https://kunpengjiasu.com/#/register?code=oBWoiCcv"
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id') ? params.get('id').toLowerCase() : '';
+    const targetUrl = urlMap[id] || "https://chenpin.shandianshuaff.com/#/?code=m28TvPVX";
+
+    window.location.replace(targetUrl);
+  </script>
+</head>
+<body>
+  <div class="card">
+    <div class="spinner"></div>
+    <h2>正在建立安全官方直达连接...</h2>
+    <p>正在跳转至服务商官方注册页面，已自动为您挂载专属折扣代码与安全协议。</p>
+    <a id="direct-link" href="/" class="btn" rel="nofollow sponsored noopener noreferrer">若未自动跳转，请点击此处直达官网</a>
+  </div>
+  <script>
+    document.getElementById('direct-link').href = targetUrl;
+  </script>
+</body>
+</html>

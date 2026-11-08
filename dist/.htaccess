@@ -1,24 +1,43 @@
 RewriteEngine On
 
-# 1. 强制 HTTPS 传输
+# =============================================================
+# 1. 强制 HTTPS 传输 (老薛主机 / cPanel 标准规范)
+# =============================================================
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
+# =============================================================
 # 2. 规范顶级裸域名 (消除 www 前缀)
+# =============================================================
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-# 3. 兼容历史文章路由查询参数 (?post=xxx 或 ?id=xxx) 重定向至标准静态路径
+# =============================================================
+# 3. 拦截修复：彻底消除可能陷入死循环的 /dist/ 路径 (关键修复)
+# =============================================================
+# 3.1 消除嵌套重复的 dist 路径 (直接将 /xxx/dist/... 规约回 /xxx/)
+RewriteCond %{REQUEST_URI} ^/(.+?)/dist(?:/dist)*/?(.*)$ [NC]
+RewriteRule ^ /%1/%2 [R=301,L]
+
+# 3.2 规范化浏览器地址栏显式输入的 /dist/ 前缀（消除 URL 中的 /dist/，保持 URL 简洁美观）
+RewriteCond %{THE_REQUEST} \s/+dist/([^\s?]*) [NC]
+RewriteRule ^dist/(.*)$ /$1 [R=301,L]
+
+# =============================================================
+# 4. 兼容历史文章路由查询参数 (?post=xxx 或 ?id=xxx) 重定向至标准静态路径
+# =============================================================
 RewriteCond %{QUERY_STRING} (?:^|&)post=([a-zA-Z0-9_-]+) [NC]
 RewriteRule ^article(?:\.html)?$ /articles/%1/? [R=301,L]
 
 RewriteCond %{QUERY_STRING} (?:^|&)id=([a-zA-Z0-9_-]+) [NC]
 RewriteRule ^article(?:\.html)?$ /articles/%1/? [R=301,L]
 
-# 4. 兼容 /articles/{id}.html 映射至 /articles/{id}/
+# 兼容 /articles/{id}.html 映射至 /articles/{id}/
 RewriteRule ^articles/([a-zA-Z0-9_-]+)\.html$ /articles/$1/ [R=301,L]
 
+# =============================================================
 # 5. Affiliate 推广链接 302 临时重定向 (严禁使用 301 永久重定向，避免权重外流与客户端缓存)
+# =============================================================
 RewriteRule ^(?:go|aff)/(?:shandian|sds)/?$ https://chenpin.shandianshuaff.com/#/?code=m28TvPVX [R=302,L]
 RewriteRule ^(?:go|aff)/(?:liulian|lly)/?$ https://chenpingan.liulianyunaff.com/#/?code=7pdjs9zt [R=302,L]
 RewriteRule ^(?:go|aff)/(?:dalao|dalaoyun)/?$ https://chenpin01.dalaoyunaff.com/#/?code=GQ6CL6Km [R=302,L]
@@ -81,15 +100,46 @@ RewriteRule ^go(?:\.html)?$ https://super.ytjcok.org/#/register?code=BKvuyYJI [R
 RewriteCond %{QUERY_STRING} (?:^|&)id=(?:kpjs|kunpeng)(?:&|$) [NC]
 RewriteRule ^go(?:\.html)?$ https://kunpengjiasu.com/#/register?code=oBWoiCcv [R=302,L]
 
-# 6. 确保目录自动补充末尾斜杠（避免与 mod_rewrite 互踹死循环）
+# =============================================================
+# 6. cPanel / 老薛主机根目录智能内部映射至 dist/ 目录 (双模适配)
+# =============================================================
+# 6.1 规范化：如果请求对应 dist/ 中的目录，但末尾缺少斜杠，则 301 重定向补充斜杠
+RewriteCond %{REQUEST_URI} !^/dist/
+RewriteCond %{DOCUMENT_ROOT}/dist/$1 -d
+RewriteRule ^(.*[^/])$ https://%{HTTP_HOST}/$1/ [R=301,L]
+
+# 6.2 若请求的文件在当前根目录不存在，但在 dist/ 存在对应实体文件，则内部重写至 dist/
+RewriteCond %{REQUEST_URI} !^/dist/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/dist/$1 -f
+RewriteRule ^(.*)$ dist/$1 [L]
+
+# 6.3 若请求的路径在当前根目录不存在，但在 dist/ 存在对应目录的 index.html，则内部重写至 dist/ 目录的 index.html
+RewriteCond %{REQUEST_URI} !^/dist/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/dist/$1/index.html -f
+RewriteRule ^(.*)/$ dist/$1/index.html [L]
+
+RewriteCond %{REQUEST_URI} !^/dist/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/dist/$1/index.html -f
+RewriteRule ^([^.]+)$ dist/$1/index.html [L]
+
+# =============================================================
+# 7. 确保目录自动补充末尾斜杠（避免与 mod_rewrite 互踹死循环）
+# =============================================================
 <IfModule mod_dir.c>
   DirectorySlash On
 </IfModule>
 
-# 404 自定义错误页
+# =============================================================
+# 8. 404 自定义错误页
+# =============================================================
 ErrorDocument 404 /404.html
 
-# 静态资源持久缓存
+# =============================================================
+# 9. 静态资源持久缓存
+# =============================================================
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/css "access plus 1 year"
@@ -101,19 +151,24 @@ ErrorDocument 404 /404.html
   ExpiresByType application/wasm "access plus 1 day"
 </IfModule>
 
-# Gzip / Deflate 压缩传输
+# =============================================================
+# 10. Gzip / Deflate 压缩传输
+# =============================================================
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
 </IfModule>
 
-# 安全与内容隔离标头
+# =============================================================
+# 11. 安全与内容隔离标头
+# =============================================================
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
-# MIME 类型支持
+# =============================================================
+# 12. MIME 类型与目录浏览限制
+# =============================================================
 AddType application/wasm .wasm
-
 Options -Indexes

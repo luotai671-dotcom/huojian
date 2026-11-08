@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && pagefind --site dist && node scripts/post-build-sync.mjs",
+    "build": "astro build && node scripts/pre-pagefind.mjs && pagefind --site dist && node scripts/post-build-sync.mjs",
     "preview": "astro preview",
     "indexnow": "node scripts/indexnow.mjs",
     "check": "node scripts/validate-content.mjs && node scripts/check-links.mjs && node scripts/check-seo.mjs && node scripts/check-typography.mjs && node scripts/check-pillar-hub.mjs && node scripts/check-content-map.mjs && node scripts/audit-brand-links.mjs && node scripts/audit-full-links.mjs"
