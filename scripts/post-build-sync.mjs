@@ -94,6 +94,22 @@ if (fs.existsSync('dist/pagefind')) {
   console.log('✓ Synced dist/pagefind to root pagefind/ for full-text search.');
 }
 
+// 3.2 复制 dist/ 下所有页面栏目目录到根目录（彻底根除 cPanel / 老薛主机根目录直挂 404）
+const sectionDirs = [
+  'about', 'ai', 'airports', 'article', 'articles', 'cheap',
+  'clients', 'contact', 'coupons', 'disclaimer', 'editorial-policy',
+  'editorial-standards', 'free', 'go', 'plans', 'privacy',
+  'promotion-disclosure', 'recommend', 'reviews', 'search',
+  'streaming', 'troubleshooting', 'tutorials', 'wiki'
+];
+sectionDirs.forEach(dir => {
+  const distSubDir = path.join('dist', dir);
+  if (fs.existsSync(distSubDir)) {
+    fs.cpSync(distSubDir, dir, { recursive: true });
+  }
+});
+console.log(`✓ Synced all ${sectionDirs.length} section directories to project root.`);
+
 // 4. 遍历并优化 dist 目录下所有 HTML 文件的资源引用为相对路径（确保本地双击与 HTTP 双兼容）
 function walkDir(dir) {
   let results = [];
@@ -141,7 +157,6 @@ if (fs.existsSync('dist')) {
 // 5. 核心修复：根目录 index.html 直接复制 dist/index.html 真实生产首页，彻底消除 ./dist/ 递归重定向死循环
 if (fs.existsSync('dist/index.html')) {
   let rootHtml = fs.readFileSync('dist/index.html', 'utf8');
-  // 确保根目录 index.html 的资源路径正确指向根目录下的 _astro 与 favicon
   rootHtml = rootHtml.replace(/href="(\.\.\/)+_astro\//g, 'href="./_astro/');
   rootHtml = rootHtml.replace(/src="(\.\.\/)+_astro\//g, 'src="./_astro/');
   rootHtml = rootHtml.replace(/href="(\.\.\/)+favicon\.svg"/g, 'href="./favicon.svg"');

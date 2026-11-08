@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Shadowrocket（小火箭）高级分流策略与模块集成：HTTPS 解密、脚本重写与本地 DNS 防污染配置实战 — 小火箭测评</title><meta name="description" content="详解 iOS 端 Shadowrocket 高级网络分流策略：深入 Packet Tunnel Provider 虚拟网卡截获机制、本地自签 CA 根证书 MitM HTTPS 解密、重写模块远程订阅与 DoH/DoT 防污染实操。"><link rel="canonical" href="https://xiaohuojianjc.blog/articles/shadowrocket-advanced-rules-https-mitm-guide/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="alternate" type="application/rss+xml" title="小火箭测评" href="/rss.xml"><!-- Open Graph / Social Media --><meta property="og:type" content="article"><meta property="og:title" content="Shadowrocket（小火箭）高级分流策略与模块集成：HTTPS 解密、脚本重写与本地 DNS 防污染配置实战 — 小火箭测评"><meta property="og:description" content="详解 iOS 端 Shadowrocket 高级网络分流策略：深入 Packet Tunnel Provider 虚拟网卡截获机制、本地自签 CA 根证书 MitM HTTPS 解密、重写模块远程订阅与 DoH/DoT 防污染实操。"><meta property="og:url" content="https://xiaohuojianjc.blog/articles/shadowrocket-advanced-rules-https-mitm-guide/"><meta property="og:site_name" content="小火箭测评"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2026-11-02"><meta property="article:modified_time" content="2026-11-02"><!-- Twitter Meta --><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Shadowrocket（小火箭）高级分流策略与模块集成：HTTPS 解密、脚本重写与本地 DNS 防污染配置实战 — 小火箭测评"><meta name="twitter:description" content="详解 iOS 端 Shadowrocket 高级网络分流策略：深入 Packet Tunnel Provider 虚拟网卡截获机制、本地自签 CA 根证书 MitM HTTPS 解密、重写模块远程订阅与 DoH/DoT 防污染实操。"><!-- Preconnect to Google Fonts if needed --><meta name="format-detection" content="telephone=no"><!-- JSON-LD Structured Data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"小火箭测评","url":"https://xiaohuojianjc.blog","description":"以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Shadowrocket（小火箭）高级分流策略与模块集成：HTTPS 解密、脚本重写与本地 DNS 防污染配置实战","description":"详解 iOS 端 Shadowrocket 高级网络分流策略：深入 Packet Tunnel Provider 虚拟网卡截获机制、本地自签 CA 根证书 MitM HTTPS 解密、重写模块远程订阅与 DoH/DoT 防污染实操。","url":"https://xiaohuojianjc.blog/articles/shadowrocket-advanced-rules-https-mitm-guide/","inLanguage":"zh-CN","datePublished":"2026-11-02","dateModified":"2026-11-02","isAccessibleForFree":true,"author":{"@type":"Organization","name":"小火箭测评编辑部"},"publisher":{"@type":"Organization","name":"小火箭测评","url":"https://xiaohuojianjc.blog"}}</script><!-- Fallback critical CSS for SVG sizing --><style>
+    svg { max-width: 100%; }
+    .logo-svg { width: 32px !important; height: 32px !important; max-width: 32px !important; max-height: 32px !important; flex-shrink: 0 !important; }
+  </style><script>
+    if (window.location.protocol === 'file:') {
+      (function() {
+        var p = window.location.pathname.replace(/\\/g, '/');
+        var distIdx = p.indexOf('/dist/');
+        var distBase = distIdx !== -1 ? p.substring(0, distIdx + 6) : p.substring(0, p.lastIndexOf('/') + 1);
+
+        // Handle root-relative links gracefully without alerts or broken paths
+        document.addEventListener('click', function(e) {
+          var a = e.target.closest('a');
+          if (!a) return;
+          var href = a.getAttribute('href');
+          if (!href) return;
+
+          // Allow external links, hash anchors, mailto, tel, javascript to behave normally
+          if (href.startsWith('#') || href.startsWith('http://') || href.startsWith('https://') ||
+              href.startsWith('//') || href.startsWith('mailto:') || href.startsWith('tel:') ||
+              href.startsWith('javascript:')) {
+            return;
+          }
+
+          // Route root-relative links to local static html files
+          if (href.startsWith('/')) {
+            e.preventDefault();
+            var clean = href.replace(/^\/+/, '');
+            var hash = '';
+            var hashIdx = clean.indexOf('#');
+            if (hashIdx !== -1) {
+              hash = clean.slice(hashIdx);
+              clean = clean.slice(0, hashIdx);
+            }
+            var query = '';
+            var queryIdx = clean.indexOf('?');
+            if (queryIdx !== -1) {
+              query = clean.slice(queryIdx);
+              clean = clean.slice(0, queryIdx);
+            }
+
+            var target;
+            if (!clean) {
+              target = 'index.html';
+            } else if (clean.endsWith('.html') || clean.endsWith('.xml') || clean.endsWith('.txt') || clean.endsWith('.svg') || clean.endsWith('.png')) {
+              target = clean;
+            } else {
+              target = clean.replace(/\/+$/, '') + '/index.html';
+            }
+
+            window.location.href = 'file://' + distBase + target + query + hash;
+          }
+        }, true);
+      })();
+    }
+  </script><link rel="stylesheet" href="/_astro/index.Blv80VYZ.css">
+<link rel="stylesheet" href="/_astro/_stableId_.6IqZ_T5J.css"><script type="module">const e=document.getElementById("mobile-menu-toggle"),t=document.getElementById("mobile-menu");e&&t&&e.addEventListener("click",()=>{t.classList.toggle("hidden")});
+</script></head><body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen"> <header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"> <!-- Top compliance disclaimer bar --> <div class="bg-slate-50 border-b border-slate-100 py-1 px-4 text-center text-[12px] text-slate-500"> <span>本站为独立的第三方机场选购与使用指南知识库，与任何机场品牌或代理软件官方无隶属关系。</span> </div> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="flex items-center justify-between h-16"> <!-- Logo and branding --> <div class="flex items-center gap-3"> <a href="/" class="flex items-center gap-2.5 text-slate-900 hover:text-blue-600 transition-colors"> <svg class="w-8 h-8 text-blue-600 logo-svg" width="32" height="32" style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; flex-shrink: 0;" viewBox="0 0 64 64" fill="none"> <rect width="64" height="64" rx="16" fill="#2563EB"></rect> <path d="M48 16L34 30M48 16C42 16 32 20 26 26C20 32 16 42 16 48C22 48 32 44 38 38C44 32 48 22 48 16Z" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M22 42L16 48L22 48L22 42Z" fill="#FACC15"></path> <path d="M25 25L39 39" stroke="#93C5FD" stroke-width="3" stroke-linecap="round"></path> </svg> <span class="font-bold text-[19px] tracking-tight text-slate-900">小火箭测评</span> </a> </div> <!-- Desktop Navigation (7 primary + dropdown) --> <nav class="hidden lg:flex items-center gap-6" aria-label="主导航"> <a href="/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 首页 </a><a href="/recommend/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 机场推荐 </a><a href="/free/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 免费机场 </a><a href="/cheap/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 便宜机场 </a><a href="/reviews/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 机场评测 </a><a href="/coupons/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> 机场优惠码 </a><a href="/ai/" class="text-[15px] font-medium text-slate-700 hover:text-blue-600 transition-colors"> AI工具 </a> <div class="relative group inline-block text-left"> <button type="button" class="inline-flex items-center gap-1 py-2 text-[15px] font-medium text-slate-700 hover:text-blue-600 focus:outline-none transition-colors" id="all-topics-button" aria-expanded="false" aria-haspopup="true"> <span>全部专题</span> <svg class="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path> </svg> </button> <div class="absolute right-0 sm:left-0 z-50 mt-1 hidden group-hover:block group-focus-within:block w-72 origin-top-left rounded-xl bg-white p-3 shadow-lg ring-1 ring-slate-900/5 border border-slate-200 focus:outline-none" role="menu" aria-orientation="vertical" tabindex="-1"> <div class="mb-3 last:mb-0"> <div class="px-3 py-1 text-[12px] font-semibold tracking-wider text-slate-400 uppercase"> 预算与用途 </div> <div class="space-y-0.5 mt-1"> <a href="/plans/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 套餐对比 </a><a href="/ai/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> AI工具 </a><a href="/streaming/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 流媒体机场 </a> </div> </div><div class="mb-3 last:mb-0"> <div class="px-3 py-1 text-[12px] font-semibold tracking-wider text-slate-400 uppercase"> 下载与技术 </div> <div class="space-y-0.5 mt-1"> <a href="/clients/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 客户端教程 </a><a href="/troubleshooting/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 网络排障 </a><a href="/wiki/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 机场百科 </a> </div> </div><div class="mb-3 last:mb-0"> <div class="px-3 py-1 text-[12px] font-semibold tracking-wider text-slate-400 uppercase"> 品牌查询 </div> <div class="space-y-0.5 mt-1"> <a href="/airports/" class="block rounded-lg px-3 py-1.5 text-[14px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors" role="menuitem"> 机场大全 </a> </div> </div> </div> </div> </nav> <!-- Right utility actions (Search + Mobile toggle) --> <div class="flex items-center gap-3"> <a href="/search/" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 text-[14px] transition-colors" title="搜索全站知识库" id="header-search-btn"> <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path> </svg> <span class="hidden sm:inline">搜索...</span> </a> <!-- Mobile Menu Toggle Button --> <button type="button" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" id="mobile-menu-toggle" aria-label="打开移动端导航菜单"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg> </button> </div> </div> </div> <!-- Mobile Drawer Menu --> <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2"> <div class="grid grid-cols-2 gap-2 pt-2 pb-3 border-b border-slate-100"> <a href="/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 首页 </a><a href="/recommend/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 机场推荐 </a><a href="/free/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 免费机场 </a><a href="/cheap/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 便宜机场 </a><a href="/reviews/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 机场评测 </a><a href="/coupons/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> 机场优惠码 </a><a href="/ai/" class="block px-3 py-2 rounded-md text-[15px] font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"> AI工具 </a> </div> <div class="pt-2"> <div class="px-2 py-1 text-[12px] font-semibold text-slate-400 uppercase tracking-wider">全部专题</div> <div class="grid grid-cols-2 gap-1 mt-1"> <a href="/plans/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">套餐对比</a> <a href="/ai/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">AI工具</a> <a href="/streaming/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">流媒体机场</a> <a href="/clients/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">客户端教程</a> <a href="/troubleshooting/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">网络排障</a> <a href="/wiki/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600">机场百科</a> <a href="/airports/" class="px-3 py-1.5 text-[14px] text-slate-600 hover:text-blue-600 col-span-2">机场大全</a> </div> </div> </div> </header>  <main class="flex-grow">  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6"> <!-- 5-Level Breadcrumb --> <nav aria-label="面包屑导航" class="my-4 text-[13px] text-slate-500 overflow-x-auto whitespace-nowrap py-1"> <ol class="flex items-center gap-1.5 list-none p-0 m-0"> <li class="flex items-center gap-1.5">  <a href="/" class="text-slate-600 hover:text-blue-600 transition-colors"> 首页 </a> </li><li class="flex items-center gap-1.5"> <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path> </svg> <a href="/" class="text-slate-600 hover:text-blue-600 transition-colors"> 首页 </a> </li><li class="flex items-center gap-1.5"> <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path> </svg> <a href="/clients/" class="text-slate-600 hover:text-blue-600 transition-colors"> 客户端教程 </a> </li><li class="flex items-center gap-1.5"> <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path> </svg> <span class="font-medium text-slate-800" aria-current="page"> Shadowrocket（小火箭）高级分流策略与模块集成：HTTPS 解密、脚本重写与本地 DNS 防污染配置实战 </span> </li> </ol> </nav> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://xiaohuojianjc.blog/"},{"@type":"ListItem","position":2,"name":"首页","item":"https://xiaohuojianjc.blog/"},{"@type":"ListItem","position":3,"name":"客户端教程","item":"https://xiaohuojianjc.blog/clients/"},{"@type":"ListItem","position":4,"name":"Shadowrocket（小火箭）高级分流策略与模块集成：HTTPS 解密、脚本重写与本地 DNS 防污染配置实战","item":"https://xiaohuojianjc.blog/articles/shadowrocket-advanced-rules-https-mitm-guide/"}]}</script> <header class="my-6 pb-6 border-b border-slate-200"> <div class="flex items-center gap-2 text-[12px] text-slate-500 mb-2 font-mono"> <span class="px-2 py-0.5 rounded bg-slate-100 font-semibold text-slate-700">shadowrocket-advanced-rules-https-mitm-guide</span> <span>•</span> <span>发布于 2026-11-02</span> <span>•</span> <span>核验于 2026-11-02</span> </div> <h1 class="text-[26px] sm:text-[32px] font-extrabold text-slate-900 tracking-tight leading-snug"> Shadowrocket（小火箭）高级分流策略与模块集成：HTTPS 解密、脚本重写与本地 DNS 防污染配置实战 </h1> <p class="mt-3 text-[16px] text-slate-600 leading-relaxed"> 详解 iOS 端 Shadowrocket 高级网络分流策略：深入 Packet Tunnel Provider 虚拟网卡截获机制、本地自签 CA 根证书 MitM HTTPS 解密、重写模块远程订阅与 DoH/DoT 防污染实操。 </p> </header> <div class="my-4 p-3 bg-slate-50 border border-slate-200 rounded-lg text-[13px] text-slate-600 flex items-start gap-2.5"> <svg class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path> </svg> <div> <span class="font-medium text-slate-800">商业合作透明披露：</span>
+本站内容包含服务商推广链接。如果您通过本站链接注册或购买，服务商可能向本站支付一定比例的技术佣金。该机制不会增加您的实际支付价格，所有推荐排序与测试数据均基于客观评估标准，详见
+<a href="/promotion-disclosure/" class="underline text-blue-700 hover:text-blue-900">商业合作披露细则</a>。
+</div> </div> <article class="article-content my-8"> <div class="prose max-w-none text-slate-800 leading-relaxed text-[17px]"><blockquote>
+<p><strong>核心结论速览（Direct Answer）</strong>：在 iOS 严苛的应用沙盒权限机制下，Shadowrocket（小火箭）借助苹果官方 NetworkExtension 框架中的 <code>Packet Tunnel Provider</code> 接口在系统网络层构建虚拟 TUN 通道，实现无侵入截获全机 IP 报文。进阶功能的核心在于启用 MitM（中间人 HTTPS 解密）配合本地自签 CA 根证书，使分流引擎能够深探至应用层 HTTP 标头与 URL 路径。结合远程规则模块（Modules）自动更新与 DoH/DoT 加密解析，可彻底阻断本地运营商 DNS 污染，同时实现开屏拦截与动态内容重写。</p>
+</blockquote>
+<hr>
+<h3 id="一-ios-沙盒约束下的流量截获机制">一、 iOS 沙盒约束下的流量截获机制</h3>
+<p>在苹果 iOS/iPadOS 操作系统中，出于安全与隐私保护，任何普通 App 均被限制在独立的沙盒内，禁止跨应用内存读取或直接监听物理 Wi-Fi/蜂窝接口。Shadowrocket 能够实现全系统流量分流与调度的底层基础，在于苹果系统特许的网络扩展框架：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>[ iOS 用户应用层 ] ── 微信 / Safari / YouTube / 独立 App</span></span>
+<span class="line"><span>       │</span></span>
+<span class="line"><span>       ▼ (系统网络调用)</span></span>
+<span class="line"><span>[ iOS 系统沙盒边界 ]</span></span>
+<span class="line"><span>       │</span></span>
+<span class="line"><span>       ▼</span></span>
+<span class="line"><span>[ NetworkExtension: Packet Tunnel Provider (虚拟 TUN 接口) ]</span></span>
+<span class="line"><span>       │</span></span>
+<span class="line"><span>       ▼ (截获全机 IP 报文，交由小火箭分流内核)</span></span>
+<span class="line"><span>[ Shadowrocket 核心路由引擎 ]</span></span>
+<span class="line"><span>       ├─► 传输层（L4）分流：匹配 IP-CIDR / GEOIP / 端口规则</span></span>
+<span class="line"><span>       ├─► 应用层（L7）分流：TLS 握手捕获 SNI 域名匹配 (DOMAIN-SUFFIX)</span></span>
+<span class="line"><span>       ├─► MitM 中间人层：解密 HTTPS 流量 -> 执行 Rewrite 脚本 / 模块拦截</span></span>
+<span class="line"><span>       ▼</span></span>
+<span class="line"><span>[ 出站调度决策 ] ──► 直连 DIRECT / 拒绝 REJECT / 节点 PROXY</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>当开启小火箭开关后，系统会在状态栏呈现网络通道图标。所有的 TCP/UDP 数据包在进入物理网卡前，均先被打包投递至 Packet Tunnel 虚拟接口，由小火箭内置规则库自上而下匹配。一旦匹配成功，即刻执行直连、中继代理或直接丢弃（REJECT）动作。</p>
+<hr>
+<h3 id="二-https-解密mitm与证书安装实战">二、 HTTPS 解密（MitM）与证书安装实战</h3>
+<p>传统的域名分流规则只能读取 TLS 握手阶段明文传递的 SNI（服务器名称指示），无法获知用户访问的具体 URL 路径、请求参数以及响应体内容。若要实现去广告、应用功能解锁或接口重写，必须开启 <strong>MitM（Man-in-the-Middle）中间人解密</strong>。</p>
+<h4 id="1-生成并安装本地自签名-ca-根证书">1. 生成并安装本地自签名 CA 根证书</h4>
+<p>MitM 的底层原理是在本地动态签发匹配目标域名的临时 SSL 证书。为使 iOS 系统信任这些临时证书，必须在设备上部署由小火箭专属生成的 CA 根证书：</p>
+<ol>
+<li>进入 Shadowrocket【配置】页面，点击当前正在使用的规则文件右侧的 <code>(i)</code> 详情图标；</li>
+<li>滑动至底部找到【HTTPS 解密】，勾选开启开关；</li>
+<li>点击【生成新的 CA 证书】 -> 选择【生成 CA 证书】并【安装证书】；</li>
+<li>此时 Safari 会弹出提示“此网站正在尝试下载配置描述文件”，点击【允许】；</li>
+<li>进入 iOS 系统【设置】 -> 【已下载描述文件】 -> 点击右上角【安装】并输入设备锁屏密码完成安装。</li>
+</ol>
+<h4 id="2-系统底层开启完全受信任设置关键红线">2. 系统底层开启完全受信任设置（关键红线）</h4>
+<p>安装描述文件仅完成了第一步，iOS 默认不会对第三方根证书开放 TLS 握手鉴权权限。<strong>必须手动开启完全信任</strong>：</p>
+<blockquote>
+<p><strong>操作路径</strong>：进入 iOS 系统【设置】 -> 【通用】 -> 【关于本机】 -> 滑动至最底部【证书信任设置】 -> 找到小火箭生成的 CA 证书名称 -> <strong>打开完全信任开关</strong>。</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>[ 安全警告与白名单规范 ]</span></span>
+<span class="line"><span>严禁将自签证书的私钥导出或共享给未经审计的第三方！</span></span>
+<span class="line"><span>同时，必须在 MitM 配置的主机名列表 (Hostnames) 中排除金融支付类、Apple 核心认证服务域名，例如：</span></span>
+<span class="line"><span>- *.apple.com</span></span>
+<span class="line"><span>- *.icloud.com</span></span>
+<span class="line"><span>- *.alipay.com</span></span>
+<span class="line"><span>- *.tenpay.com</span></span>
+<span class="line"><span>避免因中间人解密导致银行类应用遭遇风控拦截或证书绑定（SSL Pinning）报错。</span></span>
+<span class="line"><span></span></span></code></pre>
+<hr>
+<h3 id="三-脚本重写rewrite与远程模块modules集成">三、 脚本重写（Rewrite）与远程模块（Modules）集成</h3>
+<p>在开启 MitM 后，小火箭可通过模块（Modules）与规则脚本对 HTTP 报文进行动态修改。</p>
+<h4 id="1-常见重写类型与行为特征对照">1. 常见重写类型与行为特征对照</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">重写动作类型</th><th align="left">匹配阶段</th><th align="left">底层网络动作</th><th align="left">适用实操场景</th></tr></thead><tbody><tr><td align="left"><strong>Reject（拦截）</strong></td><td align="left">请求发送前</td><td align="left">直接返回 TCP RST 或 HTTP 404 响应码</td><td align="left">屏蔽各大应用的开屏广告请求、数据跟踪探针</td></tr><tr><td align="left"><strong>302 Redirect</strong></td><td align="left">请求阶段</td><td align="left">返回 HTTP 302 重定向 Location 头</td><td align="left">将国内短链接重定向至完整直连地址</td></tr><tr><td align="left"><strong>Header Rewrite</strong></td><td align="left">握手与标头阶段</td><td align="left">修改 User-Agent、Cookie 或 Referer</td><td align="left">伪装浏览器指纹、修改接口鉴权参数</td></tr><tr><td align="left"><strong>Script（JS VM）</strong></td><td align="left">响应体返回阶段</td><td align="left">调用内置 JavaScript 引擎修改 JSON/HTML</td><td align="left">净化应用界面、精简第三方 Feed 流内容</td></tr></tbody></table>
+<h4 id="2-工业级配置代码段落conf-规范">2. 工业级配置代码段落（.conf 规范）</h4>
+<p>在自定义配置文件中，模块与重写段落遵循标准语法规范：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#B392F0">[General]</span></span>
+<span class="line"><span style="color:#6A737D"># DNS 与分流核心全局参数</span></span>
+<span class="line"><span style="color:#F97583">ipv6</span><span style="color:#E1E4E8"> = false</span></span>
+<span class="line"><span style="color:#F97583">bypass-system</span><span style="color:#E1E4E8"> = true</span></span>
+<span class="line"><span style="color:#F97583">skip-proxy</span><span style="color:#E1E4E8"> = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[Rule]</span></span>
+<span class="line"><span style="color:#6A737D"># 1. 本地直连与私网规则</span></span>
+<span class="line"><span style="color:#E1E4E8">IP-CIDR, 127.0.0.0/8, DIRECT, no-resolve</span></span>
+<span class="line"><span style="color:#E1E4E8">IP-CIDR, 192.168.0.0/16, DIRECT, no-resolve</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 2. 广告与数据采集域名直接拦截</span></span>
+<span class="line"><span style="color:#E1E4E8">DOMAIN-KEYWORD, analytics, REJECT</span></span>
+<span class="line"><span style="color:#E1E4E8">DOMAIN-SUFFIX, adservice.google.com, REJECT</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 3. 常见规则出站调度</span></span>
+<span class="line"><span style="color:#E1E4E8">DOMAIN-SUFFIX, openai.com, PROXY</span></span>
+<span class="line"><span style="color:#E1E4E8">DOMAIN-SUFFIX, anthropic.com, PROXY</span></span>
+<span class="line"><span style="color:#E1E4E8">GEOIP, CN, DIRECT</span></span>
+<span class="line"><span style="color:#E1E4E8">FINAL, PROXY</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[URL Rewrite]</span></span>
+<span class="line"><span style="color:#6A737D"># 将特定的跟踪链接重写为空</span></span>
+<span class="line"><span style="color:#E1E4E8">^https?:\/\/api\.example\.com\/tracking\/.*$ - reject</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[MITM]</span></span>
+<span class="line"><span style="color:#6A737D"># 启用解密并指定仅对特定业务域名生效</span></span>
+<span class="line"><span style="color:#F97583">enable</span><span style="color:#E1E4E8"> = true</span></span>
+<span class="line"><span style="color:#F97583">ca-p12</span><span style="color:#E1E4E8"> = base64-encoded-certificate-string</span></span>
+<span class="line"><span style="color:#F97583">ca-passphrase</span><span style="color:#E1E4E8"> = my-secure-pass</span></span>
+<span class="line"><span style="color:#F97583">hostname</span><span style="color:#E1E4E8"> = *.openai.com, api.example.com, -*.apple.com</span></span>
+<span class="line"></span></code></pre>
+<hr>
+<h3 id="四-dns-防污染与纯净解析架构实战">四、 DNS 防污染与纯净解析架构实战</h3>
+<p>国内部分运营商（ISP）常在递归 DNS（传统 UDP 53 端口）阶段对未加密查询实施劫持与污染。Shadowrocket 提供了现代化的安全 DNS 调度机制：</p>
+<ol>
+<li><strong>启用 DoH / DoT 安全协议</strong>：
+在小火箭【设置】 -> 【DNS】中，将传统系统默认的 <code>114.114.114.114</code> 替换为加密的 DNS-over-HTTPS（DoH）服务地址：
+<ul>
+<li>国内直连优先解析：<code>https://223.5.5.5/dns-query</code>（阿里公共 DNS）</li>
+<li>海外安全防污染解析：<code>https://1.1.1.1/dns-query</code>（Cloudflare DNS）</li>
+</ul>
+</li>
+<li><strong>分流防漂移</strong>：
+在规则中勾选“远程解析域名”，使海外域名的 DNS 查询直接在专线远端代理服务器落地，确保返回离出口最近的 CDN 节点 IP，彻底终结访问速度慢和 CDN 调度漂移的问题。</li>
+</ol>
+<hr>
+<h3 id="五-低功耗运行与断流自愈方案">五、 低功耗运行与断流自愈方案</h3>
+<p>iOS 对后台进程拥有严苛的资源冻结策略。网络通道在后台长时间运行可能面临内存回收（OOM）或无线电休眠导致的“唤醒假死”现象。</p>
+<ul>
+<li><strong>节点探测（Ping）间隔调优</strong>：
+默认若设置过频的 TCP Ping，会导致无线基带频繁唤醒消耗电量。建议在【设置】中将节点测试间隔调整为 <strong>300~600 秒</strong>，在保持心跳与节约电量之间达成平衡。</li>
+<li><strong>自动恢复与按需连接（On-Demand）</strong>：
+开启【按需连接】功能，并指定“当连接特定受信任家庭 Wi-Fi 时自动关闭代理，当切换至蜂窝移动网络时自动开启”。这能彻底消除 Wi-Fi 切换蜂窝时的 3~5 秒短暂无网假死。</li>
+</ul>
+<hr>
+<h3 id="六-进阶深度常见问答faq">六、 进阶深度常见问答（FAQ）</h3>
+<h4 id="q1开启-https-解密后个别-app-提示网络连接证书错误或无法刷新">Q1：开启 HTTPS 解密后，个别 App 提示“网络连接证书错误”或无法刷新？</h4>
+<blockquote>
+<p><strong>答</strong>：这是由于这些应用在代码中集成了 <strong>SSL Pinning（证书绑定）</strong> 机制，应用内部硬编码了服务端真实证书公钥，一旦检测到由本地自签 CA 签发的证书即主动阻断通信。解决办法是在小火箭【HTTPS 解密】->【主机名 (Hostname)】中，将该应用的通信域名添加减号前缀（例如 <code>-*.examplebank.com</code>）从解密范围中完全排除。</p>
+</blockquote>
+<h4 id="q2远程模块modules与本地分流规则冲突时以哪个为准">Q2：远程模块（Modules）与本地分流规则冲突时以哪个为准？</h4>
+<blockquote>
+<p><strong>答</strong>：Shadowrocket 按照“模块规则优先注入”原则执行。远程订阅的模块规则通常会被自动提升至规则列表顶部优先匹配。若出现模块误杀导致国内应用无法刷新，应在【模块】管理中临时关闭该模块，或在本地规则中添加置顶的 <code>DOMAIN-SUFFIX,xxx.com,DIRECT</code> 强制直连覆盖。</p>
+</blockquote>
+<h4 id="q3移动网络环境下经常出现后台推送接收延迟如何处理">Q3：移动网络环境下经常出现后台推送接收延迟，如何处理？</h4>
+<blockquote>
+<p><strong>答</strong>：苹果 APNs 推送服务器域名为 <code>*.push.apple.com</code>，使用非标准端口通信。务必确保规则列表中将所有 Apple 推送相关服务划入 <code>DIRECT</code> 直连组，避免推送报文经过代理中转遭遇网络拥塞。对于需要长期稳定跨端办公的用户，搭配采用骨干专线接入的服务商（例如实验室验证的 <a href="/go.html?id=dalaoyun" target="_blank" rel="nofollow sponsored noopener noreferrer">大佬云高可用节点</a>）可显著降低长连接重连频次。</p>
+</blockquote>
+<hr>
+<h3 id="七-集群技术内链与系统延伸">七、 集群技术内链与系统延伸</h3>
+<ul>
+<li><strong>桌面端协同配置</strong>：若你在 Windows/macOS 电脑端同样需要实现底层的进程级接管与网卡接管，请参阅<a href="/articles/clash-verge-rev-advanced-tuning-guide/">《Clash Verge Rev 进阶调优手册》</a>。</li>
+<li><strong>下一代网关探索</strong>：对于希望体验跨平台一致性、更低内存开销的核心架构，请查阅<a href="/articles/sing-box-cross-platform-full-config-tutorial/">《sing-box 跨平台全功能配置全景指南》</a>。</li>
+<li><strong>返回专题总览</strong>：查阅全平台移动客户端教程与进阶规则模块推荐，请访问 <a href="/clients/">客户端教程汇总</a>。</li>
+</ul></div><section class="mt-14 pt-8 border-t border-slate-200"><h2 class="text-[20px] font-bold text-slate-900 mb-5 flex items-center gap-2"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg><span>客户端高阶技术集群矩阵互通</span></h2><div class="grid grid-cols-1 md:grid-cols-3 gap-4"><a href="/articles/clash-verge-rev-advanced-tuning-guide/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group"><div class="text-[12px] font-semibold text-blue-600 mb-1">桌面端调优指南</div><h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Clash Verge Rev 进阶调优</h3><p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">Mihomo 内核切换、TUN 虚拟网卡接管与进程级精准分流实战。</p></a><a href="/articles/shadowrocket-advanced-rules-https-mitm-guide/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group"><div class="text-[12px] font-semibold text-emerald-600 mb-1">移动端分流重写</div><h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">小火箭 HTTPS 解密与重写</h3><p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">Packet Tunnel 虚拟网卡截获、CA 根证书 MitM 与 DoH 防污染。</p></a><a href="/articles/sing-box-cross-platform-full-config-tutorial/" class="p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group"><div class="text-[12px] font-semibold text-purple-600 mb-1">全平台通用网关</div><h3 class="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">sing-box 跨平台全配置</h3><p class="text-[13px] text-slate-500 mt-1.5 leading-relaxed">Inbound/Outbound 解耦设计、Fake-IP 路由规则链与 YAML 迁移。</p></a></div></section><section class="my-8 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4 text-[14px]"><a href="/clients/" class="text-blue-600 hover:underline flex items-center gap-1 font-medium"><span>← 返回全部专题：客户端教程</span></a><div class="flex items-center gap-4"><a href="/troubleshooting/" class="text-slate-600 hover:text-blue-600 font-medium">
+网络排障专栏 →
+</a><a href="/reviews/" class="text-slate-600 hover:text-blue-600 font-medium">
+机场评测专栏 →
+</a></div></section> </article> <!-- Related Articles Section -->  </div>  </main> <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 mt-auto"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> <!-- Top Grid: Brand Statement + Nav Columns --> <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12"> <!-- Col 1: Brand & Positioning --> <div class="md:col-span-1 space-y-4"> <div class="flex items-center gap-2"> <svg class="w-7 h-7 text-blue-500 logo-svg" width="28" height="28" style="width: 28px; height: 28px; max-width: 28px; max-height: 28px; flex-shrink: 0;" viewBox="0 0 64 64" fill="none"> <rect width="64" height="64" rx="16" fill="#2563EB"></rect> <path d="M48 16L34 30M48 16C42 16 32 20 26 26C20 32 16 42 16 48C22 48 32 44 38 38C44 32 48 22 48 16Z" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M22 42L16 48L22 48L22 42Z" fill="#FACC15"></path> </svg> <span class="text-[18px] font-bold text-white tracking-tight">小火箭测评</span> </div> <p class="text-[14px] text-slate-400 leading-relaxed">
+以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库。
+</p> <p class="text-[13px] text-slate-500">
+站点性质：独立的第三方选购与使用指南站，与任何机场品牌或代理软件官方无隶属关系。
+</p> </div> <!-- Col 2: Core Hubs --> <div> <h3 class="text-[14px] font-semibold text-white tracking-wider uppercase mb-4">核心选型栏目</h3> <ul class="space-y-2 text-[14px]"> <li> <a href="/recommend/" class="text-slate-400 hover:text-white transition-colors"> 机场推荐 </a> </li><li> <a href="/free/" class="text-slate-400 hover:text-white transition-colors"> 免费机场 </a> </li><li> <a href="/cheap/" class="text-slate-400 hover:text-white transition-colors"> 便宜机场 </a> </li><li> <a href="/reviews/" class="text-slate-400 hover:text-white transition-colors"> 机场评测 </a> </li><li> <a href="/coupons/" class="text-slate-400 hover:text-white transition-colors"> 机场优惠码 </a> </li><li> <a href="/ai/" class="text-slate-400 hover:text-white transition-colors"> AI工具 </a> </li> </ul> </div> <!-- Col 3: Topics & Technical --> <div> <h3 class="text-[14px] font-semibold text-white tracking-wider uppercase mb-4">技术与应用专题</h3> <ul class="space-y-2 text-[14px]"> <li> <a href="/plans/" class="text-slate-400 hover:text-white transition-colors"> 套餐对比 </a> </li><li> <a href="/ai/" class="text-slate-400 hover:text-white transition-colors"> AI工具 </a> </li><li> <a href="/streaming/" class="text-slate-400 hover:text-white transition-colors"> 流媒体机场 </a> </li><li> <a href="/clients/" class="text-slate-400 hover:text-white transition-colors"> 客户端教程 </a> </li><li> <a href="/troubleshooting/" class="text-slate-400 hover:text-white transition-colors"> 网络排障 </a> </li><li> <a href="/wiki/" class="text-slate-400 hover:text-white transition-colors"> 机场百科 </a> </li><li> <a href="/airports/" class="text-slate-400 hover:text-white transition-colors"> 机场大全 </a> </li> </ul> </div> <!-- Col 4: Editorial & Compliance --> <div> <h3 class="text-[14px] font-semibold text-white tracking-wider uppercase mb-4">规范与免责声明</h3> <ul class="space-y-2 text-[14px]"> <li> <a href="/about" class="text-slate-400 hover:text-white transition-colors"> 关于本站 </a> </li><li> <a href="/editorial-policy/" class="text-slate-400 hover:text-white transition-colors"> 评测方法 </a> </li><li> <a href="/editorial-standards/" class="text-slate-400 hover:text-white transition-colors"> 编辑规范 </a> </li><li> <a href="/promotion-disclosure/" class="text-slate-400 hover:text-white transition-colors"> 商业合作披露 </a> </li><li> <a href="/privacy/" class="text-slate-400 hover:text-white transition-colors"> 隐私说明 </a> </li><li> <a href="/disclaimer/" class="text-slate-400 hover:text-white transition-colors"> 免责声明 </a> </li><li> <a href="/contact/" class="text-slate-400 hover:text-white transition-colors"> 纠错反馈 </a> </li> <li> <a href="/rss.xml" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5"> <span>RSS 订阅</span> </a> </li> </ul> </div> </div> <!-- Legal and Regulatory Notice Banner --> <div class="border-t border-slate-800 pt-8 pb-4 text-center space-y-3"> <div class="bg-slate-800/60 rounded-lg p-3 text-[13px] text-slate-400 max-w-4xl mx-auto border border-slate-700/50"> <p class="font-medium text-slate-300 mb-1">【法律与合法使用特别提示】</p> <p>请严格遵守中华人民共和国及当地相关法律法规，本站所有评测数据与技术分析文章仅供计算机网络原理研究、学术交流及合法合规用途。严禁利用本站资料从事任何违反法律法规的活动。</p> </div> <p class="text-[13px] text-slate-500">
+© 2026 xiaohuojianjc.blog (小火箭测评) 版权所有 · 本站仅提供静态知识索引，不承诺特定 AI 平台或搜索引擎的收录与推荐保证。
+</p> </div> </div> </footer> </body></html>
