@@ -15,6 +15,20 @@ const primaryBrand = getBrandById('sds');
 
 const articles = [
   {
+    "stableId": "art-wik-037",
+    "title": "2026 高速稳定机场节点选型全指南：IEPL专线架构、晚高峰抗QoS与真实测速自检",
+    "url": "/articles/2026-high-speed-stable-airport-recommendation-iepl-guide/",
+    "topicName": "专线架构与晚高峰抗压",
+    "clusterName": "🔥 2026重磅推荐"
+  },
+  {
+    "stableId": "art-wik-038",
+    "title": "性价比与按量付费机场推荐：大流量4K流媒体与高可用主备节点配置指南",
+    "url": "/articles/budget-metered-streaming-airport-recommendation-backup-guide/",
+    "topicName": "按量计费与流媒体",
+    "clusterName": "🔥 2026重磅推荐"
+  },
+  {
     "stableId": "art-wik-001",
     "title": "机场服务是什么：组成与角色",
     "url": "/articles/art-wik-001/",
@@ -265,20 +279,6 @@ const articles = [
     "url": "/articles/art-wik-036/",
     "topicName": "网络性能与隐私边界",
     "clusterName": "DNS IP与数据可见性"
-  },
-  {
-    "stableId": "art-wik-037",
-    "title": "2026 高速稳定机场节点选型全指南：IEPL专线架构、晚高峰抗QoS与真实测速自检",
-    "url": "/articles/2026-high-speed-stable-airport-recommendation-iepl-guide/",
-    "topicName": "专线架构与晚高峰抗压",
-    "clusterName": "高速稳定机场推荐"
-  },
-  {
-    "stableId": "art-wik-038",
-    "title": "性价比与按量付费机场推荐：大流量4K流媒体与高可用主备节点配置指南",
-    "url": "/articles/budget-metered-streaming-airport-recommendation-backup-guide/",
-    "topicName": "按量计费与流媒体",
-    "clusterName": "性价比机场推荐"
   }
 ];
 const faqs = [
@@ -438,6 +438,59 @@ const faqs = [
     <p class="text-[15px] text-slate-600 mb-6">
       本栏目下辖 3 个二级专题与 6 个三级内容集群，共计收录 38 篇独立技术长文，点击即可直达任意细分场景的实测与知识百科：
     </p>
+
+    <!-- Top Featured 2026 Hot Recommendations -->
+    <div class="mb-8 p-6 bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/80 border-2 border-blue-200 rounded-2xl shadow-sm">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white shadow-sm">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          2026 最新重磅增补
+        </span>
+        <span class="text-xs font-semibold text-blue-900">机场节点选型与高可用容灾专题</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/articles/2026-high-speed-stable-airport-recommendation-iepl-guide/" class="p-4 bg-white rounded-xl border border-blue-200 hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="font-bold text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded">高速专线架构推荐</span>
+              <span class="font-mono text-blue-600 font-semibold">art-wik-037</span>
+            </div>
+            <h3 class="font-bold text-[16px] text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-2">
+              2026 高速稳定机场节点选型全指南：IEPL专线架构、晚高峰抗QoS与真实测速自检
+            </h3>
+            <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+              深入剖析公网直连与 IEPL/IPLC 专线底层差异，详解晚高峰运营商 QoS 丢包机制与长周期测速自检方案。
+            </p>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-blue-600 font-semibold">
+            <span>立即查阅专线选型指南</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+
+        <a href="/articles/budget-metered-streaming-airport-recommendation-backup-guide/" class="p-4 bg-white rounded-xl border border-emerald-200 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="font-bold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded">按量计费与主备容灾</span>
+              <span class="font-mono text-emerald-600 font-semibold">art-wik-038</span>
+            </div>
+            <h3 class="font-bold text-[16px] text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 mb-2">
+              性价比与按量付费机场推荐：大流量4K流媒体与高可用主备节点配置指南
+            </h3>
+            <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+              拆解 8~15 元档性价比包月与不限时按量计费适用边界，详解原生住宅 IP 解锁与 Fallback 主备容灾配置。
+            </p>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-emerald-600 font-semibold">
+            <span>立即查阅高可用指南</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
     <CardGrid>
       {articles.map((art) => (
         <ArticleCard
